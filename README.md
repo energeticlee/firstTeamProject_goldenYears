@@ -1,3 +1,1 @@
-# golden-years
-
-Ashley has created repo. Try to add on to this. Test test...
+1. Create .env file with PORT and SECRET
