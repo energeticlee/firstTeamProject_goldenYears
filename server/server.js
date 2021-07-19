@@ -35,7 +35,7 @@ mongoose.connection.once("open", () => {
 });
 
 //Import/Require Controllers for express routing
-
+console.log("hello");
 //Routes (app.use)
 
 //Server Listening
