@@ -1,11 +1,14 @@
 Steps BEFORE you start work
 
 1. git pull in your main (so that the latest work is in your main)
-    - type git pull
+
+   - type git pull
 
 2. Git switch to your own branch (so that the latest work is copied into your branch)
-    - type git switch <branchname>
-    - type git branch to check
+
+   - type git switch <branchname>
+   - type git branch to check
+   - type git merge <mainbranchname> (So that if you have pull info into your main from the remote and now your local main is different from your branch, you want to merge your branch with your main)
 
 3. Do your work in your own branch
 
