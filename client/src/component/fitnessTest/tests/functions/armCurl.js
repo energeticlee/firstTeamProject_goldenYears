@@ -14,6 +14,7 @@ const armCurl = (reducerPackage) => {
       dispatch({ type: actions.setRepPhase, payload: "up" });
       dispatch({ type: actions.setRepCount, payload: 1 });
     }
+    //* if ((Math.floor(Date.now() - state.startTime)/1000) > 30)
     if (state.repCount === 5) {
       dispatch({ type: actions.setEndTime, payload: Date.now() });
       dispatch({ type: actions.setRepCount, payload: 0 });

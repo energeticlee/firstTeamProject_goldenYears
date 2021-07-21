@@ -11,7 +11,6 @@ const TestLibrary = () => {
   const actions = {
     setElbowAngle: "setElbowAngle",
     setKneeAngle: "setKneeAngle",
-    setShoulderAngle: "setShoulderAngle",
     setHipAngle: "setHipAngle",
     setRepCount: "setRepCount",
     setRepPhase: "setRepPhase", //* can remove
@@ -28,8 +27,6 @@ const TestLibrary = () => {
         return { ...state, kneeAngle: action.payload };
       case actions.setHipAngle:
         return { ...state, hipAngle: action.payload };
-      case actions.setShoulderAngle:
-        return { ...state, shoulderAngle: action.payload };
       case actions.setRepCount:
         return {
           ...state,
@@ -53,7 +50,6 @@ const TestLibrary = () => {
     bicepCurl: false,
     FRSTS: true,
     elbowAngle: 0,
-    shoulderAngle: 0,
     kneeAngle: 0,
     hipAngle: 0,
     repCount: 0,
