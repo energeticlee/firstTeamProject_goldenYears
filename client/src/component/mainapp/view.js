@@ -1,10 +1,11 @@
 import React from "react";
+import MyPerformance from "./rightside/myPerformance";
 
 const View = () =>{
 
     return(
         <div>
-            <div>There are routes here to display data</div>
+            <MyPerformance/>
         </div>
     )
 }
