@@ -1,19 +1,22 @@
 import React, { useReducer } from "react";
+import { Link, Route, Switch } from "react-router-dom";
 import PoseEstimation from "./tests/PoseEstimation";
 import chairStand from "./tests/functions/chairStand";
 import armCurl from "./tests/functions/armCurl";
+import twoMinStepTest from "./tests/functions/twoMinStepTest";
+
+//* Add score to useReducer, and render overall result here then Post result to DB.
 
 const TestLibrary = () => {
   const actions = {
     setElbowAngle: "setElbowAngle",
     setKneeAngle: "setKneeAngle",
-    setShoulderAngle: "setShoulderAngle",
     setHipAngle: "setHipAngle",
     setRepCount: "setRepCount",
-    setRepPhase: "setRepPhase",
-    setStartTime: "setStartTime",
+    setRepPhase: "setRepPhase", //* can remove
+    setStartTime: "setStartTime", //* set countdown timer
     setEndTime: "setEndTime",
-    setResult: "setResult",
+    setResult: "setResult", //* 3 result ** use repCounter
   };
 
   const renderjointAngle = (state, action) => {
@@ -24,8 +27,6 @@ const TestLibrary = () => {
         return { ...state, kneeAngle: action.payload };
       case actions.setHipAngle:
         return { ...state, hipAngle: action.payload };
-      case actions.setShoulderAngle:
-        return { ...state, shoulderAngle: action.payload };
       case actions.setRepCount:
         return {
           ...state,
@@ -49,7 +50,6 @@ const TestLibrary = () => {
     bicepCurl: false,
     FRSTS: true,
     elbowAngle: 0,
-    shoulderAngle: 0,
     kneeAngle: 0,
     hipAngle: 0,
     repCount: 0,
@@ -65,20 +65,41 @@ const TestLibrary = () => {
     <div>
       <h1>Testing Library</h1>
       <div>
-        {/* Create list of test */}
         <div>
-          <h2>30-Second Chair Stand</h2>
-          <PoseEstimation reducerPackage={reducerPackage} props={chairStand} />
+          <Link to="chairStand">
+            <h2>30-Second Chair Stand</h2>
+          </Link>
         </div>
         <div>
-          <h2>Arm Curl</h2>
-          {/* need go another page */}
-          <PoseEstimation reducerPackage={reducerPackage} props={armCurl} />
+          <Link to="armCurl">
+            <h2>Arm Curl</h2>
+          </Link>
         </div>
         <div>
-          <h2>2-Minute Step Test</h2>
+          <Link to="twoMinStepTest">
+            <h2>2-Minute Step Test</h2>
+          </Link>
         </div>
       </div>
+      <main>
+        <Switch>
+          <Route path="/chairStand">
+            <PoseEstimation
+              reducerPackage={reducerPackage}
+              props={chairStand}
+            />
+          </Route>
+          <Route path="/armCurl">
+            <PoseEstimation reducerPackage={reducerPackage} props={armCurl} />
+          </Route>
+          <Route path="/twoMinStepTest">
+            <PoseEstimation
+              reducerPackage={reducerPackage}
+              props={twoMinStepTest}
+            />
+          </Route>
+        </Switch>
+      </main>
     </div>
   );
 };

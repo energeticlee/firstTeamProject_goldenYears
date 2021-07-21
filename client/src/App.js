@@ -7,6 +7,8 @@ import UserIntro from "./component/mainapp/UserIntro";
 
 function App() {
   return (
+    <div className="App">
+      <h1>golden years</h1>
       <Switch>
         <Route path="/home">
           <Home />
@@ -18,6 +20,7 @@ function App() {
           <Landing />
         </Route>
       </Switch>
+    </div>
   );
 }
 

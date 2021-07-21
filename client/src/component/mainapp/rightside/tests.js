@@ -22,7 +22,7 @@ const Tests = () =>{
             </Route>
 
             <Route path={`${path}/tests`}>
-              <Tests />
+              {/* <Tests /> */}
             </Route>
             {/* <Redirect to = "/404"/> */}
 

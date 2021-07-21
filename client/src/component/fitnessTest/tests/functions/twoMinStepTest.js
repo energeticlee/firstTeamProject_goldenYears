@@ -1,24 +1,23 @@
 import { useEffect } from "react";
 
-const armCurl = (reducerPackage) => {
+//! Alternating trigger
+
+const twoMinStepTest = (reducerPackage) => {
   const { state, actions, dispatch } = reducerPackage;
 
-  const armCurlCounter = () => {
-    if (state.elbowAngle > 150) {
+  const twoMinStepTestCounter = () => {
+    if (state.kneeAngle > 150) {
       dispatch({ type: actions.setRepPhase, payload: "down" });
       if (state.repCount === 0)
         dispatch({ type: actions.setStartTime, payload: Date.now() });
     }
 
-    if (state.elbowAngle < 40 && state.repPhase === "down") {
+    if (state.kneeAngle < 40 && state.repPhase === "down") {
       dispatch({ type: actions.setRepPhase, payload: "up" });
       dispatch({ type: actions.setRepCount, payload: 1 });
-      console.log(state.repCount);
     }
-    //* if ((Math.floor(Date.now() - state.startTime)/1000) > 30)
-    if (Math.floor((Date.now() - state.startTime) / 1000) === 5) {
-      // dispatch({ type: actions.setEndTime, payload: Date.now() });
-      console.log(state.repCount);
+    if (state.repCount === 5) {
+      dispatch({ type: actions.setEndTime, payload: Date.now() });
       dispatch({ type: actions.setRepCount, payload: 0 });
     }
   };
@@ -31,12 +30,12 @@ const armCurl = (reducerPackage) => {
   };
 
   useEffect(() => {
-    if (state.elbowAngle > 10) armCurlCounter(state.elbowAngle);
-  }, [state.elbowAngle]);
+    if (state.kneeAngle > 10) twoMinStepTestCounter(state.kneeAngle);
+  }, [state.kneeAngle]);
 
   useEffect(() => {
-    if (state.elbowAngle > 10) testResult(state);
+    if (state.kneeAngle > 10) testResult(state);
   }, [state.endTime]);
 };
 
-export default armCurl;
+export default twoMinStepTest;
