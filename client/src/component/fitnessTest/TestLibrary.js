@@ -13,10 +13,12 @@ const TestLibrary = () => {
     setKneeAngle: "setKneeAngle",
     setHipAngle: "setHipAngle",
     setRepCount: "setRepCount",
-    setRepPhase: "setRepPhase", //* can remove
-    setStartTime: "setStartTime", //* set countdown timer
-    setEndTime: "setEndTime",
-    setResult: "setResult", //* 3 result ** use repCounter
+    setRepPhase: "setRepPhase",
+    setStartTime: "setStartTime",
+    setCompleted: "setCompleted",
+    setResultArmCurl: "setResultArmCurl", //* Use repCounter
+    setResultStepTest: "setResultStepTest",
+    setResultChairStand: "setResultChairStand",
   };
 
   const renderjointAngle = (state, action) => {
@@ -36,27 +38,31 @@ const TestLibrary = () => {
         return { ...state, repPhase: action.payload };
       case actions.setStartTime:
         return { ...state, startTime: action.payload };
-      case actions.setEndTime:
-        return { ...state, endTime: action.payload };
-      case actions.setResult:
-        return { ...state, result: action.payload };
+      case actions.setCompleted:
+        return { ...state, completed: action.payload };
+      case actions.setResultArmCurl:
+        return { ...state, resultArmCurl: action.payload };
+      case actions.setResultStepTest:
+        return { ...state, resultStepTest: action.payload };
+      case actions.setResultChairStand:
+        return { ...state, resultChairStand: action.payload };
       default:
         return state;
     }
   };
 
   const [state, dispatch] = useReducer(renderjointAngle, {
-    //! 3 Test
-    bicepCurl: false,
-    FRSTS: true,
+    //! Reset Score && set completed to false onClick
     elbowAngle: 0,
     kneeAngle: 0,
     hipAngle: 0,
     repCount: 0,
     repPhase: "",
     startTime: 0,
-    endTime: 0,
-    result: 0,
+    completed: false,
+    resultArmCurl: 0,
+    resultStepTest: 0,
+    resultChairStand: 0,
   });
 
   const reducerPackage = { state, dispatch, actions };

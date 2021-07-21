@@ -15,28 +15,32 @@ const armCurl = (reducerPackage) => {
       dispatch({ type: actions.setRepCount, payload: 1 });
       console.log(state.repCount);
     }
-    //* if ((Math.floor(Date.now() - state.startTime)/1000) > 30)
+    //* 30 Seconds
     if (Math.floor((Date.now() - state.startTime) / 1000) === 5) {
-      // dispatch({ type: actions.setEndTime, payload: Date.now() });
       console.log(state.repCount);
+      dispatch({ type: actions.setCompleted, payload: true });
       dispatch({ type: actions.setRepCount, payload: 0 });
     }
   };
 
   const testResult = (state) => {
     dispatch({
-      type: actions.setResult,
-      payload: ((state.endTime - state.startTime) / 1000).toFixed(1),
+      type: actions.setResultArmCurl,
+      payload: state.repCount,
     });
+    console.log("test completed");
   };
 
   useEffect(() => {
-    if (state.elbowAngle > 10) armCurlCounter(state.elbowAngle);
+    //* Run this while test is ongoing
+    if (state.elbowAngle > 10 && !state.completed)
+      armCurlCounter(state.elbowAngle);
   }, [state.elbowAngle]);
 
   useEffect(() => {
-    if (state.elbowAngle > 10) testResult(state);
-  }, [state.endTime]);
+    //* Run this when test is completed
+    if (state.elbowAngle > 10 && state.completed) testResult(state);
+  }, [state.completed]);
 };
 
 export default armCurl;
