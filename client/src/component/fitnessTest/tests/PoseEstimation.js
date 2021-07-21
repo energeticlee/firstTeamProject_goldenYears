@@ -1,11 +1,12 @@
-import React, { useRef, useEffect, useReducer } from "react";
+import React, { useRef, useEffect } from "react";
 import "@tensorflow/tfjs-backend-webgl";
 import * as poseDetection from "@tensorflow-models/pose-detection";
 import Webcam from "react-webcam";
 import renderJointAngle from "./functions/renderJointAngle";
 import style from "./Render.module.css";
+import PropTypes from "prop-types";
 
-const Render = () => {
+const PoseEstimation = ({ reducerPackage, props }) => {
   const jointCoordinate = {
     rightWrist: 0,
     rightElbow: 0,
@@ -21,66 +22,9 @@ const Render = () => {
     leftAnkle: 0,
   };
 
-  const actions = {
-    setElbowAngle: "setElbowAngle",
-    setKneeAngle: "setKneeAngle",
-    setShoulderAngle: "setShoulderAngle",
-    setHipAngle: "setHipAngle",
-    setRepCount: "setRepCount",
-    setRepPhase: "setRepPhase",
-    setStartTime: "setStartTime",
-    setEndTime: "setEndTime",
-    setResult: "setResult",
-  };
-
-  const renderjointAngle = (state, action) => {
-    switch (action.type) {
-      case actions.setElbowAngle:
-        return { ...state, elbowAngle: action.payload };
-      case actions.setKneeAngle:
-        return { ...state, kneeAngle: action.payload };
-      case actions.setHipAngle:
-        return { ...state, hipAngle: action.payload };
-      case actions.setShoulderAngle:
-        return { ...state, shoulderAngle: action.payload };
-      case actions.setRepCount:
-        return {
-          ...state,
-          repCount: (state.repCount + action.payload) * action.payload,
-        };
-      case actions.setRepPhase:
-        return { ...state, repPhase: action.payload };
-      case actions.setStartTime:
-        return { ...state, startTime: action.payload };
-      case actions.setEndTime:
-        return { ...state, endTime: action.payload };
-      case actions.setResult:
-        return { ...state, result: action.payload };
-      default:
-        return state;
-    }
-  };
-
-  const [state, dispatch] = useReducer(renderjointAngle, {
-    //! 3 Test
-    bicepCurl: false,
-    FRSTS: true,
-    elbowAngle: 0,
-    shoulderAngle: 0,
-    kneeAngle: 0,
-    hipAngle: 0,
-    repCount: 0,
-    repPhase: "",
-    startTime: 0,
-    endTime: 0,
-    result: 0,
-  });
-
-  const reducerPackage = { state, dispatch, actions };
-
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
-  const toggleRate = 1000;
+  const toggleRate = 35;
   const confidenceScore = 0.3;
 
   useEffect(() => {
@@ -211,6 +155,8 @@ const Render = () => {
     }
   };
 
+  props(reducerPackage);
+
   return (
     <div>
       <div>
@@ -221,4 +167,9 @@ const Render = () => {
   );
 };
 
-export default Render;
+PoseEstimation.propTypes = {
+  reducerPackage: PropTypes.string,
+  props: PropTypes.func,
+};
+
+export default PoseEstimation;
