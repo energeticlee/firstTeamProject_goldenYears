@@ -13,10 +13,12 @@ const armCurl = (reducerPackage) => {
     if (state.elbowAngle < 40 && state.repPhase === "down") {
       dispatch({ type: actions.setRepPhase, payload: "up" });
       dispatch({ type: actions.setRepCount, payload: 1 });
+      console.log(state.repCount);
     }
     //* if ((Math.floor(Date.now() - state.startTime)/1000) > 30)
-    if (state.repCount === 5) {
-      dispatch({ type: actions.setEndTime, payload: Date.now() });
+    if (Math.floor((Date.now() - state.startTime) / 1000) === 5) {
+      // dispatch({ type: actions.setEndTime, payload: Date.now() });
+      console.log(state.repCount);
       dispatch({ type: actions.setRepCount, payload: 0 });
     }
   };

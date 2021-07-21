@@ -74,7 +74,6 @@ const TestLibrary = () => {
           <Link to="armCurl">
             <h2>Arm Curl</h2>
           </Link>
-          <PoseEstimation reducerPackage={reducerPackage} props={armCurl} />
         </div>
         <div>
           <Link to="twoMinStepTest">
@@ -84,16 +83,16 @@ const TestLibrary = () => {
       </div>
       <main>
         <Switch>
-          <Route path="chairStand">
+          <Route path="/chairStand">
             <PoseEstimation
               reducerPackage={reducerPackage}
               props={chairStand}
             />
           </Route>
-          <Route path="armCurl">
+          <Route path="/armCurl">
             <PoseEstimation reducerPackage={reducerPackage} props={armCurl} />
           </Route>
-          <Route path="twoMinStepTest">
+          <Route path="/twoMinStepTest">
             <PoseEstimation
               reducerPackage={reducerPackage}
               props={twoMinStepTest}
