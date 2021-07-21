@@ -1,6 +1,7 @@
 import React, { useReducer } from "react";
 import PoseEstimation from "./tests/PoseEstimation";
 import chairStand from "./tests/functions/chairStand";
+import armCurl from "./tests/functions/armCurl";
 
 const TestLibrary = () => {
   const actions = {
@@ -66,23 +67,16 @@ const TestLibrary = () => {
       <div>
         {/* Create list of test */}
         <div>
-          <a href="/">
-            <img src="" alt="test1" />
-            <h2>30-Second Chair Stand</h2>
-          </a>
+          <h2>30-Second Chair Stand</h2>
           <PoseEstimation reducerPackage={reducerPackage} props={chairStand} />
         </div>
         <div>
-          <a href="/">
-            <img src="" alt="test2" />
-            <h2>Arm Curl</h2>
-          </a>
+          <h2>Arm Curl</h2>
+          {/* need go another page */}
+          <PoseEstimation reducerPackage={reducerPackage} props={armCurl} />
         </div>
         <div>
-          <a href="/">
-            <img src="" alt="test3" />
-            <h2>2-Minute Step Test</h2>
-          </a>
+          <h2>2-Minute Step Test</h2>
         </div>
       </div>
     </div>
