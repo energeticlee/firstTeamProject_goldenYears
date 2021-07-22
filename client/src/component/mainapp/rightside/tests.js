@@ -1,34 +1,27 @@
 import React from "react";
 import { BrowserRouter as Switch, Route } from "react-router-dom";
-import {useRouteMatch} from "react-router-dom"
+import { useRouteMatch } from "react-router-dom";
 
-const Tests = () =>{
-    let { path } = useRouteMatch();
+const Tests = () => {
+  let { path } = useRouteMatch();
 
-    return (
-        <>
-          <h1>This is View</h1>
-          <Switch>
-            <Route exact path={`${path}/chairstand`}>
-              {/* <Chairstand/> */}
-            </Route>
+  return (
+    <>
+      <h1>Test Selection Page</h1>
+      <Switch>
+        <Route exact path={`${path}/chairstand`}>
+          {/* <Chairstand/> */}
+        </Route>
 
-            <Route path={`${path}/armcurl`}>
-              {/* <Armcurl/> */}
-            </Route>
+        <Route path={`${path}`}>{/* <Armcurl/> */}</Route>
 
-            <Route path={`${path}/myprofile`}>
-              {/* <MyProfile /> */}
-            </Route>
+        <Route path={`${path}`}>{/* <MyProfile /> */}</Route>
 
-            <Route path={`${path}/tests`}>
-              {/* <Tests /> */}
-            </Route>
-            {/* <Redirect to = "/404"/> */}
+        <Route path={`${path}`}>{/* <Tests /> */}</Route>
+        {/* <Redirect to = "/404"/> */}
+      </Switch>
+    </>
+  );
+};
 
-          </Switch>
-          </>
-      );
-}
-
-export default Tests
+export default Tests;
