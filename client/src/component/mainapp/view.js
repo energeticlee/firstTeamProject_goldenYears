@@ -2,9 +2,10 @@ import React from "react";
 import { BrowserRouter as Switch, Route } from "react-router-dom";
 import MyPerformance from "./rightside/myPerformance";
 import MyProfile from "./rightside/myProfile";
-import Tests from "./rightside/tests";
+// import Tests from "./rightside/tests";
 import Faqs from "./rightside/faqs";
 import {useRouteMatch} from "react-router-dom"
+import TestLibrary from "../fitnessTest/TestLibrary";
 
 const View = () =>{
     let { path } = useRouteMatch();
@@ -27,7 +28,7 @@ const View = () =>{
             </Route>
 
             <Route path={`${path}/tests`}>
-              <Tests />
+              <TestLibrary />
             </Route>
             {/* <Redirect to = "/404"/> */}
 
