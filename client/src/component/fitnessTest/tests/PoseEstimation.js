@@ -158,10 +158,18 @@ const PoseEstimation = ({ reducerPackage, props }) => {
   props(reducerPackage);
 
   return (
-    <div>
-      <div>
-        <Webcam ref={webcamRef} className={style.webCam} />
-        <canvas ref={canvasRef} className={style.canvas} />
+    <div className={style.pageContainer}>
+      <div className={style.leftContainer}>Side Bar</div>
+      <div className={style.rightContainer}>
+        <div className={style.rightTopContainer}>
+          <button>Instruction</button>
+          <h2>{reducerPackage.state.repCount}</h2>
+          <h2>Test Name</h2>
+        </div>
+        <div className={style.camContainer}>
+          <Webcam ref={webcamRef} className={style.webCam} />
+          <canvas ref={canvasRef} className={style.canvas} />
+        </div>
       </div>
     </div>
   );

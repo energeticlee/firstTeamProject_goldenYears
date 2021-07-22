@@ -55,7 +55,7 @@ const TestLibrary = () => {
   };
 
   const [state, dispatch] = useReducer(renderjointAngle, {
-    //! Reset Score && set completed to false onClick
+    //! onClick - Reset Score && set completed to false
     elbowAngle: 0,
     kneeAngle: 0,
     rightHipAngle: 0,
