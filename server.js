@@ -12,13 +12,14 @@ const mongoose = require("mongoose");
 //Configurations - Express
 const app = express();
 const port = process.env.PORT;
-app.use(
-  session({
-    secret: process.env.SECRET,
-    resave: false,
-    saveUninitialized: false,
-  })
-);
+// app.use(
+//   session({
+//     secret: process.env.SECRET,
+//     resave: false,
+//     saveUninitialized: false,
+//   })
+// );
+
 app.use(methodOverride("_method"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
@@ -37,6 +38,7 @@ mongoose.connection.once("open", () => {
 //Import/Require Controllers for express routing
 
 //Routes (app.use)
+app.get("/api/userInfo", (req, res) => [res.send("hello")]);
 
 //Server Listening
 app.listen(port, () => {
