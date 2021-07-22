@@ -1,11 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const Tests = () => {
+const Testcards = () => {
   return (
     <>
-      <div>This is the test page, it would have 3 squares to 3 different tests</div>
+      <Link to = "/"></Link>
     </>
   );
 };
 
-export default Tests;
+export default Testcards;
