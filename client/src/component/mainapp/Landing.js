@@ -9,7 +9,6 @@ const Landing = () => {
 				nisi. Donec id justo. Nulla neque dolor, sagittis eget, iaculis quis,
 				molestie non, velit.
 			</p>
-			//* insert preview images
 			<Link to="/login">Login</Link>
 			<Link to="/registration">Register</Link>
 		</>
