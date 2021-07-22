@@ -19,17 +19,25 @@ const renderJointAngle = (jointCoordinate, confidenceScore, reducerPackage) => {
     confidenceScore
   );
 
-  //! Hip
-  const currentHipAngle = calculateJointAngle(
+  //! Right Hip
+  const currentRightHipAngle = calculateJointAngle(
     jointCoordinate.rightShoulder,
     jointCoordinate.rightHip,
     jointCoordinate.rightKnee,
     confidenceScore
   );
+  //! Left Hip
+  const currentLeftHipAngle = calculateJointAngle(
+    jointCoordinate.leftShoulder,
+    jointCoordinate.leftHip,
+    jointCoordinate.leftKnee,
+    confidenceScore
+  );
 
   dispatch({ type: actions.setElbowAngle, payload: currentElblowAngle });
   dispatch({ type: actions.setKneeAngle, payload: currentKneeAngle });
-  dispatch({ type: actions.setHipAngle, payload: currentHipAngle });
+  dispatch({ type: actions.setRightHipAngle, payload: currentRightHipAngle });
+  dispatch({ type: actions.setLeftHipAngle, payload: currentLeftHipAngle });
 };
 
 export default renderJointAngle;

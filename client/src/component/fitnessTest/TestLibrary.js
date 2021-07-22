@@ -11,7 +11,8 @@ const TestLibrary = () => {
   const actions = {
     setElbowAngle: "setElbowAngle",
     setKneeAngle: "setKneeAngle",
-    setHipAngle: "setHipAngle",
+    setRightHipAngle: "setRightHipAngle",
+    setLeftHipAngle: "setLeftHipAngle",
     setRepCount: "setRepCount",
     setRepPhase: "setRepPhase",
     setStartTime: "setStartTime",
@@ -27,8 +28,10 @@ const TestLibrary = () => {
         return { ...state, elbowAngle: action.payload };
       case actions.setKneeAngle:
         return { ...state, kneeAngle: action.payload };
-      case actions.setHipAngle:
-        return { ...state, hipAngle: action.payload };
+      case actions.setRightHipAngle:
+        return { ...state, rightHipAngle: action.payload };
+      case actions.setLeftHipAngle:
+        return { ...state, leftHipAngle: action.payload };
       case actions.setRepCount:
         return {
           ...state,
@@ -55,7 +58,8 @@ const TestLibrary = () => {
     //! Reset Score && set completed to false onClick
     elbowAngle: 0,
     kneeAngle: 0,
-    hipAngle: 0,
+    rightHipAngle: 0,
+    leftHipAngle: 0,
     repCount: 0,
     repPhase: "",
     startTime: 0,

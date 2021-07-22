@@ -1,41 +1,48 @@
 import { useEffect } from "react";
 
-//! Alternating trigger
+//! Alternating Hip trigger
 
 const twoMinStepTest = (reducerPackage) => {
   const { state, actions, dispatch } = reducerPackage;
 
   const twoMinStepTestCounter = () => {
-    if (state.kneeAngle > 150) {
+    if (state.rightHipAngle > 100 && state.leftHipAngle > 100) {
       dispatch({ type: actions.setRepPhase, payload: "down" });
       if (state.repCount === 0)
         dispatch({ type: actions.setStartTime, payload: Date.now() });
     }
 
-    if (state.kneeAngle < 40 && state.repPhase === "down") {
+    if (
+      (state.rightHipAngle < 100 || state.leftHipAngle < 100) &&
+      state.repPhase === "down"
+    ) {
+      console.log(state.repCount);
       dispatch({ type: actions.setRepPhase, payload: "up" });
       dispatch({ type: actions.setRepCount, payload: 1 });
     }
-    if (state.repCount === 5) {
-      dispatch({ type: actions.setEndTime, payload: Date.now() });
+    //! Change back to 120 Seconds
+    if (Math.floor((Date.now() - state.startTime) / 1000) === 10) {
+      console.log(state.repCount);
+      dispatch({ type: actions.setCompleted, payload: true });
       dispatch({ type: actions.setRepCount, payload: 0 });
     }
   };
 
   const testResult = (state) => {
     dispatch({
-      type: actions.setResult,
-      payload: ((state.endTime - state.startTime) / 1000).toFixed(1),
+      type: actions.setResultStepTest,
+      payload: state.repCount,
     });
   };
 
   useEffect(() => {
-    if (state.kneeAngle > 10) twoMinStepTestCounter(state.kneeAngle);
-  }, [state.kneeAngle]);
+    //* Run this while test is ongoing
+    if (state.rightHipAngle > 10 && !state.completed) twoMinStepTestCounter();
+  }, [state.rightHipAngle, state.leftHipAngle]);
 
   useEffect(() => {
-    if (state.kneeAngle > 10) testResult(state);
-  }, [state.endTime]);
+    if (state.rightHipAngle > 10 && state.completed) testResult(state);
+  }, [state.completed]);
 };
 
 export default twoMinStepTest;
