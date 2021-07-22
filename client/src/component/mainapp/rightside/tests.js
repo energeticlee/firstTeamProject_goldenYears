@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Switch, Route } from "react-router-dom";
 import {useRouteMatch} from "react-router-dom"
+import TestLibrary from "../../fitnessTest/TestLibrary";
 
 const Tests = () =>{
     let { path } = useRouteMatch();
@@ -22,7 +23,7 @@ const Tests = () =>{
             </Route>
 
             <Route path={`${path}/tests`}>
-              {/* <Tests /> */}
+              <TestLibrary />
             </Route>
             {/* <Redirect to = "/404"/> */}
 

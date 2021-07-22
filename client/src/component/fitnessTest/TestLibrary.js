@@ -4,10 +4,12 @@ import PoseEstimation from "./tests/PoseEstimation";
 import chairStand from "./tests/functions/chairStand";
 import armCurl from "./tests/functions/armCurl";
 import twoMinStepTest from "./tests/functions/twoMinStepTest";
-
+import { useRouteMatch } from "react-router";
 //* Add score to useReducer, and render overall result here then Post result to DB.
 
 const TestLibrary = () => {
+  let { path } = useRouteMatch();
+
   const actions = {
     setElbowAngle: "setElbowAngle",
     setKneeAngle: "setKneeAngle",
@@ -55,7 +57,7 @@ const TestLibrary = () => {
   };
 
   const [state, dispatch] = useReducer(renderjointAngle, {
-    //! Reset Score && set completed to false onClick
+    //! onClick - Reset Score && set completed to false
     elbowAngle: 0,
     kneeAngle: 0,
     rightHipAngle: 0,
@@ -76,33 +78,35 @@ const TestLibrary = () => {
       <h1>Testing Library</h1>
       <div>
         <div>
-          <Link to="chairStand">
+          <Link to={`${path}/chairStand`}>
             <h2>30-Second Chair Stand</h2>
           </Link>
         </div>
         <div>
-          <Link to="armCurl">
+          <Link to={`${path}/armCurl`}>
             <h2>Arm Curl</h2>
           </Link>
         </div>
         <div>
-          <Link to="twoMinStepTest">
+          <Link to={`${path}/twoMinStepTest`}>
             <h2>2-Minute Step Test</h2>
           </Link>
         </div>
       </div>
       <main>
         <Switch>
-          <Route path="/chairStand">
+          <Route path={`${path}/chairStand`}>
             <PoseEstimation
               reducerPackage={reducerPackage}
               props={chairStand}
             />
           </Route>
-          <Route path="/armCurl">
+
+          <Route path={`${path}/armCurl`}>
             <PoseEstimation reducerPackage={reducerPackage} props={armCurl} />
           </Route>
-          <Route path="/twoMinStepTest">
+
+          <Route path={`${path}/twoMinStepTest`}>
             <PoseEstimation
               reducerPackage={reducerPackage}
               props={twoMinStepTest}
