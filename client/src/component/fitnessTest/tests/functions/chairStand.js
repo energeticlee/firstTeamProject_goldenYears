@@ -14,26 +14,29 @@ const chairStand = (reducerPackage) => {
       dispatch({ type: actions.setRepPhase, payload: "up" });
       dispatch({ type: actions.setRepCount, payload: 1 });
     }
-    if (state.repCount === 5) {
-      dispatch({ type: actions.setEndTime, payload: Date.now() });
+    //! Change back to 30 Seconds
+    if (Math.floor((Date.now() - state.startTime) / 1000) === 5) {
+      console.log(state.repCount);
+      dispatch({ type: actions.setCompleted, payload: true });
       dispatch({ type: actions.setRepCount, payload: 0 });
     }
   };
 
   const testResult = (state) => {
     dispatch({
-      type: actions.setResult,
-      payload: ((state.endTime - state.startTime) / 1000).toFixed(1),
+      type: actions.setResultChairStand,
+      payload: state.repCount,
     });
   };
 
   useEffect(() => {
-    if (state.hipAngle > 10) squatCounter(state.kneeAngle);
+    //* Run this while test is ongoing
+    if (state.hipAngle > 10 && !state.completed) squatCounter(state.kneeAngle);
   }, [state.hipAngle]);
 
   useEffect(() => {
-    if (state.hipAngle > 10) testResult(state);
-  }, [state.endTime]);
+    if (state.hipAngle > 10 && state.completed) testResult(state);
+  }, [state.completed]);
 };
 
 export default chairStand;

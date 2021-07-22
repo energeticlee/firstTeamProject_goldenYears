@@ -15,7 +15,7 @@ const armCurl = (reducerPackage) => {
       dispatch({ type: actions.setRepCount, payload: 1 });
       console.log(state.repCount);
     }
-    //* 30 Seconds
+    //! Change back to 30 Seconds
     if (Math.floor((Date.now() - state.startTime) / 1000) === 5) {
       console.log(state.repCount);
       dispatch({ type: actions.setCompleted, payload: true });
@@ -28,7 +28,6 @@ const armCurl = (reducerPackage) => {
       type: actions.setResultArmCurl,
       payload: state.repCount,
     });
-    console.log("test completed");
   };
 
   useEffect(() => {
