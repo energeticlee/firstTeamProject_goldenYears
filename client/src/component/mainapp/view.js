@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Switch, Route } from "react-router-dom";
-import MyPerformance from "./rightside/MyPerformance";
+import MyPerformance from "./rightside/myPerformance";
 import MyProfile from "./rightside/MyProfile";
-import Faqs from "./rightside/FAQs";
+import FAQs from "./rightside/faqs";
 import { useRouteMatch } from "react-router-dom";
 import TestLibrary from "../fitnessTest/TestLibrary";
 
@@ -19,7 +19,7 @@ const View = () => {
 				</Route>
 
 				<Route path={`${path}/faqs`}>
-					<Faqs />
+					<FAQs />
 				</Route>
 
 				<Route path={`${path}/myprofile`}>
