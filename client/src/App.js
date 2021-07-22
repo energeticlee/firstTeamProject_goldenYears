@@ -8,7 +8,7 @@ import UserIntro from "./component/mainapp/UserIntro";
 function App() {
 	return (
 		<div className="App">
-			<h1>golden years</h1>
+			<h1>GoldenYears</h1>
 			<Switch>
 				<Route path="/home">
 					<Home />
