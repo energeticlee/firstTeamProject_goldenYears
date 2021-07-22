@@ -1,6 +1,7 @@
 //Dependencies - Express
 const express = require("express");
 const session = require("express-session");
+const cors = require("cors");
 require("dotenv").config();
 const methodOverride = require("method-override");
 
