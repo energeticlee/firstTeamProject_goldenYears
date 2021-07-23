@@ -12,7 +12,7 @@ const mongoose = require("mongoose");
 
 //Configurations - Express
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3333;
 // app.use(
 //   session({
 //     secret: process.env.SECRET,
@@ -38,6 +38,7 @@ mongoose.connection.once("open", () => {
 //Import/Require Controllers for express routing
 const seedController = require("./controller/seed");
 const userController = require("./controller/user");
+const fakeTestData1 = require("./controller/fakeTestData1");
 
 //Routes (app.use)
 app.get("/", (req, res) => {
@@ -45,6 +46,7 @@ app.get("/", (req, res) => {
 });
 app.use("/api/seed", seedController);
 app.use("/api/user", userController);
+app.use("/api/fakeTestData1", fakeTestData1);
 
 //Server Listening
 app.listen(port, () => {
