@@ -1,7 +1,7 @@
 //Dependencies - Express
 const express = require("express");
-const session = require("express-session");
-const cors = require("cors");
+// const session = require("express-session");
+// const cors = require("cors");
 require("dotenv").config();
 const methodOverride = require("method-override");
 
@@ -12,14 +12,14 @@ const mongoose = require("mongoose");
 
 //Configurations - Express
 const app = express();
-const port = process.env.PORT;
-app.use(
-  session({
-    secret: process.env.SECRET,
-    resave: false,
-    saveUninitialized: false,
-  })
-);
+const port = process.env.PORT || 3000;
+// app.use(
+//   session({
+//     secret: process.env.SECRET,
+//     resave: false,
+//     saveUninitialized: false,
+//   })
+// );
 app.use(methodOverride("_method"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
@@ -36,8 +36,10 @@ mongoose.connection.once("open", () => {
 });
 
 //Import/Require Controllers for express routing
+const seedController = require("./controller/seed");
 
 //Routes (app.use)
+app.use("/api", seedController);
 
 //Server Listening
 app.listen(port, () => {
