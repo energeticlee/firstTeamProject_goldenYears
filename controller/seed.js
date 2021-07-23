@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const seedSchema = require("../models/user");
+const userSchema = require("../models/user");
 
 const names = [
   { name: "Kevin", email: "helloKevin@123.com", password: "123" },
@@ -11,16 +11,21 @@ const names = [
 ];
 
 router.get("/", (req, res) => {
-  seedSchema.deleteMany({}, (error, data) => {
+  userSchema.deleteMany({}, (error, data) => {
     if (error) res.status(400).json({ error: "deleteError" });
   });
-  seedSchema.create(names, (err, nameList) => {
+  userSchema.create(names, (err, nameList) => {
     if (err) {
       console.log(err);
     } else {
       console.log(nameList);
       res.redirect("/api/user");
     }
+  });
+});
+router.get("/deleteusers", (req, res) => {
+  userSchema.deleteMany(() => {
+    res.redirect("/api/user");
   });
 });
 
