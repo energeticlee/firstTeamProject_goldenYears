@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter as Switch, Route } from "react-router-dom";
-import MyPerformance from "./rightside/myPerformance";
-import MyProfile from "./rightside/MyProfile";
-import FAQs from "./rightside/faqs";
+import MyPerformance from "./rightside/MyPerformance";
+import FAQs from "./rightside/FAQs";
 import { useRouteMatch } from "react-router-dom";
 import TestLibrary from "../fitnessTest/TestLibrary";
+import MyProfile from "./rightside/MyProfile"
 
 const View = () => {
   let { path } = useRouteMatch();
@@ -23,7 +23,7 @@ const View = () => {
         </Route>
 
         <Route path={`${path}/myprofile`}>
-          <MyProfile />
+          <MyProfile/>
         </Route>
 
         <Route path={`${path}/tests`}>

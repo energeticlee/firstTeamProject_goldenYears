@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Testcards = () => {
+const TestCards = () => {
   return (
     <>
       <Link to = "/"></Link>
@@ -9,4 +9,4 @@ const Testcards = () => {
   );
 };
 
-export default Testcards;
+export default TestCards;
