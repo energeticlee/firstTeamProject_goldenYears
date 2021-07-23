@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const seedSchema = require("../models/user");
+const userSchema = require("../models/user");
 
 const names = [
   { name: "Kevin" },
@@ -10,14 +10,27 @@ const names = [
   { name: "justin" },
 ];
 
-router.get("/", (req, res) => {
-  seedSchema.create(names, (err, nameList) => {
+const test_1 = [
+  { name: "Kevin" },
+  { name: "bob" },
+  { name: "farhan" },
+  { name: "ashley" },
+  { name: "justin" },
+];
+
+router.get("/newusers", (req, res) => {
+  userSchema.create(names, (err, nameList) => {
     if (err) {
       console.log(err);
     } else {
       console.log(nameList);
       res.redirect("/api/user");
     }
+  });
+});
+router.get("/deleteusers", (req, res) => {
+  userSchema.deleteMany(() => {
+    res.redirect("/api/user");
   });
 });
 
