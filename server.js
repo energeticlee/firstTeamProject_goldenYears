@@ -1,7 +1,7 @@
 //Dependencies - Express
 const express = require("express");
-const session = require("express-session");
-const cors = require("cors");
+// const session = require("express-session");
+// const cors = require("cors");
 require("dotenv").config();
 const methodOverride = require("method-override");
 
@@ -12,7 +12,7 @@ const mongoose = require("mongoose");
 
 //Configurations - Express
 const app = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 // app.use(
 //   session({
 //     secret: process.env.SECRET,
@@ -20,22 +20,6 @@ const port = process.env.PORT;
 //     saveUninitialized: false,
 //   })
 // );
-const whitelist = [
-  "http://localhost:3000",
-  "http://localhost:3003",
-  "https://fathomless-sierra-68956.herokuapp.com",
-];
-const corsOptionsDelegate = function (req, callback) {
-  let corsOptions;
-  if (whitelist.indexOf(req.header("Origin")) !== -1) {
-    corsOptions = { origin: true }; // reflect (enable) the requested origin in the CORS response
-  } else {
-    corsOptions = { origin: false }; // disable CORS for this request
-  }
-  callback(null, corsOptions); // callback expects two parameters: error and options
-};
-app.use(cors());
-
 app.use(methodOverride("_method"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
@@ -52,17 +36,10 @@ mongoose.connection.once("open", () => {
 });
 
 //Import/Require Controllers for express routing
+const seedController = require("./controller/seed");
 
 //Routes (app.use)
-app.get("/", (req, res) => {
-  res.send("You have reached express");
-});
-
-const seedController = require("./controller/seed");
-app.use("/api/seed", seedController);
-
-const userController = require("./controller/user");
-app.use("/api/user", userController);
+app.use("/api", seedController);
 
 //Server Listening
 app.listen(port, () => {
