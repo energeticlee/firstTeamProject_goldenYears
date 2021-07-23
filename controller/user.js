@@ -1,15 +1,14 @@
-// const mongoose = require("mongoose");
-const User = require("../models/user");
 const express = require("express");
 const router = express.Router();
+const seedSchema = require("../models/user");
 
-// * index => shows all the users
-router.get("/all", (req, res) => {
-  User.find((err, usersList) => {
+router.get("/", (req, res) => {
+  seedSchema.find({}, (err, foundUser) => {
     if (err) {
       res.status(400).json({ error: err.message });
+    } else {
+      res.status(200).json(foundUser);
     }
-    res.status(200).json(usersList);
   });
 });
 

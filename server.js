@@ -37,9 +37,14 @@ mongoose.connection.once("open", () => {
 
 //Import/Require Controllers for express routing
 const seedController = require("./controller/seed");
+const userController = require("./controller/user");
 
 //Routes (app.use)
-app.use("/api", seedController);
+app.get("/", (req, res) => {
+  res.send("Hello");
+});
+app.use("/api/seed", seedController);
+app.use("/api/user", userController);
 
 //Server Listening
 app.listen(port, () => {
