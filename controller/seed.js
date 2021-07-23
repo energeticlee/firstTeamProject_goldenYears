@@ -3,22 +3,17 @@ const router = express.Router();
 const userSchema = require("../models/user");
 
 const names = [
-  { name: "Kevin" },
-  { name: "bob" },
-  { name: "farhan" },
-  { name: "ashley" },
-  { name: "justin" },
+  { name: "Kevin", email: "helloKevin@123.com", password: "123" },
+  { name: "bob", email: "helloBob@123.com", password: "1234" },
+  { name: "farhan", email: "helloFarhan@123.com", password: "12356" },
+  { name: "ashley", email: "helloAshley@123.com", password: "123455" },
+  { name: "justin", email: "helloJustin@123.com", password: "124443" },
 ];
 
-const test_1 = [
-  { name: "Kevin" },
-  { name: "bob" },
-  { name: "farhan" },
-  { name: "ashley" },
-  { name: "justin" },
-];
-
-router.get("/newusers", (req, res) => {
+router.get("/", (req, res) => {
+  userSchema.deleteMany({}, (error, data) => {
+    if (error) res.status(400).json({ error: "deleteError" });
+  });
   userSchema.create(names, (err, nameList) => {
     if (err) {
       console.log(err);
