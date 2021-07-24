@@ -38,6 +38,7 @@ mongoose.connection.once("open", () => {
 //Import/Require Controllers for express routing
 const seedController = require("./controller/seed");
 const userController = require("./controller/user");
+const fitnessTestController = require("./controller/fitnessTest");
 const fakeTestData1 = require("./controller/fakeTestData1");
 
 //Routes (app.use)
@@ -46,6 +47,7 @@ app.get("/", (req, res) => {
 });
 app.use("/api/seed", seedController);
 app.use("/api/user", userController);
+app.use("/api/fitnessTest", fitnessTestController);
 app.use("/api/fakeTestData1", fakeTestData1);
 
 //Server Listening
