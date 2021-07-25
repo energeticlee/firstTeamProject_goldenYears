@@ -1,17 +1,24 @@
 import React from "react";
 import HomeNavBar from "./HomeNavBar";
+import DoctorIntro from "../userIntro/DocIntro";
+import PatientIntro from "../userIntro/PatientIntro";
+import { Switch, Route, useRouteMatch } from "react-router-dom";
 
 const Landing = () => {
-	return (
-		<>
-			<HomeNavBar />
-			<h1>GoldenYears</h1>
-			<p>
-				Cras ultricies mi eu turpis hendrerit fringilla. Duis leo. Quisque ut
-				nisi. Donec id justo. Nulla neque dolor, sagittis eget, iaculis quis,
-				molestie non, velit.
-			</p>
-		</>
-	);
+  const { path } = useRouteMatch();
+  return (
+    <div>
+      <h1>Landing Page</h1>
+      <HomeNavBar />
+      <Switch>
+        <Route path={`${path}/patients`}>
+          <PatientIntro />
+        </Route>
+        <Route path={`${path}/doctors`}>
+          <DoctorIntro />
+        </Route>
+      </Switch>
+    </div>
+  );
 };
 export default Landing;
