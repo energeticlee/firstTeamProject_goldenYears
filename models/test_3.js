@@ -6,9 +6,4 @@ const test_Three_Schema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: "user_Schema" },
 });
 
-const test_Three_Schema = mongoose.model(
-  "test_Three_Schema",
-  test_Three_Schema
-);
-
-module.exports = test_Three_Schema;
+module.exports = mongoose.model("test_Three_Schema", test_Three_Schema);

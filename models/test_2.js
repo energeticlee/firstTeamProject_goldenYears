@@ -6,6 +6,4 @@ const test_Two_Schema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: "user_Schema" },
 });
 
-const test_Two_Schema = mongoose.model("test_Two_Schema", test_Two_Schema);
-
-module.exports = test_Two_Schema;
+module.exports = mongoose.model("test_Two_Schema", test_Two_Schema);
