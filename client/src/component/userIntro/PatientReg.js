@@ -1,6 +1,6 @@
 import React from "react";
 
-const Registration = () => {
+const PatientReg = () => {
 	return (
 		<div>
 			<form>
@@ -65,4 +65,4 @@ const Registration = () => {
 	);
 };
 
-export default Registration;
+export default PatientReg;
