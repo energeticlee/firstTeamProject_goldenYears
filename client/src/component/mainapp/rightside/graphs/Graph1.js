@@ -1,58 +1,144 @@
 /* eslint-disable */
-import React, { PureComponent } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import React, { PureComponent } from "react";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
+import moment from "moment";
 
 const data = [
   {
-    name: 'Page A',
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
+    date: 1626000000000,
+    result: 5,
+    user: {
+      uniqueId: "myID",
+      name: "hello",
+      email: "helloe",
+      password: "test",
+    },
   },
   {
-    name: 'Page B',
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
+    date: 1627008174460,
+    result: 7,
+    user: {
+      uniqueId: "myID",
+      name: "hello",
+      email: "helloe",
+      password: "test",
+    },
   },
   {
-    name: 'Page C',
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
+    date: 1627015174460,
+    result: 12,
+    user: {
+      uniqueId: "myID",
+      name: "hello",
+      email: "helloe",
+      password: "test",
+    },
   },
   {
-    name: 'Page D',
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
+    date: 1627018174460,
+    result: 11,
+    user: {
+      uniqueId: "myID",
+      name: "hello",
+      email: "helloe",
+      password: "test",
+    },
   },
   {
-    name: 'Page E',
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
+    date: 1627032174460,
+    result: 7,
+    user: {
+      uniqueId: "myID",
+      name: "hello",
+      email: "helloe",
+      password: "test",
+    },
   },
   {
-    name: 'Page F',
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
+    date: 1627020174460,
+    result: 3,
+    user: {
+      uniqueId: "myID",
+      name: "hello",
+      email: "helloe",
+      password: "test",
+    },
   },
   {
-    name: 'Page G',
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
+    date: 1627005174460,
+    result: 20,
+    user: {
+      uniqueId: "myID",
+      name: "hello",
+      email: "helloe",
+      password: "test",
+    },
+  },
+  {
+    date: 1627026174460,
+    result: 25,
+    user: {
+      uniqueId: "myID",
+      name: "hello",
+      email: "helloe",
+      password: "test",
+    },
   },
 ];
+
+// const data = [
+//   {
+//     name: 'Page A',
+//     pv: 2400,
+//   },
+//   {
+//     name: 'Page B',
+//     pv: 1398,
+//   },
+//   {
+//     name: 'Page C',
+//     pv: 9800,
+//   },
+//   {
+//     name: 'Page D',
+//     pv: 3908,
+//   },
+//   {
+//     name: 'Page E',
+//     pv: 4800,
+//   },
+//   {
+//     name: 'Page F',
+//     pv: 3800,
+//   },
+//   {
+//     name: 'Page G',
+//     pv: 4300,
+//   },
+// ];
 
 class CustomizedLabel extends PureComponent {
   render() {
     const { x, y, stroke, value } = this.props;
 
     return (
-      <text x={x} y={y} dy={-4} fill={stroke} fontSize={10} textAnchor="middle">
+      <text
+        x={x}
+        y={y}
+        dy={-10}
+        fill={stroke}
+        fontSize={10}
+        textAnchor="middle"
+      >
         {value}
       </text>
     );
@@ -62,11 +148,21 @@ class CustomizedLabel extends PureComponent {
 class CustomizedAxisTick extends PureComponent {
   render() {
     const { x, y, stroke, payload } = this.props;
+    const value = moment(payload.value).format("DD:MM:YYYY ")
+    console.log(Date.now())
+    
 
     return (
       <g transform={`translate(${x},${y})`}>
-        <text x={0} y={0} dy={16} textAnchor="end" fill="#666" transform="rotate(-35)">
-          {payload.value}
+        <text
+          x={0}
+          y={0}
+          dy={16}
+          textAnchor="end"
+          fill="#666"
+          transform="rotate(-35)"
+        >
+          {value}
         </text>
       </g>
     );
@@ -74,12 +170,11 @@ class CustomizedAxisTick extends PureComponent {
 }
 
 export default class Graph1 extends PureComponent {
-//   static demoUrl = 'https://codesandbox.io/s/line-chart-with-customized-label-hs5b7';
+  //   static demoUrl = 'https://codesandbox.io/s/line-chart-with-customized-label-hs5b7';
 
   render() {
     return (
-        <div className = "Graph1">
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="100%" height={300}>
         <LineChart
           width={500}
           height={300}
@@ -92,15 +187,25 @@ export default class Graph1 extends PureComponent {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" height={60} tick={<CustomizedAxisTick />} />
+          <XAxis
+            dataKey="date"
+            height={60}
+            tick={<CustomizedAxisTick />}
+            domain={["auto", "auto"]}
+            type="number"
+          />
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line type="monotone" dataKey="pv" stroke="#8884d8" label={<CustomizedLabel />} />
-          <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+          <Line
+            type="monotone"
+            dataKey="result"
+            stroke="#8884d8"
+            label={<CustomizedLabel />}
+          />
+          {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
         </LineChart>
       </ResponsiveContainer>
-    </div>
     );
   }
 }
