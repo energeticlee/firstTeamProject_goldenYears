@@ -4,21 +4,25 @@ const armCurlSchema = require("../models/test_2");
 const twoMinStepSchema = require("../models/test_3");
 const router = express.Router();
 
+router.get("/", (req, res) => {
+  res.send("HELLO WORLD!!!!");
+});
 //* Justin: I'll be sending post request for each test. {date, result, userId}
 // Example, redirect to testLibrary page
-router.put("/:testname", (req, res) => {
-  let testName = req.params.testname;
+router.post("/", (req, res) => {
+  // let testName = req.params.testname;
 
   //* Validate incoming test route
-  if (testName === "chairStandSchema") testName = chairStandSchema;
-  if (testName === "armCurlSchema") testName = armCurlSchema;
-  if (testName === "twoMinStepSchema") testName = twoMinStepSchema;
+  // if (testName === "chairstand") testName = chairStandSchema;
+  // if (testName === "armcurl") testName = armCurlSchema;
+  // if (testName === "twominstep") testName = twoMinStepSchema;
 
-  testName.create({ date, result, user: id }, (err, createdResult) => {
+  // console.log("Hello world");
+  console.log(req.body);
+  armCurlSchema.create(req.body, (err, createdResult) => {
     if (err) res.status(400).json({ err: "create result error" });
     else {
-      console.log(createdResult);
-      res.redirect("/testLibrary");
+      res.send(createdResult);
     }
   });
 });

@@ -3,9 +3,9 @@ const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema({
   uniqueId: { type: String }, // for Testing
-  name: { type: String, require: true },
-  email: { type: String, require: true },
-  password: { type: String, require: true },
+  name: { type: String },
+  email: { type: String },
+  password: { type: String },
   photo: String,
   age: Date,
   gender: String,
