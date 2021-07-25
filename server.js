@@ -45,6 +45,7 @@ const fakeTestData1 = require("./controller/fakeTestData1");
 app.get("/", (req, res) => {
   res.send("Hello");
 });
+
 app.use("/api/seed", seedController);
 app.use("/api/user", userController);
 app.use("/api/fitnesstest", fitnessTestController);

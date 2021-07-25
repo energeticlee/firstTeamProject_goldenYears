@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import Home from "./component/mainapp/Home";
-import { BrowserRouter as Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Landing from "./component/mainapp/Landing";
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
         <Route path="/home">
           <Home />
         </Route>
-        <Route exact path="/">
+        <Route path="/landing">
           <Landing />
         </Route>
       </Switch>
