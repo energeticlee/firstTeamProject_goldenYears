@@ -9,19 +9,6 @@ const mongoose = require("mongoose");
 // Express - Configurations
 const app = express();
 const port = process.env.PORT || 3333;
-<<<<<<< HEAD
-=======
-// app.use(
-//   session({
-//     secret: process.env.SECRET,
-//     resave: false,
-//     saveUninitialized: false,
-//   })
-// );
-app.use(methodOverride("_method"));
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static("public")); 
->>>>>>> farhan
 
 // Mongoose - Configurations
 const MONGO_URI = "mongodb://localhost:27017/products";
@@ -65,7 +52,6 @@ const userTestData = require("./controller/userTestData");
 //Routes
 app.use("/api/seed", seedController);
 app.use("/api/user", userController);
-<<<<<<< HEAD
 app.use("/api/fitnesstest", fitnessTestController);
 app.use("/api/faketestdata1", fakeTestData1);
 
@@ -73,11 +59,6 @@ app.use("/api/faketestdata1", fakeTestData1);
 mongoose.connection.once("open", () => {
   console.log("Connected to mongo");
 });
-=======
-app.use("/api/fitnessTest", fitnessTestController);
-app.use("/api/fakeTestData1", fakeTestData1);
-app.use("/api/userTestData", userTestData);
->>>>>>> farhan
 
 //Server Listening
 app.listen(port, () => {
