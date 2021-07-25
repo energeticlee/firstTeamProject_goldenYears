@@ -1,11 +1,10 @@
 const mongoose = require("mongoose");
+const User = require("./user");
 
-const testOneSchema = mongoose.Schema({
-  date: { type: Date, required: true },
+const test_One_Schema = new mongoose.Schema({
+  date: { type: Number, required: true },
   result: { type: Number, required: true },
-  user: { type: mongoose.Schema.Types.ObjectId, ref: "userSchema" },
+  user: User.schema,
 });
 
-const testOneSchema = mongoose.model("testOneSchema", testOneSchema);
-
-module.exports = test_One_Schema;
+module.exports = mongoose.model("test_One_Schema", test_One_Schema);

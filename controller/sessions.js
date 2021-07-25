@@ -33,5 +33,3 @@ Router.get("/", (req, res) => {
 //     }
 //   });
 // });
-
-module.exports = Router;

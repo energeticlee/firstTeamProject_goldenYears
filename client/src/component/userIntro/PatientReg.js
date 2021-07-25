@@ -4,10 +4,6 @@ const Registration = () => {
 	return (
 		<div>
 			<form>
-				<input type="radio" name="user" id="patient" value="Patient" />
-				<input type="radio" name="user" id="doctor" value="Doctor" checked />
-				<br />
-				<br />
 				<label>Name:</label>
 				<br />
 				<input

@@ -23,6 +23,9 @@ const armCurl = (reducerPackage) => {
     }
   };
 
+  //! Create result and push to cloud
+  //! Route to test page
+
   const testResult = (state) => {
     dispatch({
       type: actions.setResultArmCurl,
