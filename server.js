@@ -22,7 +22,7 @@ const port = process.env.PORT || 3333;
 // );
 app.use(methodOverride("_method"));
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static("public"));
+app.use(express.static("public")); 
 
 //Configurations = Mongoose
 mongoose.connect("mongodb://localhost:27017/products", {
@@ -40,6 +40,7 @@ const seedController = require("./controller/seed");
 const userController = require("./controller/user");
 const fitnessTestController = require("./controller/fitnessTest");
 const fakeTestData1 = require("./controller/fakeTestData1");
+const userTestData = require("./controller/userTestData");
 
 //Routes (app.use)
 app.get("/", (req, res) => {
@@ -49,6 +50,7 @@ app.use("/api/seed", seedController);
 app.use("/api/user", userController);
 app.use("/api/fitnessTest", fitnessTestController);
 app.use("/api/fakeTestData1", fakeTestData1);
+app.use("/api/userTestData", userTestData);
 
 //Server Listening
 app.listen(port, () => {
