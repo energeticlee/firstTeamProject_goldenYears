@@ -1,14 +1,27 @@
 import React from "react";
+import { Link, useRouteMatch } from "react-router-dom";
 
 const Navbar = () => {
+  let { url } = useRouteMatch();
   return (
     <div>
       <ul>
-        <li>My Profile</li>
-        <li>Tests</li>
-        <li>My Performance</li>
-        <li>FAQs</li>
-        <li>Log out</li>
+        <li>
+          {" "}
+          <Link to={`${url}/home`}> My Profile </Link>{" "}
+        </li>
+        <li>
+          <Link to={`${url}/tests`}>Tests</Link>
+        </li>
+        <li>
+          <Link to={`${url}/myperformance`}>My Performance</Link>
+        </li>
+        <li>
+          <Link to={`${url}/FAQs`}>FAQs</Link>
+        </li>
+        <li>
+          <Link to={`${url}/logout`}>Log out</Link>
+        </li>
       </ul>
     </div>
   );
