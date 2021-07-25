@@ -29,8 +29,7 @@ export default class Graph3 extends PureComponent {
 
   render() {
     return (
-        <div className = "Graph3">
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="100%" height={500}>
         <PieChart width={400} height={400}>
           <Pie
             data={data}
@@ -48,7 +47,6 @@ export default class Graph3 extends PureComponent {
           </Pie>
         </PieChart>
       </ResponsiveContainer>
-      </div>
     );
   }
 }

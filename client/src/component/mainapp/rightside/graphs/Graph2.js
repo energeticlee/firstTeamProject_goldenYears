@@ -70,8 +70,7 @@ export default class Graph2 extends PureComponent {
 
   render() {
     return (
-        <div className = "Graph2">
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="100%" height={500}>
         <PieChart width={400} height={400}>
           <Pie
             activeIndex={this.state.activeIndex}
@@ -87,7 +86,6 @@ export default class Graph2 extends PureComponent {
           />
         </PieChart>
       </ResponsiveContainer>
-      </div>
     );
   }
 }
