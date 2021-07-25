@@ -14,7 +14,7 @@ const View = () => {
       <h1>This is View</h1>
       {/* <TestLibrary /> */}
       <Switch>
-        <Route exact path={`${path}`}>
+        <Route exact path={`${path}/myperformance`}>
           <MyPerformance />
         </Route>
 

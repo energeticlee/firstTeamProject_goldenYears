@@ -1,39 +1,46 @@
-//Dependencies - Express
+// Express - Dependencies
 const express = require("express");
-// const session = require("express-session");
-// const cors = require("cors");
+const cors = require("cors");
 require("dotenv").config();
-const methodOverride = require("method-override");
 
-//Import Models - Mongoose
-
-//Dependencies - Mongoose
+// Mongoose - Dependencies
 const mongoose = require("mongoose");
 
-//Configurations - Express
+// Express - Configurations
 const app = express();
 const port = process.env.PORT || 3333;
-// app.use(
-//   session({
-//     secret: process.env.SECRET,
-//     resave: false,
-//     saveUninitialized: false,
-//   })
-// );
-app.use(methodOverride("_method"));
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static("public"));
 
-//Configurations = Mongoose
-mongoose.connect("mongodb://localhost:27017/products", {
+// Mongoose - Configurations
+const MONGO_URI = "mongodb://localhost:27017/products";
+mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
+  useCreateIndex: true,
 });
 
-mongoose.connection.once("open", () => {
-  console.log("Connected to mongo");
-});
+// Middleware configurations
+const whitelist = [
+  "http://localhost:3000",
+  "http://localhost:3003",
+  "https://fathomless-sierra-68956.herokuapp.com",
+];
+const corsOptionsDelegate = function (req, callback) {
+  let corsOptions;
+  if (whitelist.indexOf(req.header("Origin")) !== -1) {
+    corsOptions = { origin: true };
+  } else {
+    corsOptions = { origin: false };
+  }
+  callback(null, corsOptions);
+};
+
+// Middlerware Linked => Express
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public"));
+// app.use(express.static("./client/build"));
 
 //Import/Require Controllers for express routing
 const seedController = require("./controller/seed");
@@ -41,15 +48,16 @@ const userController = require("./controller/user");
 const fitnessTestController = require("./controller/fitnessTest");
 const fakeTestData1 = require("./controller/fakeTestData1");
 
-//Routes (app.use)
-app.get("/", (req, res) => {
-  res.send("Hello");
-});
-
+//Routes
 app.use("/api/seed", seedController);
 app.use("/api/user", userController);
 app.use("/api/fitnesstest", fitnessTestController);
 app.use("/api/faketestdata1", fakeTestData1);
+
+// Server Linked => Database
+mongoose.connection.once("open", () => {
+  console.log("Connected to mongo");
+});
 
 //Server Listening
 app.listen(port, () => {
