@@ -47,8 +47,8 @@ app.get("/", (req, res) => {
 });
 app.use("/api/seed", seedController);
 app.use("/api/user", userController);
-app.use("/api/fitnessTest", fitnessTestController);
-app.use("/api/fakeTestData1", fakeTestData1);
+app.use("/api/fitnesstest", fitnessTestController);
+app.use("/api/faketestdata1", fakeTestData1);
 
 //Server Listening
 app.listen(port, () => {

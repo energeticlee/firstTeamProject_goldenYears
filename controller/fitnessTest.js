@@ -6,15 +6,18 @@ const router = express.Router();
 
 //* Justin: I'll be sending post request for each test. {date, result, userId}
 // Example, redirect to testLibrary page
-router.put("/:testname", (req, res) => {
+router.post("/:testname", (req, res) => {
   let testName = req.params.testname;
+  const date = req.body.date;
+  const result = req.body.result;
+  const id = req.body.id;
 
   //* Validate incoming test route
-  if (testName === "chairStandSchema") testName = chairStandSchema;
-  if (testName === "armCurlSchema") testName = armCurlSchema;
-  if (testName === "twoMinStepSchema") testName = twoMinStepSchema;
+  if (testName === "chairstand") testName = chairStandSchema;
+  if (testName === "armcurl") testName = armCurlSchema;
+  if (testName === "twominstep") testName = twoMinStepSchema;
 
-  testName.create({ date, result, user: id }, (err, createdResult) => {
+  armCurlSchema.create({ date, result }, (err, createdResult) => {
     if (err) res.status(400).json({ err: "create result error" });
     else {
       console.log(createdResult);
