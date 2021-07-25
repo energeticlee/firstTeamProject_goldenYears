@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useRouteMatch } from "react-router-dom";
 
-const Navbar = () => {
+const Sidebar = () => {
   let { url } = useRouteMatch();
   return (
     <div>
@@ -27,4 +27,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Sidebar;

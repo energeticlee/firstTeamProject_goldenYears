@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { PureComponent } from "react";
+import React,{useState, useEffect} from "react";
 import {
   LineChart,
   Line,
@@ -8,204 +8,179 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  LabelList,
   ResponsiveContainer,
 } from "recharts";
 import moment from "moment";
 
-const data = [
-  {
-    date: 1626000000000,
-    result: 5,
-    user: {
-      uniqueId: "myID",
-      name: "hello",
-      email: "helloe",
-      password: "test",
-    },
-  },
-  {
-    date: 1627008174460,
-    result: 7,
-    user: {
-      uniqueId: "myID",
-      name: "hello",
-      email: "helloe",
-      password: "test",
-    },
-  },
-  {
-    date: 1627015174460,
-    result: 12,
-    user: {
-      uniqueId: "myID",
-      name: "hello",
-      email: "helloe",
-      password: "test",
-    },
-  },
-  {
-    date: 1627018174460,
-    result: 11,
-    user: {
-      uniqueId: "myID",
-      name: "hello",
-      email: "helloe",
-      password: "test",
-    },
-  },
-  {
-    date: 1627032174460,
-    result: 7,
-    user: {
-      uniqueId: "myID",
-      name: "hello",
-      email: "helloe",
-      password: "test",
-    },
-  },
-  {
-    date: 1627020174460,
-    result: 3,
-    user: {
-      uniqueId: "myID",
-      name: "hello",
-      email: "helloe",
-      password: "test",
-    },
-  },
-  {
-    date: 1627005174460,
-    result: 20,
-    user: {
-      uniqueId: "myID",
-      name: "hello",
-      email: "helloe",
-      password: "test",
-    },
-  },
-  {
-    date: 1627026174460,
-    result: 25,
-    user: {
-      uniqueId: "myID",
-      name: "hello",
-      email: "helloe",
-      password: "test",
-    },
-  },
-];
+export default function Graph1() {
+const [data, setData] = useState([])
 
-// const data = [
-//   {
-//     name: 'Page A',
-//     pv: 2400,
-//   },
-//   {
-//     name: 'Page B',
-//     pv: 1398,
-//   },
-//   {
-//     name: 'Page C',
-//     pv: 9800,
-//   },
-//   {
-//     name: 'Page D',
-//     pv: 3908,
-//   },
-//   {
-//     name: 'Page E',
-//     pv: 4800,
-//   },
-//   {
-//     name: 'Page F',
-//     pv: 3800,
-//   },
-//   {
-//     name: 'Page G',
-//     pv: 4300,
-//   },
-// ];
+  useEffect(() => {
+    fetch("http://localhost:3333/api/usertestdata")
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  }, []);
 
-class CustomizedLabel extends PureComponent {
-  render() {
-    const { x, y, stroke, value } = this.props;
+  // const data = [
+  //   {
+  //     date: 1610640000000,
+  //     result: 5,
+  //     user: {
+  //       uniqueId: "myID",
+  //       name: "hello",
+  //       email: "helloe",
+  //       password: "test",
+  //     },
+  //   },
+  //   {
+  //     date: 1613750400000,
+  //     result: 7,
+  //     user: {
+  //       uniqueId: "myID",
+  //       name: "hello",
+  //       email: "helloe",
+  //       password: "test",
+  //     },
+  //   },
+  //   {
+  //     date: 1617033600000,
+  //     result: 12,
+  //     user: {
+  //       uniqueId: "myID",
+  //       name: "hello",
+  //       email: "helloe",
+  //       password: "test",
+  //     },
+  //   },
+  //   {
+  //     date: 1617206400000,
+  //     result: 11,
+  //     user: {
+  //       uniqueId: "myID",
+  //       name: "hello",
+  //       email: "helloe",
+  //       password: "test",
+  //     },
+  //   },
+  //   {
+  //     date: 1621440000000,
+  //     result: 7,
+  //     user: {
+  //       uniqueId: "myID",
+  //       name: "hello",
+  //       email: "helloe",
+  //       password: "test",
+  //     },
+  //   },
+  //   {
+  //     date: 1624982400000,
+  //     result: 3,
+  //     user: {
+  //       uniqueId: "myID",
+  //       name: "hello",
+  //       email: "helloe",
+  //       password: "test",
+  //     },
+  //   },
+  //   {
+  //     date: 1626278400000,
+  //     result: 20,
+  //     user: {
+  //       uniqueId: "myID",
+  //       name: "hello",
+  //       email: "helloe",
+  //       password: "test",
+  //     },
+  //   },
+  //   {
+  //     date: 1628524800000,
+  //     result: 25,
+  //     user: {
+  //       uniqueId: "myID",
+  //       name: "hello",
+  //       email: "helloe",
+  //       password: "test",
+  //     },
+  //   },
+  // ];
+
+  const CustomizedLabel = (props) => {
+    const { x, y, stroke, value } = props;
 
     return (
-      <text
-        x={x}
-        y={y}
-        dy={-10}
-        fill={stroke}
-        fontSize={10}
-        textAnchor="middle"
-      >
+      <text x={x} y={y} dy={-4} fill={stroke} fontSize={10} textAnchor="middle">
         {value}
       </text>
     );
-  }
-}
+  };
 
-class CustomizedAxisTick extends PureComponent {
-  render() {
-    const { x, y, stroke, payload } = this.props;
-    const value = moment(payload.value).format("DD:MM:YYYY ")
-    console.log(Date.now())
-    
+  const CustomizedAxisTick = (props) => {
+    const { x, y, payload } = props;
+    const value = moment(payload.value).format("D MMM YY ");
 
     return (
       <g transform={`translate(${x},${y})`}>
-        <text
-          x={0}
-          y={0}
-          dy={16}
-          textAnchor="end"
-          fill="#666"
-          transform="rotate(-35)"
-        >
+        <text x={0} y={0} dy={16} textAnchor="middle" fill="#666">
           {value}
         </text>
       </g>
     );
-  }
-}
+  };
 
-export default class Graph1 extends PureComponent {
-  //   static demoUrl = 'https://codesandbox.io/s/line-chart-with-customized-label-hs5b7';
+  // const CustomTooltip = ({ active, payload, label }) => {
+  //   if (active && payload && payload.length) {
+  //     return (
+  //       <ul className="custom-tooltip">
+  //         <li className="label">
+  //           Date: {`${moment(label).format("D MMM YY ")}`}
+  //         </li>
+  //         <li className="intro">Result: {`${payload[0].value}`}</li>
+  //       </ul>
+  //     );
+  //   }
 
-  render() {
-    return (
-      <ResponsiveContainer width="100%" height={300}>
-        <LineChart
-          width={500}
-          height={300}
-          data={data}
-          margin={{
-            top: 20,
-            right: 30,
-            left: 20,
-            bottom: 10,
+  //   return null;
+  // };
+
+  return (
+    <ResponsiveContainer width="100%" height={300}>
+      <LineChart
+        width={500}
+        height={300}
+        data={data}
+        margin={{
+          top: 20,
+          right: 30,
+          left: 20,
+          bottom: 10,
+        }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis
+          dataKey="date"
+          height={60}
+          tick={<CustomizedAxisTick />}
+          domain={["auto", "auto"]}
+          type="number"
+        />
+        <YAxis />
+        <Tooltip
+          labelFormatter= {function (value) {
+            return `Date: ${moment(value).format("D MMM YY ")}`;
           }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis
-            dataKey="date"
-            height={60}
-            tick={<CustomizedAxisTick />}
-            domain={["auto", "auto"]}
-            type="number"
-          />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Line
-            type="monotone"
-            dataKey="result"
-            stroke="#8884d8"
-            label={<CustomizedLabel />}
-          />
-          {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
-        </LineChart>
-      </ResponsiveContainer>
-    );
-  }
+          formatter = {function (value) {
+            return [`${value}`, "Result" ]
+          }}
+        />
+        <Legend 
+        formatter = {function (value) {
+          return ["Result"]
+        }}/>
+        <Line type="monotone" dataKey="result" stroke="#8884d8">
+          <LabelList content={<CustomizedLabel />} />
+        </Line>
+      </LineChart>
+    </ResponsiveContainer>
+  );
 }
