@@ -5,7 +5,7 @@
 
 exports.fakeDataTest1 = [
   {
-    date: 1627006174460,
+    date: 1610640000000,
     result: 5,
     user: {
       uniqueId: "myID",
@@ -15,7 +15,7 @@ exports.fakeDataTest1 = [
     },
   },
   {
-    date: 1627008174460,
+    date: 1613750400000,
     result: 7,
     user: {
       uniqueId: "myID",
@@ -25,7 +25,7 @@ exports.fakeDataTest1 = [
     },
   },
   {
-    date: 1627015174460,
+    date: 1617033600000,
     result: 12,
     user: {
       uniqueId: "myID",
@@ -35,7 +35,7 @@ exports.fakeDataTest1 = [
     },
   },
   {
-    date: 1627018174460,
+    date: 1617206400000,
     result: 11,
     user: {
       uniqueId: "myID",
@@ -45,7 +45,7 @@ exports.fakeDataTest1 = [
     },
   },
   {
-    date: 1627032174460,
+    date: 1621440000000,
     result: 7,
     user: {
       uniqueId: "myID",
@@ -55,7 +55,7 @@ exports.fakeDataTest1 = [
     },
   },
   {
-    date: 1627020174460,
+    date: 1624982400000,
     result: 3,
     user: {
       uniqueId: "myID",
@@ -65,7 +65,7 @@ exports.fakeDataTest1 = [
     },
   },
   {
-    date: 1627005174460,
+    date: 1626278400000,
     result: 20,
     user: {
       uniqueId: "myID",
@@ -75,7 +75,7 @@ exports.fakeDataTest1 = [
     },
   },
   {
-    date: 1627026174460,
+    date: 1628524800000,
     result: 25,
     user: {
       uniqueId: "myID",
