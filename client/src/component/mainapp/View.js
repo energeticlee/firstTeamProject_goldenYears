@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Switch, Route } from "react-router-dom";
-import MyPerformance from "./rightside/myPerformance";
+import MyPerformance from "./rightside/MyPerformance";
 import FAQs from "./rightside/faqs";
 import { useRouteMatch } from "react-router-dom";
 import TestLibrary from "../fitnessTest/TestLibrary";
