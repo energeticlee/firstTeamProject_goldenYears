@@ -1,6 +1,6 @@
 import React from "react";
 
-const Login = () => {
+const PatientLogin = () => {
 	return (
 		<div>
 			<form>
@@ -32,4 +32,4 @@ const Login = () => {
 	);
 };
 
-export default Login;
+export default PatientLogin;
