@@ -13,11 +13,86 @@ import {
 import moment from "moment";
 
 const data = [
-  { pv: 14, name: 1503617297689 },
-  { pv: 15, name: 1503616962277 },
-  { pv: 15, name: 1503616882654 },
-  { pv: 20, name: 1503613184594 },
-  { pv: 15, name: 1503611308914 },
+  {
+    date: 1626000000000,
+    result: 5,
+    user: {
+      uniqueId: "myID",
+      name: "hello",
+      email: "helloe",
+      password: "test",
+    },
+  },
+  {
+    date: 1627008174460,
+    result: 7,
+    user: {
+      uniqueId: "myID",
+      name: "hello",
+      email: "helloe",
+      password: "test",
+    },
+  },
+  {
+    date: 1627015174460,
+    result: 12,
+    user: {
+      uniqueId: "myID",
+      name: "hello",
+      email: "helloe",
+      password: "test",
+    },
+  },
+  {
+    date: 1627018174460,
+    result: 11,
+    user: {
+      uniqueId: "myID",
+      name: "hello",
+      email: "helloe",
+      password: "test",
+    },
+  },
+  {
+    date: 1627032174460,
+    result: 7,
+    user: {
+      uniqueId: "myID",
+      name: "hello",
+      email: "helloe",
+      password: "test",
+    },
+  },
+  {
+    date: 1627020174460,
+    result: 3,
+    user: {
+      uniqueId: "myID",
+      name: "hello",
+      email: "helloe",
+      password: "test",
+    },
+  },
+  {
+    date: 1627005174460,
+    result: 20,
+    user: {
+      uniqueId: "myID",
+      name: "hello",
+      email: "helloe",
+      password: "test",
+    },
+  },
+  {
+    date: 1627026174460,
+    result: 25,
+    user: {
+      uniqueId: "myID",
+      name: "hello",
+      email: "helloe",
+      password: "test",
+    },
+  },
 ];
 
 // const data = [
@@ -73,7 +148,7 @@ class CustomizedLabel extends PureComponent {
 class CustomizedAxisTick extends PureComponent {
   render() {
     const { x, y, stroke, payload } = this.props;
-    const value = moment(payload.value).format("DD:MM:YY ")
+    const value = moment(payload.value).format("DD:MM:YYYY ")
     console.log(Date.now())
     
 
@@ -113,7 +188,7 @@ export default class Graph1 extends PureComponent {
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis
-            dataKey="name"
+            dataKey="date"
             height={60}
             tick={<CustomizedAxisTick />}
             domain={["auto", "auto"]}
@@ -124,11 +199,11 @@ export default class Graph1 extends PureComponent {
           <Legend />
           <Line
             type="monotone"
-            dataKey="pv"
+            dataKey="result"
             stroke="#8884d8"
             label={<CustomizedLabel />}
           />
-          <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+          {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
         </LineChart>
       </ResponsiveContainer>
     );

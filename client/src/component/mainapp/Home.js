@@ -1,11 +1,11 @@
 import React from "react";
-import Navbar from "./Navbar";
+import Sidebar from "./Sidebar";
 import View from "./View";
 
 const Home = () => {
   return (
     <div>
-      <Navbar />
+      <Sidebar />
       <View />
     </div>
   );

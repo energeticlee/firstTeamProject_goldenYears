@@ -3,7 +3,6 @@ import "./App.css";
 import Home from "./component/mainapp/Home";
 import { BrowserRouter as Switch, Route } from "react-router-dom";
 import Landing from "./component/mainapp/Landing";
-import UserIntro from "./component/mainapp/UserIntro";
 
 function App() {
 	return (
@@ -12,9 +11,6 @@ function App() {
 			<Switch>
 				<Route path="/home">
 					<Home />
-				</Route>
-				<Route path="/userintro">
-					<UserIntro />
 				</Route>
 				<Route exact path="/">
 					<Landing />
