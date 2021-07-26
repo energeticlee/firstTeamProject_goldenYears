@@ -1,10 +1,11 @@
 import React from "react";
 import { useEffect, useState, useContext } from "react";
 import { dataContext } from "../../../App";
-import { Link, useRouteMatch } from "react-router-dom";
+import { Link, Route, useRouteMatch } from "react-router-dom";
+import PatientEditProfile from "./PatientEditProfile";
 
 const MyProfile = () => {
-	let { url } = useRouteMatch();
+	let { path, url } = useRouteMatch();
 	const contextData = useContext(dataContext);
 	const states = contextData.states;
 	console.log(states);
@@ -49,6 +50,9 @@ const MyProfile = () => {
 			<Link to={`${url}/edit`}>
 				<button>Edit Profile</button>
 			</Link>
+			<Route path={`${path}/edit`}>
+				<PatientEditProfile />
+			</Route>
 		</>
 	);
 };
