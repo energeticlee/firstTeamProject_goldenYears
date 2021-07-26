@@ -1,7 +1,11 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { dataContext } from "../../../App";
 
 const MyProfile = () => {
+  const contextData = useContext(dataContext);
+  const states = contextData.states;
+  console.log(states);
   const [data, setUserData] = useState([]);
   useEffect(() => {
     const getData = async () => {

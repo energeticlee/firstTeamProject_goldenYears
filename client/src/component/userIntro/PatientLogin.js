@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { useContext } from "react";
+import { dataContext } from "../../App";
 
 const PatientLogin = () => {
+  const data = useContext(dataContext);
+  const dispatch = data.dispatch;
   const history = useHistory();
   const [errorMessage, setMessage] = useState("Please enter your details");
   const handleUserLogin = (event) => {
@@ -28,6 +32,8 @@ const PatientLogin = () => {
         console.log("data", data.error);
         setMessage(data.error);
       } else if (response.status === 200) {
+        const data = await response.json();
+        dispatch({ type: "PUSHPATIENTID", payload: data._id });
         history.push("/home");
       }
     };
