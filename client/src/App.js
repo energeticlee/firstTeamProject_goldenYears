@@ -38,7 +38,7 @@ function App() {
           <Route path="/patients">
             <PatientIntro />
           </Route>
-          <Route path="doctors">
+          <Route path="/doctors">
             <DoctorIntro />
           </Route>
           <Route path="/doctorhome">
