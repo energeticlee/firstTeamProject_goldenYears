@@ -4,7 +4,7 @@ const { TestOneChairStand, TestTwoArmCurl, TestThree2MinStep } = require("../mod
 
 router.get("/1/:id", (req, res) => {
   const id = req.params.id
-  TestOneChairStand.findbyId(id, (err, foundTest) => {
+  TestOneChairStand.find({user:id}, (err, foundTest) => {
     if (err) {
       res.status(400).json({ error: err.message });
     } else {
@@ -15,7 +15,7 @@ router.get("/1/:id", (req, res) => {
 
 router.get("/2/:id", (req, res) => {
   const id = req.params.id
-  TestTwoArmCurl.find(id, (err, foundTest) => {
+  TestTwoArmCurl.find({user:id}, (err, foundTest) => {
     if (err) {
       res.status(400).json({ error: err.message });
     } else {
@@ -26,7 +26,7 @@ router.get("/2/:id", (req, res) => {
 
 router.get("/3/:id", (req, res) => {
   const id = req.params.id
-  TestThree2MinStep.find(id, (err, foundTest) => {
+  TestThree2MinStep.find({user:id}, (err, foundTest) => {
     if (err) {
       res.status(400).json({ error: err.message });
     } else {

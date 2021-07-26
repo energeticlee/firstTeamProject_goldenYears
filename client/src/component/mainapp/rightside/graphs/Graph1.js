@@ -17,6 +17,7 @@ import { dataContext } from "../../../../App"
 export default function Graph1() {
 const [data, setData] = useState([])
 const contextData = useContext(dataContext);
+console.log(contextData)
 const states = contextData.states;
 
 useEffect(() => {
