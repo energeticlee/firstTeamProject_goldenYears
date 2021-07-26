@@ -28,6 +28,7 @@ useEffect(() => {
     });
     console.log(response);
     const data = await response.json();
+    console.log(data)
     setData(data);
   };
   getData();

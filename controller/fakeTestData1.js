@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { TestOneChairStand } = require("../models/tests");
-const { fakeDataTest1 } = require("../models/fakeDataTest1");
+const { fakeDataTest1}  = require("../models/fakeDataTest1");
 
 //* When create route for actual data. Retreive uniqueId from params
 
