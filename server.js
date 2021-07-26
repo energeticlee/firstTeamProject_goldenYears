@@ -1,5 +1,6 @@
 // Express - Dependencies
 const express = require("express");
+const session = require("express-session");
 const cors = require("cors");
 require("dotenv").config();
 
@@ -20,6 +21,7 @@ mongoose.connect(MONGO_URI, {
 });
 
 // Middleware configurations
+
 const whitelist = [
   "http://localhost:3000",
   "http://localhost:3003",
@@ -36,6 +38,13 @@ const corsOptionsDelegate = function (req, callback) {
 };
 
 // Middlerware Linked => Express
+app.use(
+  session({
+    secret: "golden-years", //some random string
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -43,6 +52,7 @@ app.use(express.static("public"));
 // app.use(express.static("./client/build"));
 
 //Import/Require Controllers for express routing
+const sessionController = require("./controller/sessions");
 const seedController = require("./controller/seed");
 const userController = require("./controller/user");
 const fitnessTestController = require("./controller/fitnessTest");
@@ -50,6 +60,7 @@ const fakeTestData1 = require("./controller/fakeTestData1");
 const userTestData = require("./controller/userTestData");
 
 //Routes
+app.use("/api/session", sessionController);
 app.use("/api/seed", seedController);
 app.use("/api/user", userController);
 app.use("/api/fitnesstest", fitnessTestController);

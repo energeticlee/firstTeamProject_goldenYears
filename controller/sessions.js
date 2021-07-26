@@ -1,32 +1,33 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
-const sessions = express.Router();
-const User = require("../models/users.js");
+const router = express.Router();
+const userSchema = require("../models/user");
 
 // on sessions form submit (log in)
-sessions.post("/new", (req, res) => {
-  User.findOne({ email: req.body.email }, (err, foundUser) => {
+router.post("/new", (req, res) => {
+  userSchema.find({ email: req.body.email }, (err, foundUserList) => {
     // Database error
     if (err) {
       console.log(err);
-      res.send("oops the db had a problem");
-    } else if (!foundUser) {
+      res.status(400).json({ error: "DataBase error" });
+    } else if (foundUserList.length === 0) {
       // if found user is undefined/null not found etc
-      res.send('<a  href="/">Sorry, no user found </a>');
-    } else {
+      console.log("No users found");
+      res.status(400).json({ error: "No Users Found" });
+    } else if (foundUserList.length !== 0) {
       // user is found yay!
-      // now let's check if passwords match
-      if (bcrypt.compareSync(req.body.password, foundUser.password)) {
-        // add the user to our session
-        req.session.currentUser = foundUser;
-        // redirect back to our home page
-        res.redirect("/home");
-      } else {
-        // passwords do not match
-        res.send('<a href="/"> password does not match </a>');
+      for (let i = 0; i < foundUserList.length; i++) {
+        if (bcrypt.compareSync(req.body.password, foundUserList[i].password)) {
+          // add the user to our session
+          req.session.currentUser = foundUserList[i];
+          // redirect back to our home page
+          res.status(200).json(foundUserList[i]);
+          break;
+        }
       }
+      // now let's check if passwords match
     }
   });
 });
 
-module.exports = sessions;
+module.exports = router;

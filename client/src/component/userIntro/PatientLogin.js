@@ -1,34 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 const PatientLogin = () => {
-  //   const handleUserLogin = (event) => {
-  //     event.preventDefault();
-  //     const userEmail = event.target.email.value;
-  //     const userPassword = event.target.password.value;
+  const history = useHistory();
+  const [errorMessage, setMessage] = useState("Please enter your details");
+  const handleUserLogin = (event) => {
+    event.preventDefault();
+    const userEmail = event.target.email.value;
+    const userPassword = event.target.password.value;
 
-  //     const sendData = async () => {
-  //       // Please change the localhose number according to your server port number
-  //       const response = await fetch("http://localhost:3001/api/user", {
-  //         method: "POST",
-  //         mode: "cors",
-  //         body: JSON.stringify({
-  //           name: userName,
-  //           email: userEmail,
-  //           password: userPassword,
-  //         }),
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Accept: "application/json",
-  //         },
-  //       });
-  //       const data = await response.json();
-  //       console.log(data);
-  //     };
-  //     sendData();
-  //   };
+    const sendData = async () => {
+      // Please change the localhose number according to your server port number
+      const response = await fetch("http://localhost:3001/api/session/new", {
+        method: "POST",
+        mode: "cors",
+        body: JSON.stringify({
+          password: userPassword,
+          email: userEmail,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      });
+      if (response.status === 400) {
+        const data = await response.json();
+        console.log("data", data.error);
+        setMessage(data.error);
+      } else if (response.status === 200) {
+        history.push("/home");
+      }
+    };
+    sendData();
+  };
   return (
     <div>
-      <form>
+      <form onSubmit={handleUserLogin}>
         <label>Email:</label>
         <br />
         <input
@@ -53,6 +60,7 @@ const PatientLogin = () => {
         <br />
         <input type="submit" value="Enter" />
       </form>
+      <div>{errorMessage}</div>
     </div>
   );
 };
