@@ -7,32 +7,32 @@ import TestLibrary from "../fitnessTest/TestLibrary";
 import MyProfile from "./rightside/MyProfile";
 
 const View = () => {
-  let { path } = useRouteMatch();
+	let { path } = useRouteMatch();
 
-  return (
-    <div className="App">
-      <h1>This is View</h1>
-      {/* <TestLibrary /> */}
-      <Switch>
-        <Route exact path={`${path}/myperformance`}>
-          <MyPerformance />
-        </Route>
+	return (
+		<div className="App">
+			<h1>This is View</h1>
+			{/* <TestLibrary /> */}
+			<Switch>
+				<Route exact path={`${path}/myperformance`}>
+					<MyPerformance />
+				</Route>
 
-        <Route path={`${path}/faqs`}>
-          <FAQs />
-        </Route>
+				<Route path={`${path}/faqs`}>
+					<FAQs />
+				</Route>
 
-        <Route path={`${path}/myprofile`}>
-          <MyProfile />
-        </Route>
+				<Route path={`${path}/myprofile`}>
+					<MyProfile />
+				</Route>
 
-        <Route path={`${path}/tests`}>
-          <TestLibrary />
-        </Route>
-        {/* <Redirect to = "/404"/> */}
-      </Switch>
-    </div>
-  );
+				<Route path={`${path}/tests`}>
+					<TestLibrary />
+				</Route>
+				{/* <Redirect to = "/404"/> */}
+			</Switch>
+		</div>
+	);
 };
 
 export default View;
