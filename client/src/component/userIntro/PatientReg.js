@@ -58,8 +58,8 @@ const PatientReg = () => {
 				<br />
 				<input
 					type="email"
-					name="email"
-					id="email"
+					name="confirm-email"
+					id="confirm-email"
 					placeholder="johnsmith@gmail.com"
 					required
 				/>
@@ -80,8 +80,8 @@ const PatientReg = () => {
 				<br />
 				<input
 					type="password"
-					name="password"
-					id="password"
+					name="confirm-password"
+					id="confirm-password"
 					placeholder="************"
 					required
 				/>
