@@ -19,7 +19,7 @@ const [data, setData] = useState([])
 useEffect(() => {
   const getData = async () => {
     // Please change the localhose number according to your server port number
-    const response = await fetch("http://localhost:3333/api/usertestdata", {
+    const response = await fetch("http://localhost:3333/api/usertestdata/1", {
       mode: "cors",
       headers: {
         "Content-Type": "application/json",

@@ -19,11 +19,13 @@ router.post("/:testname", (req, res) => {
   if (testName === "armcurl") testName = TestTwoArmCurl;
   if (testName === "twominstep") testName = TestThree2MinStep;
 
-  console.log(req.body);
   testName.create(req.body, (err, createdResult) => {
     if (err) res.status(400).json({ err: "create result error" });
     else {
-      res.send(createdResult);
+      //* createdResult successful => Route to test library (react useHistory hook)
+      //* Trigger this on test end
+      //* put unique id ref into test user
+      res.status(200).json(createdResult);
     }
   });
 });

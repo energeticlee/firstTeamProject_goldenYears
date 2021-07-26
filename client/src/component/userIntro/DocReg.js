@@ -4,11 +4,11 @@ const DocReg = () => {
 	const handleSubmitDocData = (event) => {
 		event.preventDefault();
 		const docName = event.target.name.value;
-		const docEmail = event.target.email[0].value;
-		const docPassword = event.target.password[0].value;
+		const docEmail = event.target.email.value;
+		const docPassword = event.target.password.value;
 		const sendData = async () => {
 			// Please change the localhost number according to your server port number
-			const response = await fetch("http://localhost:3001/api/user", {
+			const response = await fetch("http://localhost:3333/api/user", {
 				method: "POST",
 				mode: "cors",
 				body: JSON.stringify({
