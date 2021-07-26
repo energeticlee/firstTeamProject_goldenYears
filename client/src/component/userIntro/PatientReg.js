@@ -1,4 +1,5 @@
 import React from "react";
+
 // import { useRef } from "react-router-dom";
 
 const PatientReg = () => {
@@ -7,6 +8,7 @@ const PatientReg = () => {
     const userName = event.target.name.value;
     const userEmail = event.target.email[0].value;
     const userPassword = event.target.password[0].value;
+
     const sendData = async () => {
       // Please change the localhose number according to your server port number
       const response = await fetch("http://localhost:3001/api/user", {

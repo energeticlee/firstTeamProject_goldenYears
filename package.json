@@ -1,5 +1,6 @@
 {
 	"dependencies": {
+		"bcrypt": "^5.0.1",
 		"chart.js": "^3.4.1",
 		"cors": "^2.8.5",
 		"dotenv": "^10.0.0",
@@ -17,7 +18,6 @@
 	"description": "Steps BEFORE you start work",
 	"version": "1.0.0",
 	"main": "server.js",
-	"devDependencies": {},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/xyninja000/golden-years.git"
