@@ -19,9 +19,7 @@ const TestLibrary = () => {
     setRepPhase: "setRepPhase",
     setStartTime: "setStartTime",
     setCompleted: "setCompleted",
-    setResultArmCurl: "setResultArmCurl", //* Use repCounter
-    setResultStepTest: "setResultStepTest",
-    setResultChairStand: "setResultChairStand",
+    setReset: "setReset",
   };
 
   const renderjointAngle = (state, action) => {
@@ -45,12 +43,14 @@ const TestLibrary = () => {
         return { ...state, startTime: action.payload };
       case actions.setCompleted:
         return { ...state, completed: action.payload };
-      case actions.setResultArmCurl:
-        return { ...state, resultArmCurl: action.payload };
-      case actions.setResultStepTest:
-        return { ...state, resultStepTest: action.payload };
-      case actions.setResultChairStand:
-        return { ...state, resultChairStand: action.payload };
+      case actions.setReset:
+        return {
+          ...state,
+          repCount: 0,
+          repPhase: "",
+          startTime: 0,
+          completed: false,
+        };
       default:
         return state;
     }
@@ -66,9 +66,6 @@ const TestLibrary = () => {
     repPhase: "",
     startTime: 0,
     completed: false,
-    resultArmCurl: 0,
-    resultStepTest: 0,
-    resultChairStand: 0,
   });
 
   const reducerPackage = { state, dispatch, actions };
