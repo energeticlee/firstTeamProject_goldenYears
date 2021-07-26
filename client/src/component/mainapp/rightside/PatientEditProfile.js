@@ -10,15 +10,19 @@ const PatientEditProfile = () => {
 	useEffect(() => {
 		const getData = async () => {
 			// Please change the localhose number according to your server port number
-			const response = await fetch("http://localhost:3333/api/user", {
-				mode: "cors",
-				headers: {
-					"Content-Type": "application/json",
-					Accept: "application/json",
-				},
-			});
+			const response = await fetch(
+				`http://localhost:3333/api/user/${states.userId}`,
+				{
+					mode: "cors",
+					headers: {
+						"Content-Type": "application/json",
+						Accept: "application/json",
+					},
+				}
+			);
 			console.log(response);
 			const data = await response.json();
+			console.log(data);
 			setUserData(data);
 		};
 		getData();
@@ -27,6 +31,7 @@ const PatientEditProfile = () => {
 	return (
 		<>
 			<div>
+				`
 				{data.map((userElement) => {
 					<form>
 						return ( key={userElement._id}
@@ -145,6 +150,7 @@ const PatientEditProfile = () => {
 						);
 					</form>;
 				})}
+				`
 			</div>
 		</>
 	);
