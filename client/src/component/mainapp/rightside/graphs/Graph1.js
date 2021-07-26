@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React,{useState, useEffect, useContext} from "react";
+import React,{useState, useEffect,useContext} from "react";
 import {
   LineChart,
   Line,
@@ -17,7 +17,6 @@ import { dataContext } from "../../../../App"
 export default function Graph1() {
 const [data, setData] = useState([])
 const contextData = useContext(dataContext);
-console.log(contextData)
 const states = contextData.states;
 
 useEffect(() => {
@@ -38,88 +37,48 @@ useEffect(() => {
   getData();
 }, []);
 
-  // const data = [
-  //   {
-  //     date: 1610640000000,
-  //     result: 5,
-  //     user: {
-  //       uniqueId: "myID",
-  //       name: "hello",
-  //       email: "helloe",
-  //       password: "test",
-  //     },
-  //   },
-  //   {
-  //     date: 1613750400000,
-  //     result: 7,
-  //     user: {
-  //       uniqueId: "myID",
-  //       name: "hello",
-  //       email: "helloe",
-  //       password: "test",
-  //     },
-  //   },
-  //   {
-  //     date: 1617033600000,
-  //     result: 12,
-  //     user: {
-  //       uniqueId: "myID",
-  //       name: "hello",
-  //       email: "helloe",
-  //       password: "test",
-  //     },
-  //   },
-  //   {
-  //     date: 1617206400000,
-  //     result: 11,
-  //     user: {
-  //       uniqueId: "myID",
-  //       name: "hello",
-  //       email: "helloe",
-  //       password: "test",
-  //     },
-  //   },
-  //   {
-  //     date: 1621440000000,
-  //     result: 7,
-  //     user: {
-  //       uniqueId: "myID",
-  //       name: "hello",
-  //       email: "helloe",
-  //       password: "test",
-  //     },
-  //   },
-  //   {
-  //     date: 1624982400000,
-  //     result: 3,
-  //     user: {
-  //       uniqueId: "myID",
-  //       name: "hello",
-  //       email: "helloe",
-  //       password: "test",
-  //     },
-  //   },
-  //   {
-  //     date: 1626278400000,
-  //     result: 20,
-  //     user: {
-  //       uniqueId: "myID",
-  //       name: "hello",
-  //       email: "helloe",
-  //       password: "test",
-  //     },
-  //   },
-  //   {
-  //     date: 1628524800000,
-  //     result: 25,
-  //     user: {
-  //       uniqueId: "myID",
-  //       name: "hello",
-  //       email: "helloe",
-  //       password: "test",
-  //     },
-  //   },
-  // ];
+// const data = [
+//   {
+//     date: 1610640000000,
+//     result: 10,
+//     user: "60fe76b958ba8d363f597e84"
+//   },
+//   {
+//     date: 1613750400000,
+//     result: 15,
+//     user: "60fe76b958ba8d363f597e84"
+//   },
+//   {
+//     date: 1617033600000,
+//     result: 20,
+//     user: "60fe76b958ba8d363f597e84"
+//   },
+//   {
+//     date: 1617206400000,
+//     result: 5,
+//     user: "60fe76b958ba8d363f597e84"
+//   },
+//   {
+//     date: 1621440000000,
+//     result: 10,
+//     user: "60fe76b958ba8d363f597e84"
+//   },
+//   {
+//     date: 1624982400000,
+//     result: 15,
+//     user: "60fe76b958ba8d363f597e84"
+//   },
+//   {
+//     date: 1626278400000,
+//     result: 20,
+//     user: "60fe76b958ba8d363f597e84"
+//   },
+//   {
+//     date: 1628524800000,
+//     result: 25,
+//     user: "60fe76b958ba8d363f597e84"
+//   },
+//   ];
 
   const CustomizedLabel = (props) => {
     const { x, y, stroke, value } = props;
@@ -158,10 +117,14 @@ useEffect(() => {
 
   //   return null;
   // };
-
-  return (
+  if (data.length === 0) {
+    return null
+  }
+  else return (
     <ResponsiveContainer width="100%" height={300}>
       <LineChart
+      onAnimationStart={() => {}}
+      onAnimationEnd={() => {}}
         width={500}
         height={300}
         data={data}
