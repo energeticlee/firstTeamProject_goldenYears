@@ -11,6 +11,7 @@ const PatientReg = () => {
 
 	const handleSubmitPatientData = (event) => {
 		event.preventDefault();
+
 		const patientName = event.target.name.value;
 		const patientEmail = event.target.email.value;
 		const patientConfirmEmail = event.target.confirm_email.value;

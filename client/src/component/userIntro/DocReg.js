@@ -3,9 +3,21 @@ import React from "react";
 const DocReg = () => {
 	const handleSubmitDocData = (event) => {
 		event.preventDefault();
+
 		const docName = event.target.name.value;
 		const docEmail = event.target.email.value;
+		const docConfirmEmail = event.target.confirm_email.value;
 		const docPassword = event.target.password.value;
+		const docConfirmPW = event.target.confirm_password.value;
+
+		if (docConfirmEmail != docEmail) {
+			alert("Email addresses don't match, please enter again.");
+		}
+
+		if (docConfirmPW != docPassword) {
+			alert("Passwords don't match, please enter again.");
+		}
+
 		const sendData = async () => {
 			// Please change the localhost number according to your server port number
 			const response = await fetch("http://localhost:3333/api/doctor", {
@@ -56,8 +68,8 @@ const DocReg = () => {
 				<br />
 				<input
 					type="email"
-					name="confirm-email"
-					id="confirm-email"
+					name="confirm_email"
+					id="confirm_email"
 					placeholder="johnsmith@gmail.com"
 					required
 				/>
@@ -78,8 +90,8 @@ const DocReg = () => {
 				<br />
 				<input
 					type="password"
-					name="confirm-password"
-					id="confirm-password"
+					name="confirm_password"
+					id="confirm_password"
 					placeholder="************"
 					required
 				/>
