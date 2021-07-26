@@ -49,7 +49,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
-// app.use(express.static("./client/build"));
+app.use(express.static("./client/build"));
 
 //Import/Require Controllers for express routing
 const sessionController = require("./controller/sessions");
@@ -65,6 +65,7 @@ app.use("/api/seed", seedController);
 app.use("/api/user", userController);
 app.use("/api/fitnesstest", fitnessTestController);
 app.use("/api/faketestdata1", fakeTestData1);
+app.use("/api/userTestData", userTestData);
 
 // Server Linked => Database
 mongoose.connection.once("open", () => {
