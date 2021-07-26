@@ -25,6 +25,8 @@ const armCurl = (reducerPackage) => {
 
   //! Create result and push to cloud
   //! Route to test page
+  //! testResult will run after set duration
+  
 
   const testResult = (state) => {
     dispatch({

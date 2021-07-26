@@ -155,6 +155,7 @@ const PoseEstimation = ({ reducerPackage, props }) => {
     }
   };
 
+  //* props = respective test
   props(reducerPackage);
 
   return (

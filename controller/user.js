@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const userSchema = require("../models/user");
+const bcrypt = require("bcrypt");
 
 // Get One user by Id
 router.get("/:id", (req, res) => {
@@ -27,6 +28,10 @@ router.get("/", (req, res) => {
 
 // Create User
 router.post("/", (req, res) => {
+  req.body.password = bcrypt.hashSync(
+    req.body.password,
+    bcrypt.genSaltSync(10)
+  );
   userSchema.create(req.body, (error, createdUser) => {
     if (error) {
       res.status(400).json({ error: error.message });
