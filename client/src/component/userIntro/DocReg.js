@@ -1,9 +1,35 @@
 import React from "react";
 
 const DocReg = () => {
+	const handleSubmitDocData = (event) => {
+		event.preventDefault();
+		const docName = event.target.name.value;
+		const docEmail = event.target.email.value;
+		const docPassword = event.target.password.value;
+		const sendData = async () => {
+			// Please change the localhost number according to your server port number
+			const response = await fetch("http://localhost:3333/api/user", {
+				method: "POST",
+				mode: "cors",
+				body: JSON.stringify({
+					name: docName,
+					email: docEmail,
+					password: docPassword,
+				}),
+				headers: {
+					"Content-Type": "application/json",
+					Accept: "application/json",
+				},
+			});
+			const data = await response.json();
+			console.log(data);
+		};
+		sendData();
+	};
+
 	return (
 		<div>
-			<form>
+			<form onSubmit={handleSubmitDocData}>
 				<label>Name:</label>
 				<br />
 				<input
@@ -30,8 +56,8 @@ const DocReg = () => {
 				<br />
 				<input
 					type="email"
-					name="email"
-					id="email"
+					name="confirm-email"
+					id="confirm-email"
 					placeholder="johnsmith@gmail.com"
 					required
 				/>
@@ -52,8 +78,8 @@ const DocReg = () => {
 				<br />
 				<input
 					type="password"
-					name="password"
-					id="password"
+					name="confirm-password"
+					id="confirm-password"
 					placeholder="************"
 					required
 				/>

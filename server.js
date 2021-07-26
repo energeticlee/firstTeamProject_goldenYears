@@ -1,5 +1,6 @@
 // Express - Dependencies
 const express = require("express");
+const session = require("express-session");
 const cors = require("cors");
 require("dotenv").config();
 
@@ -20,29 +21,38 @@ mongoose.connect(MONGO_URI, {
 });
 
 // Middleware configurations
-// const whitelist = [
-//   "http://localhost:3000",
-//   "http://localhost:3003",
-//   "https://fathomless-sierra-68956.herokuapp.com",
-// ];
-// const corsOptionsDelegate = function (req, callback) {
-//   let corsOptions;
-//   if (whitelist.indexOf(req.header("Origin")) !== -1) {
-//     corsOptions = { origin: true };
-//   } else {
-//     corsOptions = { origin: false };
-//   }
-//   callback(null, corsOptions);
-// };
+
+const whitelist = [
+  "http://localhost:3000",
+  "http://localhost:3003",
+  "https://fathomless-sierra-68956.herokuapp.com",
+];
+const corsOptionsDelegate = function (req, callback) {
+  let corsOptions;
+  if (whitelist.indexOf(req.header("Origin")) !== -1) {
+    corsOptions = { origin: true };
+  } else {
+    corsOptions = { origin: false };
+  }
+  callback(null, corsOptions);
+};
 
 // Middlerware Linked => Express
+app.use(
+  session({
+    secret: "golden-years", //some random string
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 app.use(cors());
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
-// app.use(express.static("public"));
-// app.use(express.static("./client/build"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public"));
+app.use(express.static("./client/build"));
 
 //Import/Require Controllers for express routing
+const sessionController = require("./controller/sessions");
 const seedController = require("./controller/seed");
 const userController = require("./controller/user");
 const fitnessTestController = require("./controller/fitnessTest");
@@ -50,6 +60,7 @@ const seedtestdata = require("./controller/fakeTestDataController");
 const usertestdata = require("./controller/userTestData");
 
 //Routes
+app.use("/api/session", sessionController);
 app.use("/api/seed", seedController);
 app.use("/api/user", userController);
 app.use("/api/fitnesstest", fitnessTestController);

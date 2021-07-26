@@ -155,6 +155,7 @@ const PoseEstimation = ({ reducerPackage, props }) => {
     }
   };
 
+  //* props = respective test
   props(reducerPackage);
 
   return (
@@ -176,7 +177,7 @@ const PoseEstimation = ({ reducerPackage, props }) => {
 };
 
 PoseEstimation.propTypes = {
-  reducerPackage: PropTypes.string,
+  reducerPackage: PropTypes.object,
   props: PropTypes.func,
 };
 
