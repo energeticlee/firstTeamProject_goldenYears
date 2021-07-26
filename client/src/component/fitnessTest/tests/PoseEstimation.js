@@ -177,7 +177,7 @@ const PoseEstimation = ({ reducerPackage, props }) => {
 };
 
 PoseEstimation.propTypes = {
-  reducerPackage: PropTypes.string,
+  reducerPackage: PropTypes.object,
   props: PropTypes.func,
 };
 
