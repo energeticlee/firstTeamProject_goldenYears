@@ -20,26 +20,26 @@ mongoose.connect(MONGO_URI, {
 });
 
 // Middleware configurations
-const whitelist = [
-  "http://localhost:3000",
-  "http://localhost:3003",
-  "https://fathomless-sierra-68956.herokuapp.com",
-];
-const corsOptionsDelegate = function (req, callback) {
-  let corsOptions;
-  if (whitelist.indexOf(req.header("Origin")) !== -1) {
-    corsOptions = { origin: true };
-  } else {
-    corsOptions = { origin: false };
-  }
-  callback(null, corsOptions);
-};
+// const whitelist = [
+//   "http://localhost:3000",
+//   "http://localhost:3003",
+//   "https://fathomless-sierra-68956.herokuapp.com",
+// ];
+// const corsOptionsDelegate = function (req, callback) {
+//   let corsOptions;
+//   if (whitelist.indexOf(req.header("Origin")) !== -1) {
+//     corsOptions = { origin: true };
+//   } else {
+//     corsOptions = { origin: false };
+//   }
+//   callback(null, corsOptions);
+// };
 
 // Middlerware Linked => Express
 app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static("public"));
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+// app.use(express.static("public"));
 // app.use(express.static("./client/build"));
 
 //Import/Require Controllers for express routing
@@ -54,6 +54,7 @@ app.use("/api/seed", seedController);
 app.use("/api/user", userController);
 app.use("/api/fitnesstest", fitnessTestController);
 app.use("/api/faketestdata1", fakeTestData1);
+app.use("/api/userTestData", userTestData);
 
 // Server Linked => Database
 mongoose.connection.once("open", () => {

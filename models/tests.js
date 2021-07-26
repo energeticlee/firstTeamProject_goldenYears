@@ -4,7 +4,7 @@ const { Schema, model } = require("mongoose");
 const testOneChairStand = new Schema({
   date: { type: Number, required: true },
   result: { type: Number, required: true },
-  user: [{ type: Schema.Types.ObjectId, ref: "userSchema" }],
+  user: { type: Schema.Types.ObjectId, ref: "userSchema" },
 });
 
 const TestOneChairStand = model("test_1_Chair_Stand", testOneChairStand);
