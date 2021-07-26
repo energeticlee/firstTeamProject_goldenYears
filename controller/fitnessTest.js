@@ -19,7 +19,6 @@ router.post("/:testname", (req, res) => {
   if (testName === "armcurl") testName = TestTwoArmCurl;
   if (testName === "twominstep") testName = TestThree2MinStep;
 
-  console.log(req.body);
   testName.create(req.body, (err, createdResult) => {
     if (err) res.status(400).json({ err: "create result error" });
     else {

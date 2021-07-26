@@ -10,9 +10,9 @@ router.get("/", (req, res) => {
     if (err) res.status(400).json({ err: "Delete Fail" });
     else {
       TestOneChairStand.create(fakeDataTest1, (error, dataList) => {
-        if (error) res.status(400).json({ error: "Create Fail" });
+        if (error) res.status(400).json({ error: fakeDataTest1 });
         else {
-          res.redirect("/home");
+          res.send(fakeDataTest1);
         }
       });
     }
