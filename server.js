@@ -53,19 +53,23 @@ app.use(express.static("./client/build"));
 
 //Import/Require Controllers for express routing
 const sessionController = require("./controller/sessions");
+const doctorSessionController = require("./controller/doctorSession");
 const seedController = require("./controller/seed");
 const userController = require("./controller/user");
 const fitnessTestController = require("./controller/fitnessTest");
 const seedtestdata = require("./controller/fakeTestDataController");
 const usertestdata = require("./controller/userTestData");
+const doctorController = require("./controller/doctor");
 
 //Routes
 app.use("/api/session", sessionController);
+app.use("/api/doctorSession", doctorSessionController);
 app.use("/api/seed", seedController);
 app.use("/api/user", userController);
 app.use("/api/fitnesstest", fitnessTestController);
 app.use("/api/seedtestdata", seedtestdata);
 app.use("/api/usertestdata", usertestdata);
+app.use("/api/doctor", doctorController);
 
 // Server Linked => Database
 mongoose.connection.once("open", () => {
