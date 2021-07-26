@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const testSchema = require("../models/test_1");
+const { TestOneChairStand } = require("../models/tests");
 
 router.get("/", (req, res) => {
-    testSchema.find({}, (err, foundTest) => {
+  TestOneChairStand.find({}, (err, foundTest) => {
     if (err) {
       res.status(400).json({ error: err.message });
     } else {

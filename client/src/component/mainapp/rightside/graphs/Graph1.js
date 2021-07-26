@@ -16,11 +16,22 @@ import moment from "moment";
 export default function Graph1() {
 const [data, setData] = useState([])
 
-  useEffect(() => {
-    fetch("http://localhost:3333/api/usertestdata")
-      .then((res) => res.json())
-      .then((data) => console.log(data));
-  }, []);
+useEffect(() => {
+  const getData = async () => {
+    // Please change the localhose number according to your server port number
+    const response = await fetch("http://localhost:3333/api/usertestdata", {
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
+    console.log(response);
+    const data = await response.json();
+    setData(data);
+  };
+  getData();
+}, []);
 
   // const data = [
   //   {
