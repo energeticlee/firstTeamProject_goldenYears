@@ -7,7 +7,6 @@ import Landing from "./component/mainapp/Landing";
 function App() {
 	return (
 		<div className="App">
-			<h1>GoldenYears</h1>
 			<Switch>
 				<Route exact path="/">
 					<Landing />
