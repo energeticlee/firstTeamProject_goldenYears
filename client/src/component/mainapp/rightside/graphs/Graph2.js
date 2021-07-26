@@ -1,91 +1,198 @@
 /* eslint-disable */
-import React, { PureComponent } from 'react';
-import { PieChart, Pie, Sector, ResponsiveContainer } from 'recharts';
+import React,{useState, useEffect} from "react";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  LabelList,
+  ResponsiveContainer,
+} from "recharts";
+import moment from "moment";
 
-const data = [
-  { name: 'Group A', value: 400 },
-  { name: 'Group B', value: 300 },
-  { name: 'Group C', value: 300 },
-  { name: 'Group D', value: 200 },
-];
+export default function Graph2() {
+const [data, setData] = useState([])
 
-const renderActiveShape = (props) => {
-  const RADIAN = Math.PI / 180;
-  const { cx, cy, midAngle, innerRadius, outerRadius, startAngle, endAngle, fill, payload, percent, value } = props;
-  const sin = Math.sin(-RADIAN * midAngle);
-  const cos = Math.cos(-RADIAN * midAngle);
-  const sx = cx + (outerRadius + 10) * cos;
-  const sy = cy + (outerRadius + 10) * sin;
-  const mx = cx + (outerRadius + 30) * cos;
-  const my = cy + (outerRadius + 30) * sin;
-  const ex = mx + (cos >= 0 ? 1 : -1) * 22;
-  const ey = my;
-  const textAnchor = cos >= 0 ? 'start' : 'end';
+useEffect(() => {
+  const getData = async () => {
+    // Please change the localhose number according to your server port number
+    const response = await fetch("http://localhost:3333/api/usertestdata/2", {
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
+    console.log(response);
+    const data = await response.json();
+    console.log(data)
+    setData(data);
+  };
+  getData();
+}, []);
+
+  // const data = [
+  //   {
+  //     date: 1610640000000,
+  //     result: 5,
+  //     user: {
+  //       uniqueId: "myID",
+  //       name: "hello",
+  //       email: "helloe",
+  //       password: "test",
+  //     },
+  //   },
+  //   {
+  //     date: 1613750400000,
+  //     result: 7,
+  //     user: {
+  //       uniqueId: "myID",
+  //       name: "hello",
+  //       email: "helloe",
+  //       password: "test",
+  //     },
+  //   },
+  //   {
+  //     date: 1617033600000,
+  //     result: 12,
+  //     user: {
+  //       uniqueId: "myID",
+  //       name: "hello",
+  //       email: "helloe",
+  //       password: "test",
+  //     },
+  //   },
+  //   {
+  //     date: 1617206400000,
+  //     result: 11,
+  //     user: {
+  //       uniqueId: "myID",
+  //       name: "hello",
+  //       email: "helloe",
+  //       password: "test",
+  //     },
+  //   },
+  //   {
+  //     date: 1621440000000,
+  //     result: 7,
+  //     user: {
+  //       uniqueId: "myID",
+  //       name: "hello",
+  //       email: "helloe",
+  //       password: "test",
+  //     },
+  //   },
+  //   {
+  //     date: 1624982400000,
+  //     result: 3,
+  //     user: {
+  //       uniqueId: "myID",
+  //       name: "hello",
+  //       email: "helloe",
+  //       password: "test",
+  //     },
+  //   },
+  //   {
+  //     date: 1626278400000,
+  //     result: 20,
+  //     user: {
+  //       uniqueId: "myID",
+  //       name: "hello",
+  //       email: "helloe",
+  //       password: "test",
+  //     },
+  //   },
+  //   {
+  //     date: 1628524800000,
+  //     result: 25,
+  //     user: {
+  //       uniqueId: "myID",
+  //       name: "hello",
+  //       email: "helloe",
+  //       password: "test",
+  //     },
+  //   },
+  // ];
+
+  const CustomizedLabel = (props) => {
+    const { x, y, stroke, value } = props;
+
+    return (
+      <text x={x} y={y} dy={-4} fill={stroke} fontSize={10} textAnchor="middle">
+        {value}
+      </text>
+    );
+  };
+
+  const CustomizedAxisTick = (props) => {
+    const { x, y, payload } = props;
+    const value = moment(payload.value).format("D MMM YY ");
+
+    return (
+      <g transform={`translate(${x},${y})`}>
+        <text x={0} y={0} dy={16} textAnchor="middle" fill="#666">
+          {value}
+        </text>
+      </g>
+    );
+  };
+
+  // const CustomTooltip = ({ active, payload, label }) => {
+  //   if (active && payload && payload.length) {
+  //     return (
+  //       <ul className="custom-tooltip">
+  //         <li className="label">
+  //           Date: {`${moment(label).format("D MMM YY ")}`}
+  //         </li>
+  //         <li className="intro">Result: {`${payload[0].value}`}</li>
+  //       </ul>
+  //     );
+  //   }
+
+  //   return null;
+  // };
 
   return (
-    <g>
-      <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>
-        {payload.name}
-      </text>
-      <Sector
-        cx={cx}
-        cy={cy}
-        innerRadius={innerRadius}
-        outerRadius={outerRadius}
-        startAngle={startAngle}
-        endAngle={endAngle}
-        fill={fill}
-      />
-      <Sector
-        cx={cx}
-        cy={cy}
-        startAngle={startAngle}
-        endAngle={endAngle}
-        innerRadius={outerRadius + 6}
-        outerRadius={outerRadius + 10}
-        fill={fill}
-      />
-      <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={fill} fill="none" />
-      <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
-      <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} textAnchor={textAnchor} fill="#333">{`PV ${value}`}</text>
-      <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} dy={18} textAnchor={textAnchor} fill="#999">
-        {`(Rate ${(percent * 100).toFixed(2)}%)`}
-      </text>
-    </g>
+    <ResponsiveContainer width="100%" height={300}>
+      <LineChart
+        width={500}
+        height={300}
+        data={data}
+        margin={{
+          top: 20,
+          right: 30,
+          left: 20,
+          bottom: 10,
+        }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis
+          dataKey="date"
+          height={60}
+          tick={<CustomizedAxisTick />}
+          domain={["auto", "auto"]}
+          type="number"
+        />
+        <YAxis />
+        <Tooltip
+          labelFormatter= {function (value) {
+            return `Date: ${moment(value).format("D MMM YY ")}`;
+          }}
+          formatter = {function (value) {
+            return [`${value}`, "Result" ]
+          }}
+        />
+        <Legend 
+        formatter = {function (value) {
+          return ["Result"]
+        }}/>
+        <Line type="monotone" dataKey="result" stroke="#8884d8">
+          <LabelList content={<CustomizedLabel />} />
+        </Line>
+      </LineChart>
+    </ResponsiveContainer>
   );
-};
-
-export default class Graph2 extends PureComponent {
-  static demoUrl = 'https://codesandbox.io/s/pie-chart-with-customized-active-shape-y93si';
-
-  state = {
-    activeIndex: 0,
-  };
-
-  onPieEnter = (_, index) => {
-    this.setState({
-      activeIndex: index,
-    });
-  };
-
-  render() {
-    return (
-      <ResponsiveContainer width="100%" height={500}>
-        <PieChart width={400} height={400}>
-          <Pie
-            activeIndex={this.state.activeIndex}
-            activeShape={renderActiveShape}
-            data={data}
-            cx="50%"
-            cy="50%"
-            innerRadius={60}
-            outerRadius={80}
-            fill="#8884d8"
-            dataKey="value"
-            onMouseEnter={this.onPieEnter}
-          />
-        </PieChart>
-      </ResponsiveContainer>
-    );
-  }
 }

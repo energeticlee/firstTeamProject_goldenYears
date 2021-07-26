@@ -46,15 +46,15 @@ app.use(cors());
 const seedController = require("./controller/seed");
 const userController = require("./controller/user");
 const fitnessTestController = require("./controller/fitnessTest");
-const fakeTestData1 = require("./controller/fakeTestData1");
-const userTestData = require("./controller/userTestData");
+const seedtestdata = require("./controller/fakeTestDataController");
+const usertestdata = require("./controller/userTestData");
 
 //Routes
 app.use("/api/seed", seedController);
 app.use("/api/user", userController);
 app.use("/api/fitnesstest", fitnessTestController);
-app.use("/api/faketestdata1", fakeTestData1);
-app.use("/api/userTestData", userTestData);
+app.use("/api/seedtestdata", seedtestdata);
+app.use("/api/usertestdata", usertestdata);
 
 // Server Linked => Database
 mongoose.connection.once("open", () => {
