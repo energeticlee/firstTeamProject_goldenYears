@@ -11,7 +11,7 @@ const DocLogin = () => {
 
 		const sendData = async () => {
 			// Please change the localhost number according to your server port number
-			const response = await fetch("http://localhost:3001/api/session/new", {
+			const response = await fetch("http://localhost:3333/api/session/new", {
 				method: "POST",
 				mode: "cors",
 				body: JSON.stringify({
