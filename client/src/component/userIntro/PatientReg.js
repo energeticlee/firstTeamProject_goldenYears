@@ -3,11 +3,30 @@ import React from "react";
 // import { useRef } from "react-router-dom";
 
 const PatientReg = () => {
+	// const [confirmEmail, setConfirmEmail] = useState();
+	// const [confirmPW, setConfirmPW] = useState();
+
+	// const [confirmEmailErr, setConfirmEmailErr] = useState("");
+	// const [confirmPWErr, setConfirmPWErr] = useState("");
+
 	const handleSubmitPatientData = (event) => {
 		event.preventDefault();
 		const patientName = event.target.name.value;
 		const patientEmail = event.target.email.value;
+		const patientConfirmEmail = event.target.confirm_email.value;
 		const patientPassword = event.target.password.value;
+		const patientConfirmPW = event.target.confirm_password.value;
+
+		if (patientConfirmEmail != patientEmail) {
+			alert("Email addresses don't match, please enter again.");
+		}
+
+		if (patientConfirmPW != patientPassword) {
+			alert("Passwords don't match, please enter again.");
+		}
+
+		// const isValid = inputValidation();
+
 		const sendData = async () => {
 			// Please change the localhost number according to your server port number
 
@@ -29,6 +48,27 @@ const PatientReg = () => {
 		};
 		sendData();
 	};
+
+	// const inputValidation = () => {
+	// 	let confirmEmailErr;
+	// 	let confirmPWErr;
+	// 	let isValid = true;
+
+	// 	if (patientConfirmEmail != patientEmail) {
+	// 		confirmEmailErr = "The email addresses do not match, please enter again.";
+	// 		isValid = false;
+	// 	}
+
+	// 	if (patientConfirmPW != patientPassword) {
+	// 		confirmPWErr = "The passwords do not match, please enter again.";
+	// 		isValid = false;
+	// 	}
+
+	// 	setConfirmEmailErr(confirmEmailErr);
+	// 	setConfirmPWErr(confirmPWErr);
+	// 	return isValid;
+	// };
+
 	return (
 		<div>
 			<form onSubmit={handleSubmitPatientData}>
@@ -58,8 +98,8 @@ const PatientReg = () => {
 				<br />
 				<input
 					type="email"
-					name="confirm-email"
-					id="confirm-email"
+					name="confirm_email"
+					id="confirm_email"
 					placeholder="johnsmith@gmail.com"
 					required
 				/>
@@ -80,8 +120,8 @@ const PatientReg = () => {
 				<br />
 				<input
 					type="password"
-					name="confirm-password"
-					id="confirm-password"
+					name="confirm_password"
+					id="confirm_password"
 					placeholder="************"
 					required
 				/>
