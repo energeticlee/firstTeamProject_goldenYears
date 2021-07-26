@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 const PatientLogin = () => {
-	const history = useHistory();
+	const patientHistory = useHistory();
 	const [errorMessage, setMessage] = useState("Please enter your details");
-	const handleUserLogin = (event) => {
+	const handlePatientLogin = (event) => {
 		event.preventDefault();
 		const userEmail = event.target.email.value;
 		const userPassword = event.target.password.value;
 
 		const sendData = async () => {
-			// Please change the localhose number according to your server port number
+			// Please change the localhost number according to your server port number
 			const response = await fetch("http://localhost:3001/api/session/new", {
 				method: "POST",
 				mode: "cors",
@@ -28,14 +28,14 @@ const PatientLogin = () => {
 				console.log("data", data.error);
 				setMessage(data.error);
 			} else if (response.status === 200) {
-				history.push("/home");
+				patientHistory.push("/home");
 			}
 		};
 		sendData();
 	};
 	return (
 		<div>
-			<form onSubmit={handleUserLogin}>
+			<form onSubmit={handlePatientLogin}>
 				<label>Email:</label>
 				<br />
 				<input
