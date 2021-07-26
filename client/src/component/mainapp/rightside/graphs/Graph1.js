@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React,{useState, useEffect} from "react";
+import React,{useState, useEffect, useContext} from "react";
 import {
   LineChart,
   Line,
@@ -12,14 +12,18 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import moment from "moment";
+import { dataContext } from "../../../../App"
 
 export default function Graph1() {
 const [data, setData] = useState([])
+const contextData = useContext(dataContext);
+console.log(contextData)
+const states = contextData.states;
 
 useEffect(() => {
   const getData = async () => {
     // Please change the localhose number according to your server port number
-    const response = await fetch("http://localhost:3333/api/usertestdata/1", {
+    const response = await fetch(`http://localhost:3333/api/usertestdata/1/${states.userId}`, {
       mode: "cors",
       headers: {
         "Content-Type": "application/json",

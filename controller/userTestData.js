@@ -2,8 +2,9 @@ const express = require("express");
 const router = express.Router();
 const { TestOneChairStand, TestTwoArmCurl, TestThree2MinStep } = require("../models/tests");
 
-router.get("/1", (req, res) => {
-  TestOneChairStand.find({}, (err, foundTest) => {
+router.get("/1/:id", (req, res) => {
+  const id = req.params.id
+  TestOneChairStand.find({user:id}, (err, foundTest) => {
     if (err) {
       res.status(400).json({ error: err.message });
     } else {
@@ -12,8 +13,9 @@ router.get("/1", (req, res) => {
   });
 });
 
-router.get("/2", (req, res) => {
-  TestTwoArmCurl.find({}, (err, foundTest) => {
+router.get("/2/:id", (req, res) => {
+  const id = req.params.id
+  TestTwoArmCurl.find({user:id}, (err, foundTest) => {
     if (err) {
       res.status(400).json({ error: err.message });
     } else {
@@ -22,8 +24,9 @@ router.get("/2", (req, res) => {
   });
 });
 
-router.get("/3", (req, res) => {
-  TestThree2MinStep.find({}, (err, foundTest) => {
+router.get("/3/:id", (req, res) => {
+  const id = req.params.id
+  TestThree2MinStep.find({user:id}, (err, foundTest) => {
     if (err) {
       res.status(400).json({ error: err.message });
     } else {
