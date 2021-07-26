@@ -12,7 +12,6 @@ const PatientLogin = () => {
     event.preventDefault();
     const userEmail = event.target.email.value;
     const userPassword = event.target.password.value;
-
     const sendData = async () => {
       // Please change the localhose number according to your server port number
       const response = await fetch("http://localhost:3333/api/session/new", {

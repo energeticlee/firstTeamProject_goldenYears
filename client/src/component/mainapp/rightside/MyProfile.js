@@ -1,8 +1,10 @@
 import React from "react";
 import { useEffect, useState, useContext } from "react";
 import { dataContext } from "../../../App";
+import { Link, useRouteMatch } from "react-router-dom";
 
 const MyProfile = () => {
+  let { url } = useRouteMatch();
   const contextData = useContext(dataContext);
   const states = contextData.states;
   console.log(states);
@@ -24,19 +26,30 @@ const MyProfile = () => {
     getData();
   }, []);
   return (
-    <div>
-      {data.map((userElement) => {
-        return (
-          <div key={userElement._id}>
-            <div>{userElement._id}</div>
-            <div>{userElement.name}</div>
-            <div>{userElement.email}</div>
-            <div>{userElement.password}</div>
-            <br />
-          </div>
-        );
-      })}
-    </div>
+    <>
+      <div>
+        {data.map((userElement) => {
+          return (
+            <div key={userElement._id}>
+              <div>Name: {userElement.name}</div>
+              <div>Email: {userElement.email}</div>
+              <div>Encrypted Password: {userElement.password}</div>
+              <div>Photo: {userElement.photo}</div>
+              <div>Age: {userElement.age}</div>
+              <div>Gender: {userElement.gender}</div>
+              <div>Height: {userElement.height}</div>
+              <div>Weight: {userElement.weight}</div>
+              <div>Health Conditions: {userElement.healthCondition}</div>
+              <div>My Doctor: {userElement.myDoctor}</div>
+              <br />
+            </div>
+          );
+        })}
+      </div>
+      <Link to={`${url}/edit`}>
+        <button>Edit Profile</button>
+      </Link>
+    </>
   );
 };
 

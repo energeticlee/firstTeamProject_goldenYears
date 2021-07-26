@@ -14,7 +14,7 @@ const Sidebar = () => {
           <Link to={`${url}/mypatients`}>My Patients</Link>
         </li>
         <li>
-          <Link to={`${url}/logout`}>Log out</Link>
+          <Link to={`/`}>Log out</Link>
         </li>
       </ul>
     </div>

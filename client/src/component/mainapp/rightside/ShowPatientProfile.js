@@ -1,8 +1,10 @@
 import React from "react";
 import { useEffect, useState, useContext } from "react";
 import { dataContext } from "../../../App";
+import { Link, useRouteMatch } from "react-router-dom";
 
-const PatientEditProfile = () => {
+const ShowPatientProfile = () => {
+	let { url } = useRouteMatch();
 	const contextData = useContext(dataContext);
 	const states = contextData.states;
 	console.log(states);
@@ -45,9 +47,11 @@ const PatientEditProfile = () => {
 					);
 				})}
 			</div>
-			<button>Save Changes</button>
+			<Link to={`${url}/edit`}>
+				<button>Edit Profile</button>
+			</Link>
 		</>
 	);
 };
 
-export default PatientEditProfile;
+export default ShowPatientProfile;
