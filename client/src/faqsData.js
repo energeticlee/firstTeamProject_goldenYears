@@ -1,53 +1,43 @@
 const faqsData = [
 	{
-		question:
-			"Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum.",
-		answer: "In dui magna, posuere eget, vestibulum et, tempor auctor, justo.",
+		question: "This is a question.",
+		answer: "This is the answer.",
 	},
 	{
-		question:
-			"Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum.",
-		answer: "In dui magna, posuere eget, vestibulum et, tempor auctor, justo.",
+		question: "This is a question.",
+		answer: "This is the answer.",
 	},
 	{
-		question:
-			"Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum.",
-		answer: "In dui magna, posuere eget, vestibulum et, tempor auctor, justo.",
+		question: "This is a question.",
+		answer: "This is the answer.",
 	},
 	{
-		question:
-			"Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum.",
-		answer: "In dui magna, posuere eget, vestibulum et, tempor auctor, justo.",
+		question: "This is a question.",
+		answer: "This is the answer.",
 	},
 	{
-		question:
-			"Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum.",
-		answer: "In dui magna, posuere eget, vestibulum et, tempor auctor, justo.",
+		question: "This is a question.",
+		answer: "This is the answer.",
 	},
 	{
-		question:
-			"Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum.",
-		answer: "In dui magna, posuere eget, vestibulum et, tempor auctor, justo.",
+		question: "This is a question.",
+		answer: "This is the answer.",
 	},
 	{
-		question:
-			"Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum.",
-		answer: "In dui magna, posuere eget, vestibulum et, tempor auctor, justo.",
+		question: "This is a question.",
+		answer: "This is the answer.",
 	},
 	{
-		question:
-			"Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum.",
-		answer: "In dui magna, posuere eget, vestibulum et, tempor auctor, justo.",
+		question: "This is a question.",
+		answer: "This is the answer.",
 	},
 	{
-		question:
-			"Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum.",
-		answer: "In dui magna, posuere eget, vestibulum et, tempor auctor, justo.",
+		question: "This is a question.",
+		answer: "This is the answer.",
 	},
 	{
-		question:
-			"Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum.",
-		answer: "In dui magna, posuere eget, vestibulum et, tempor auctor, justo.",
+		question: "This is a question.",
+		answer: "This is the answer.",
 	},
 ];
 
