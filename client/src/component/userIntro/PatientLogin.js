@@ -33,7 +33,7 @@ const PatientLogin = () => {
       } else if (response.status === 200) {
         const data = await response.json();
         dispatch({ type: "PUSHPATIENTID", payload: data._id });
-        history.push("/home");
+        history.push("/home/myperformance");
       }
     };
     sendData();

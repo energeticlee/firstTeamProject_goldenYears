@@ -14,6 +14,9 @@ const Sidebar = () => {
           <Link to={`${url}/mypatients`}>My Patients</Link>
         </li>
         <li>
+          <Link to={`${url}/overallperformance`}>Overall Performance</Link>
+        </li>
+        <li>
           <Link to={`/`}>Log out</Link>
         </li>
       </ul>
