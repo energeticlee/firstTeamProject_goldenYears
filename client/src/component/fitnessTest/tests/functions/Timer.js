@@ -1,18 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Timer = ({ reducerPackage }) => {
+const Timer = ({ reducerPackage, name }) => {
   const { state } = reducerPackage;
+  const duration =
+    name === "Step Test"
+      ? state.twoMinStepTime
+      : name === "Arm Curl"
+      ? state.armCurlTime
+      : state.chairStandTime;
 
   const currentTime =
-    state.armCurlTime - Math.floor((state.endTime - state.startTime) / 1000);
+    duration - Math.floor((state.endTime - state.startTime) / 1000);
 
   return (
     <div>
-      {currentTime <= state.armCurlTime && currentTime > 0 ? (
+      {currentTime <= duration && currentTime > 0 ? (
         <h2>{currentTime} Seconds</h2>
       ) : (
-        <h2>{state.armCurlTime} Seconds</h2>
+        <h2>{duration} Seconds</h2>
       )}
     </div>
   );
@@ -20,6 +26,7 @@ const Timer = ({ reducerPackage }) => {
 
 Timer.propTypes = {
   reducerPackage: PropTypes.object,
+  name: PropTypes.string,
 };
 
 export default Timer;

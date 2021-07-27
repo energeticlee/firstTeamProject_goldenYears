@@ -7,7 +7,7 @@ import style from "./Render.module.css";
 import Timer from "./functions/Timer";
 import PropTypes from "prop-types";
 
-const PoseEstimation = ({ reducerPackage, props }) => {
+const PoseEstimation = ({ reducerPackage, props, name }) => {
   const jointCoordinate = {
     rightWrist: 0,
     rightElbow: 0,
@@ -161,18 +161,15 @@ const PoseEstimation = ({ reducerPackage, props }) => {
 
   return (
     <div className={style.pageContainer}>
-      <div className={style.leftContainer}>Side Bar</div>
-      <div className={style.rightContainer}>
-        <div className={style.rightTopContainer}>
-          <button>Instruction</button>
-          <h2>{reducerPackage.state.repCount}</h2>
-          <Timer reducerPackage={reducerPackage} />
-          <h2>Test Name</h2>
-        </div>
-        <div className={style.camContainer}>
-          <Webcam ref={webcamRef} className={style.webCam} />
-          <canvas ref={canvasRef} className={style.canvas} />
-        </div>
+      <div className={style.topContainer}>
+        <button>Instruction</button>
+        <h2>{reducerPackage.state.repCount}</h2>
+        <Timer reducerPackage={reducerPackage} name={name} />
+        <h2>{name}</h2>
+      </div>
+      <div className={style.camContainer}>
+        <Webcam ref={webcamRef} className={style.webCam} />
+        <canvas ref={canvasRef} className={style.canvas} />
       </div>
     </div>
   );
@@ -181,6 +178,7 @@ const PoseEstimation = ({ reducerPackage, props }) => {
 PoseEstimation.propTypes = {
   reducerPackage: PropTypes.object,
   props: PropTypes.func,
+  name: PropTypes.string,
 };
 
 export default PoseEstimation;
