@@ -1,9 +1,16 @@
 import React, { useEffect } from "react";
-import { Link, Switch, Route, useRouteMatch } from "react-router-dom";
+import {
+  Link,
+  Switch,
+  Route,
+  useRouteMatch,
+  useHistory,
+} from "react-router-dom";
 import PatientLogin from "./PatientLogin";
 import PatientReg from "./PatientReg";
 
 const PatientIntro = () => {
+  const history = useHistory();
   let { path, url } = useRouteMatch();
   useEffect(() => {
     const getData = async () => {
@@ -16,7 +23,9 @@ const PatientIntro = () => {
         },
       });
       const message = await response.json();
-      console.log(message);
+      if (message.error !== "Not Authenticated") {
+        history.push("/home");
+      }
     };
     getData();
   }, []);
