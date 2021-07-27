@@ -1,11 +1,12 @@
 import React from "react";
+// import faqsData from "../../../faqsData";
 
 const FAQs = () => {
-  return (
-    <>
-      <div>This is the FAQ page</div>
-    </>
-  );
+	return (
+		<>
+			<h1>Frequently Asked Questions</h1>
+		</>
+	);
 };
 
 export default FAQs;
