@@ -2,6 +2,7 @@
   "name": "golden-years",
   "version": "0.1.0",
   "private": true,
+  "proxy":"http://localhost:3333",
   "dependencies": {
     "@mediapipe/pose": "^0.4.1624666670",
     "@tensorflow-models/pose-detection": "^0.0.3",

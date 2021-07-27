@@ -43,6 +43,9 @@ app.use(
     secret: "golden-years", //some random string
     resave: false,
     saveUninitialized: false,
+    cookie: {
+      maxAge: 3600000,
+    },
   })
 );
 app.use(cors());
