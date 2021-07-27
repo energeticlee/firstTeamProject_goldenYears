@@ -1,13 +1,16 @@
 import React from "react";
 import faqsData from "../../../faqsData";
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { dataContext } from "../../../App";
 
 const FAQs = () => {
+	const [isActive, setIsActive] = useState(false);
+
 	const data = useContext(dataContext);
 	const dispatch = data.dispatch;
 	const history = useHistory();
+
 	useEffect(() => {
 		if (Object.keys(data.states).length === 0) {
 			console.log(Object.keys(data.states).length === 0);
@@ -40,11 +43,16 @@ const FAQs = () => {
 						<div key={data.id}>
 							<div className="accordion">
 								<div className="accordion-item">
-									<div className="accordion-title">
+									<div
+										className="accordion-title"
+										onClick={() => setIsActive(!isActive)}
+									>
 										<div>{data.question}</div>
-										<div>+</div>
+										<div>{isActive ? "-" : "+"}</div>
 									</div>
-									<div className="accordion-content">{data.answer}</div>
+									{isActive && (
+										<div className="accordion-content">{data.answer}</div>
+									)}
 								</div>
 							</div>
 						</div>
