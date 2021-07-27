@@ -25,7 +25,7 @@ export default function Graph2() {
     const getData = async () => {
       // Please change the localhose number according to your server port number
       const response = await fetch(
-        `http://localhost:3333/api/usertestdata/2/${states.userId}`,
+        `/api/usertestdata/2/${states.userId}`,
         {
           mode: "cors",
           headers: {
@@ -34,9 +34,9 @@ export default function Graph2() {
           },
         }
       );
-      console.log(response);
+      // console.log(response);
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       setData(data);
     };
     getData();
@@ -84,6 +84,7 @@ export default function Graph2() {
   } else
     return (
       <ResponsiveContainer width="100%" height={300}>
+        {/* <p>2-Minute Step Test</p> */}
         <AreaChart
           width={500}
           height={300}

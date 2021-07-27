@@ -27,6 +27,7 @@
     "recharts": "^2.0.10",
     "web-vitals": "^1.0.1"
   },
+  "proxy": "http://localhost:3333",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
