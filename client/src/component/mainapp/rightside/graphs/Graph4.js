@@ -3,20 +3,21 @@ import React, { useCallback, useState, useContext, useEffect } from "react";
 import { PieChart, Pie, Sector, ResponsiveContainer } from "recharts";
 import { dataContext } from "../../../../App";
 
-export default function Graph4() {
+export default function Graph4(props) {
   const [data1, setData1] = useState([]);
   const [data2, setData2] = useState([]);
   const [data3, setData3] = useState([]);
-  const contextData = useContext(dataContext);
-  const states = contextData.states;
-  console.log(states);
+  // const contextData = useContext(dataContext);
+  // const states = contextData.states;
+  // console.log(states);
 
   const urls = [
-    `/api/usertestdata/1/${states.userId}`,
-    `/api/usertestdata/2/${states.userId}`,
-    `/api/usertestdata/3/${states.userId}`,
+    `/api/usertestdata/1/${props.data}`,
+    `/api/usertestdata/2/${props.data}`,
+    `/api/usertestdata/3/${props.data}`,
   ];
   useEffect(() => {
+    if (props.data!==undefined){
     Promise.all(
       urls.map((url) =>
         fetch(url)
@@ -31,11 +32,9 @@ export default function Graph4() {
       setData2(data[1]);
       setData3(data[2]);
     });
-  }, []);
+  }
+  }, [props.data]);
 
-  // const parseJSON = (response) => {
-  //   return response.json();
-  // }
 let result1 = 0
   for (const items of data1){
 result1 += items.result
@@ -143,10 +142,7 @@ result3 += items.result
     },
     [setActiveIndex]
   );
-  if (data1.length === 0) {
-    return null;
-  } else
-  return (
+  return data1.length !== 0 && data2.length !== 0 && data3.length !== 0 ? 
     <ResponsiveContainer width="100%" height={300}>
     <PieChart>
       <Pie
@@ -155,13 +151,14 @@ result3 += items.result
         data={data}
         // cx={200}
         // cy={200}
-        innerRadius={80}
-        outerRadius={100}
+        innerRadius={90}
+        outerRadius={120}
         fill="#8884d8"
         dataKey="value"
         onMouseEnter={onPieEnter}
       />
     </PieChart>
     </ResponsiveContainer>
-  );
+  
+  :null
 }

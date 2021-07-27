@@ -3,7 +3,7 @@ import Graph1 from "./graphs/Graph1";
 import Graph2 from "./graphs/Graph2";
 import Graph3 from "./graphs/Graph3";
 import Graph4 from "./graphs/Graph4";
-import Graph5 from "./graphs/Graph5";
+// import Graph5 from "./graphs/Graph5";
 import { useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { dataContext } from "../../../App";
@@ -36,11 +36,11 @@ const MyPerformance = () => {
   }, []);
   return (
     <>
-      <Graph1 />
-      <Graph2 />
-      <Graph3 />
-      <Graph4 />
-      <Graph5 />
+      <Graph1 data  ={data.states.userId} />
+      <Graph2 data  ={data.states.userId}/>
+      <Graph3 data  ={data.states.userId}/>
+      <Graph4 data  ={data.states.userId} />
+      {/* <Graph5 /> */}
     </>
   );
 };
