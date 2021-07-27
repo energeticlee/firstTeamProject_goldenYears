@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React,{useState, useEffect} from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   LineChart,
   Line,
@@ -10,112 +10,37 @@ import {
   Legend,
   LabelList,
   ResponsiveContainer,
+  AreaChart,
+  Area,
 } from "recharts";
 import moment from "moment";
+import { dataContext } from "../../../../App";
 
 export default function Graph1() {
-const [data, setData] = useState([])
+  const [data, setData] = useState([]);
+  const contextData = useContext(dataContext);
+  const states = contextData.states;
 
-useEffect(() => {
-  const getData = async () => {
-    // Please change the localhose number according to your server port number
-    const response = await fetch("http://localhost:3333/api/usertestdata/1", {
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    });
-    console.log(response);
-    const data = await response.json();
-    console.log(data)
-    setData(data);
-  };
-  getData();
-}, []);
-
-  // const data = [
-  //   {
-  //     date: 1610640000000,
-  //     result: 5,
-  //     user: {
-  //       uniqueId: "myID",
-  //       name: "hello",
-  //       email: "helloe",
-  //       password: "test",
-  //     },
-  //   },
-  //   {
-  //     date: 1613750400000,
-  //     result: 7,
-  //     user: {
-  //       uniqueId: "myID",
-  //       name: "hello",
-  //       email: "helloe",
-  //       password: "test",
-  //     },
-  //   },
-  //   {
-  //     date: 1617033600000,
-  //     result: 12,
-  //     user: {
-  //       uniqueId: "myID",
-  //       name: "hello",
-  //       email: "helloe",
-  //       password: "test",
-  //     },
-  //   },
-  //   {
-  //     date: 1617206400000,
-  //     result: 11,
-  //     user: {
-  //       uniqueId: "myID",
-  //       name: "hello",
-  //       email: "helloe",
-  //       password: "test",
-  //     },
-  //   },
-  //   {
-  //     date: 1621440000000,
-  //     result: 7,
-  //     user: {
-  //       uniqueId: "myID",
-  //       name: "hello",
-  //       email: "helloe",
-  //       password: "test",
-  //     },
-  //   },
-  //   {
-  //     date: 1624982400000,
-  //     result: 3,
-  //     user: {
-  //       uniqueId: "myID",
-  //       name: "hello",
-  //       email: "helloe",
-  //       password: "test",
-  //     },
-  //   },
-  //   {
-  //     date: 1626278400000,
-  //     result: 20,
-  //     user: {
-  //       uniqueId: "myID",
-  //       name: "hello",
-  //       email: "helloe",
-  //       password: "test",
-  //     },
-  //   },
-  //   {
-  //     date: 1628524800000,
-  //     result: 25,
-  //     user: {
-  //       uniqueId: "myID",
-  //       name: "hello",
-  //       email: "helloe",
-  //       password: "test",
-  //     },
-  //   },
-  // ];
+  useEffect(() => {
+    const getData = async () => {
+      // Please change the localhose number according to your server port number
+      const response = await fetch(
+        `http://localhost:3333/api/usertestdata/1/${states.userId}`,
+        {
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        }
+      );
+      console.log(response);
+      const data = await response.json();
+      console.log(data);
+      setData(data);
+    };
+    getData();
+  }, []);
 
   const CustomizedLabel = (props) => {
     const { x, y, stroke, value } = props;
@@ -154,45 +79,64 @@ useEffect(() => {
 
   //   return null;
   // };
+  if (data.length === 0) {
+    return null;
+  } else
+    return (
+      <ResponsiveContainer width="100%" height={300}>
+        <AreaChart
+          width={500}
+          height={300}
+          data={data}
+          margin={{
+            top: 20,
+            right: 30,
+            left: 20,
+            bottom: 10,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis
+            dataKey="date"
+            height={60}
+            tick={<CustomizedAxisTick />}
+            domain={["auto", "auto"]}
+            type="number"
+          />
+          <YAxis />
+          <Tooltip
+            labelFormatter={function (value) {
+              return `Date: ${moment(value).format("D MMM YY ")}`;
+            }}
+            formatter={function (value) {
+              return [`${value}`, "Result"];
+            }}
+          />
+          <Legend
+            formatter={function (value) {
+              return ["Result"];
+            }}
+          />
 
-  return (
-    <ResponsiveContainer width="100%" height={300}>
-      <LineChart
-        width={500}
-        height={300}
-        data={data}
-        margin={{
-          top: 20,
-          right: 30,
-          left: 20,
-          bottom: 10,
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis
-          dataKey="date"
-          height={60}
-          tick={<CustomizedAxisTick />}
-          domain={["auto", "auto"]}
-          type="number"
-        />
-        <YAxis />
-        <Tooltip
-          labelFormatter= {function (value) {
-            return `Date: ${moment(value).format("D MMM YY ")}`;
-          }}
-          formatter = {function (value) {
-            return [`${value}`, "Result" ]
-          }}
-        />
-        <Legend 
-        formatter = {function (value) {
-          return ["Result"]
-        }}/>
-        <Line type="monotone" dataKey="result" stroke="#8884d8">
-          <LabelList content={<CustomizedLabel />} />
-        </Line>
-      </LineChart>
-    </ResponsiveContainer>
-  );
+          <defs>
+            <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
+              <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
+            </linearGradient>
+          </defs>
+
+          <Area
+            type="monotone"
+            dataKey="result"
+            stroke="#8884d8"
+            fillOpacity={1}
+            fill="url(#color)"
+            activeDot={{ r: 6 }}
+            dot={{strokeWidth: 1 ,fill:"white"}}
+          >
+            {/* <LabelList content={<CustomizedLabel />} /> */}
+          </Area>
+        </AreaChart>
+      </ResponsiveContainer>
+    );
 }

@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React,{useState, useEffect} from "react";
+import React,{useState, useEffect,useContext} from "react";
 import {
   LineChart,
   Line,
@@ -12,14 +12,17 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import moment from "moment";
+import { dataContext } from "../../../../App"
 
 export default function Graph3() {
 const [data, setData] = useState([])
+const contextData = useContext(dataContext);
+const states = contextData.states;
 
 useEffect(() => {
   const getData = async () => {
     // Please change the localhose number according to your server port number
-    const response = await fetch("http://localhost:3333/api/usertestdata/3", {
+    const response = await fetch(`http://localhost:3333/api/usertestdata/3/${states.userId}`, {
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
@@ -33,89 +36,6 @@ useEffect(() => {
   };
   getData();
 }, []);
-
-  // const data = [
-  //   {
-  //     date: 1610640000000,
-  //     result: 5,
-  //     user: {
-  //       uniqueId: "myID",
-  //       name: "hello",
-  //       email: "helloe",
-  //       password: "test",
-  //     },
-  //   },
-  //   {
-  //     date: 1613750400000,
-  //     result: 7,
-  //     user: {
-  //       uniqueId: "myID",
-  //       name: "hello",
-  //       email: "helloe",
-  //       password: "test",
-  //     },
-  //   },
-  //   {
-  //     date: 1617033600000,
-  //     result: 12,
-  //     user: {
-  //       uniqueId: "myID",
-  //       name: "hello",
-  //       email: "helloe",
-  //       password: "test",
-  //     },
-  //   },
-  //   {
-  //     date: 1617206400000,
-  //     result: 11,
-  //     user: {
-  //       uniqueId: "myID",
-  //       name: "hello",
-  //       email: "helloe",
-  //       password: "test",
-  //     },
-  //   },
-  //   {
-  //     date: 1621440000000,
-  //     result: 7,
-  //     user: {
-  //       uniqueId: "myID",
-  //       name: "hello",
-  //       email: "helloe",
-  //       password: "test",
-  //     },
-  //   },
-  //   {
-  //     date: 1624982400000,
-  //     result: 3,
-  //     user: {
-  //       uniqueId: "myID",
-  //       name: "hello",
-  //       email: "helloe",
-  //       password: "test",
-  //     },
-  //   },
-  //   {
-  //     date: 1626278400000,
-  //     result: 20,
-  //     user: {
-  //       uniqueId: "myID",
-  //       name: "hello",
-  //       email: "helloe",
-  //       password: "test",
-  //     },
-  //   },
-  //   {
-  //     date: 1628524800000,
-  //     result: 25,
-  //     user: {
-  //       uniqueId: "myID",
-  //       name: "hello",
-  //       email: "helloe",
-  //       password: "test",
-  //     },
-  //   },
-  // ];
 
   const CustomizedLabel = (props) => {
     const { x, y, stroke, value } = props;

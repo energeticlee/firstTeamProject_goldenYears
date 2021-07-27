@@ -7,29 +7,35 @@ const DocLogin = () => {
   const data = useContext(dataContext);
   const dispatch = data.dispatch;
   const docHistory = useHistory();
-  const [errorMessage, setMessage] = useState("Please enter your details");
+  const [errorMessage, setMessage] = useState();
+
   const handleDocLogin = (event) => {
     event.preventDefault();
     const docEmail = event.target.email.value;
     const docPassword = event.target.password.value;
 
+    // if (docEmail === "") {
+    // 	errorMessage = "Please enter your email to proceed.";
+    // } else errorMessage = "";
+
+    // if (docPassword === "") {
+    // 	errorMessage = "Please enter your password to proceed.";
+    // } else errorMessage = "";
+
     const sendData = async () => {
       // Please change the localhost number according to your server port number
-      const response = await fetch(
-        "http://localhost:3333/api/doctorSession/new",
-        {
-          method: "POST",
-          mode: "cors",
-          body: JSON.stringify({
-            password: docPassword,
-            email: docEmail,
-          }),
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-        }
-      );
+      const response = await fetch("/api/doctorSession/new", {
+        method: "POST",
+        mode: "cors",
+        body: JSON.stringify({
+          password: docPassword,
+          email: docEmail,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      });
       if (response.status === 400) {
         const data = await response.json();
         console.log("data", data.error);
@@ -69,6 +75,7 @@ const DocLogin = () => {
         <br />
         <input type="submit" value="Enter" />
       </form>
+      <br />
       <div>{errorMessage}</div>
     </div>
   );

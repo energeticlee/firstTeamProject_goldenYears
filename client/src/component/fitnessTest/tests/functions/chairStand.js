@@ -1,7 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { dataContext } from "../../../../App";
 
 const chairStand = (reducerPackage) => {
+  const contextData = useContext(dataContext);
+  const states = contextData.states;
   const history = useHistory();
   const { state, actions, dispatch } = reducerPackage;
 
@@ -35,7 +38,7 @@ const chairStand = (reducerPackage) => {
         body: JSON.stringify({
           date: Date.now(),
           result: state.repCount,
-          user: "60fe1b0e2ef5d77b10a0c496", //! How to get id?
+          user: states.userId,
         }),
         headers: {
           "Content-Type": "application/json",
@@ -48,9 +51,8 @@ const chairStand = (reducerPackage) => {
           throw new Error("Error in network");
         })
         .then((resJson) => {
-          console.log(resJson); //* Showcase Result?
-          dispatch({ type: actions.setRepCount, payload: 0 });
-          //! Redirect to home/tests
+          console.log(resJson);
+          dispatch({ type: actions.setReset });
           history.push("/home/tests");
         });
     }
