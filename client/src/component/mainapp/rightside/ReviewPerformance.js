@@ -4,7 +4,7 @@ const ReviewPerformance = () => {
 	return (
 		<h1>
 			Hello this is what the doctor will see on the right side to review his/her
-			patient's performance.
+			patient&aposs performance.
 		</h1>
 	);
 };
