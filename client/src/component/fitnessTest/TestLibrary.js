@@ -5,11 +5,38 @@ import chairStand from "./tests/functions/chairStand";
 import armCurl from "./tests/functions/armCurl";
 import twoMinStepTest from "./tests/functions/twoMinStepTest";
 import { useRouteMatch } from "react-router";
+import { useEffect, useContext } from "react";
+import { useHistory } from "react-router-dom";
+import { dataContext } from "../../App";
 //* Add score to useReducer, and render overall result here then Post result to DB.
 
 const TestLibrary = () => {
   let { path } = useRouteMatch();
-
+  const data = useContext(dataContext);
+  const userdispatch = data.dispatch;
+  const history = useHistory();
+  useEffect(() => {
+    if (Object.keys(data.states).length === 0) {
+      console.log(Object.keys(data.states).length === 0);
+      const getData = async () => {
+        // Please change the localhose number according to your server port number
+        const response = await fetch("/api/session", {
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        });
+        const message = await response.json();
+        if (message.error !== "Not Authenticated") {
+          userdispatch({ type: "PUSHPATIENTID", payload: message });
+        } else {
+          history.push("/");
+        }
+      };
+      getData();
+    }
+  }, []);
   const actions = {
     setElbowAngle: "setElbowAngle",
     setKneeAngle: "setKneeAngle",
