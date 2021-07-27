@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React ,{useEffect} from "react";
 import { Link, Switch, Route, useRouteMatch } from "react-router-dom";
 import PatientLogin from "./PatientLogin";
 import PatientReg from "./PatientReg";
