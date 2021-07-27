@@ -1,16 +1,38 @@
 import React from "react";
 import { useEffect, useState, useContext } from "react";
 import { dataContext } from "../../../App";
-import { Link, Route, useRouteMatch } from "react-router-dom";
+import { Link, Route, useRouteMatch, useHistory } from "react-router-dom";
 import PatientEditProfile from "./PatientEditProfile";
 
 const MyProfile = () => {
 	let { path, url } = useRouteMatch();
 	const contextData = useContext(dataContext);
-	const states = contextData.states;
-	console.log(states);
-	const [data, setUserData] = useState([]);
+	const dispatch = contextData.dispatch;
+	const history = useHistory();
 
+	const [data, setUserData] = useState([]);
+	useEffect(() => {
+		if (Object.keys(contextData.states).length === 0) {
+			console.log(Object.keys(contextData.states).length === 0);
+			const getData = async () => {
+				// Please change the localhose number according to your server port number
+				const response = await fetch("/api/session", {
+					mode: "cors",
+					headers: {
+						"Content-Type": "application/json",
+						Accept: "application/json",
+					},
+				});
+				const message = await response.json();
+				if (message.error !== "Not Authenticated") {
+					dispatch({ type: "PUSHPATIENTID", payload: message });
+				} else {
+					history.push("/");
+				}
+			};
+			getData();
+		}
+	}, []);
 	useEffect(() => {
 		const getData = async () => {
 			// Please change the localhost number according to your server port number

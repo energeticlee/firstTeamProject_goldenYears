@@ -16,16 +16,17 @@ import {
 import moment from "moment";
 import { dataContext } from "../../../../App";
 
-export default function Graph1() {
+export default function Graph1(props) {
   const [data, setData] = useState([]);
-  const contextData = useContext(dataContext);
-  const states = contextData.states;
-
+  console.log(props)
+  // const contextData = useContext(dataContext);
+  // const states = contextData.states;
   useEffect(() => {
+    if (props.data !== undefined){
     const getData = async () => {
       // Please change the localhose number according to your server port number
       const response = await fetch(
-        `http://localhost:3333/api/usertestdata/1/${states.userId}`,
+        `/api/usertestdata/1/${props?.data}`,
         {
           mode: "cors",
           headers: {
@@ -34,13 +35,15 @@ export default function Graph1() {
           },
         }
       );
-      console.log(response);
+      // console.log(response);
       const data = await response.json();
       console.log(data);
       setData(data);
     };
     getData();
-  }, []);
+    }
+  }, [props.data]);
+
 
   const CustomizedLabel = (props) => {
     const { x, y, stroke, value } = props;
@@ -79,11 +82,9 @@ export default function Graph1() {
 
   //   return null;
   // };
-  if (data.length === 0) {
-    return null;
-  } else
-    return (
+    return data.length !== 0 ?
       <ResponsiveContainer width="100%" height={300}>
+        {/* <p>2-Minute Step Test</p> */}
         <AreaChart
           width={500}
           height={300}
@@ -138,5 +139,5 @@ export default function Graph1() {
           </Area>
         </AreaChart>
       </ResponsiveContainer>
-    );
+    :null
 }
