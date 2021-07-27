@@ -12,16 +12,13 @@ const PatientEditProfile = () => {
 	useEffect(() => {
 		const getData = async () => {
 			// Please change the localhost number according to your server port number
-			const response = await fetch(
-				`/api/user/${states.userId}`,
-				{
-					mode: "cors",
-					headers: {
-						"Content-Type": "application/json",
-						Accept: "application/json",
-					},
-				}
-			);
+			const response = await fetch(`/api/user/${states.userId}`, {
+				mode: "cors",
+				headers: {
+					"Content-Type": "application/json",
+					Accept: "application/json",
+				},
+			});
 			console.log(response);
 			const data = await response.json();
 			console.log(data);
