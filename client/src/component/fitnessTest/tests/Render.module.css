@@ -24,6 +24,7 @@
 
 .pageContainer {
   display: flex;
+  flex-direction: column;
   height: 100vh;
   width: 100vw;
   margin: 0;
@@ -35,13 +36,7 @@
   border: 1px solid red;
 }
 
-.rightContainer {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-.rightTopContainer {
+.topContainer {
   display: flex;
   justify-content: space-evenly;
   align-items: center;

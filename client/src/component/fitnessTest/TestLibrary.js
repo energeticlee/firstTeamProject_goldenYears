@@ -131,17 +131,23 @@ const TestLibrary = () => {
             <PoseEstimation
               reducerPackage={reducerPackage}
               props={chairStand}
+              name={"Chair Stand"}
             />
           </Route>
 
           <Route path={`${path}/armcurl`}>
-            <PoseEstimation reducerPackage={reducerPackage} props={armCurl} />
+            <PoseEstimation
+              reducerPackage={reducerPackage}
+              props={armCurl}
+              name={"Arm Curl"}
+            />
           </Route>
 
           <Route path={`${path}/twominsteptest`}>
             <PoseEstimation
               reducerPackage={reducerPackage}
               props={twoMinStepTest}
+              name={"Step Test"}
             />
           </Route>
         </Switch>
