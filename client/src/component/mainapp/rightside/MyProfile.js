@@ -10,9 +10,10 @@ const MyProfile = () => {
 	const states = contextData.states;
 	console.log(states);
 	const [data, setUserData] = useState([]);
+
 	useEffect(() => {
 		const getData = async () => {
-			// Please change the localhose number according to your server port number
+			// Please change the localhost number according to your server port number
 			const response = await fetch("http://localhost:3333/api/user", {
 				mode: "cors",
 				headers: {

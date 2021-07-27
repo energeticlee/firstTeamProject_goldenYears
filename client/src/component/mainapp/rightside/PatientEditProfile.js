@@ -11,7 +11,7 @@ const PatientEditProfile = () => {
 	const [data, setUserData] = useState([]);
 	useEffect(() => {
 		const getData = async () => {
-			// Please change the localhose number according to your server port number
+			// Please change the localhost number according to your server port number
 			const response = await fetch(
 				`http://localhost:3333/api/user/${states.userId}`,
 				{
