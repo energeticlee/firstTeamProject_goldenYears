@@ -4,6 +4,7 @@ import * as poseDetection from "@tensorflow-models/pose-detection";
 import Webcam from "react-webcam";
 import renderJointAngle from "./functions/renderJointAngle";
 import style from "./Render.module.css";
+import Timer from "./functions/Timer";
 import PropTypes from "prop-types";
 
 const PoseEstimation = ({ reducerPackage, props }) => {
@@ -165,6 +166,7 @@ const PoseEstimation = ({ reducerPackage, props }) => {
         <div className={style.rightTopContainer}>
           <button>Instruction</button>
           <h2>{reducerPackage.state.repCount}</h2>
+          <Timer reducerPackage={reducerPackage} />
           <h2>Test Name</h2>
         </div>
         <div className={style.camContainer}>

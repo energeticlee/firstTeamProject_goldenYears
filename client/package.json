@@ -2,9 +2,10 @@
   "name": "golden-years",
   "version": "0.1.0",
   "private": true,
-  "proxy":"http://localhost:3333",
+  "proxy": "http://localhost:3333",
   "dependencies": {
     "@mediapipe/pose": "^0.4.1624666670",
+    "@nodelib/fs.stat": "^2.0.5",
     "@tensorflow-models/pose-detection": "^0.0.3",
     "@tensorflow/tfjs-backend-webgl": "^3.8.0",
     "@tensorflow/tfjs-converter": "^3.8.0",

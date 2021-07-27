@@ -9,8 +9,12 @@ const twoMinStepTest = (reducerPackage) => {
   const { state, actions, dispatch } = reducerPackage;
 
   const twoMinStepTestCounter = () => {
+    if (state.repPhase === "up") {
+      dispatch({ type: actions.setEndTime, payload: Date.now() });
+    }
     if (state.rightHipAngle > 100 && state.leftHipAngle > 100) {
       dispatch({ type: actions.setRepPhase, payload: "down" });
+      dispatch({ type: actions.setEndTime, payload: Date.now() });
       if (state.repCount === 0)
         dispatch({ type: actions.setStartTime, payload: Date.now() });
     }
@@ -21,9 +25,12 @@ const twoMinStepTest = (reducerPackage) => {
     ) {
       dispatch({ type: actions.setRepPhase, payload: "up" });
       dispatch({ type: actions.setRepCount, payload: 1 });
+      dispatch({ type: actions.setEndTime, payload: Date.now() });
     }
     //! Change back to 120 Seconds
-    if (Math.floor((Date.now() - state.startTime) / 1000) === 10) {
+    if (
+      Math.floor((Date.now() - state.startTime) / 1000) === state.twoMinStepTime
+    ) {
       console.log(state.repCount);
       dispatch({ type: actions.setCompleted, payload: true });
     }
@@ -36,7 +43,7 @@ const twoMinStepTest = (reducerPackage) => {
 
   useEffect(() => {
     if (state.rightHipAngle > 10 && state.completed) {
-      fetch("http://localhost:3333/api/fitnesstest/armcurl", {
+      fetch("/api/fitnesstest/armcurl", {
         method: "POST",
         body: JSON.stringify({
           date: Date.now(),

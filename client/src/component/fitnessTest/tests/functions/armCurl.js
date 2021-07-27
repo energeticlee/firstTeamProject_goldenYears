@@ -10,18 +10,27 @@ const armCurl = (reducerPackage) => {
   const { state, actions, dispatch } = reducerPackage;
 
   const armCurlCounter = () => {
+    if (state.repPhase === "up") {
+      dispatch({ type: actions.setEndTime, payload: Date.now() });
+    }
     if (state.elbowAngle > 150) {
       dispatch({ type: actions.setRepPhase, payload: "down" });
       if (state.repCount === 0)
         dispatch({ type: actions.setStartTime, payload: Date.now() });
+      else dispatch({ type: actions.setEndTime, payload: Date.now() });
     }
 
-    if (state.elbowAngle < 40 && state.repPhase === "down") {
-      dispatch({ type: actions.setRepPhase, payload: "up" });
-      dispatch({ type: actions.setRepCount, payload: 1 });
+    if (state.elbowAngle < 40) {
+      dispatch({ type: actions.setEndTime, payload: Date.now() });
+      if (state.repPhase === "down") {
+        dispatch({ type: actions.setRepPhase, payload: "up" });
+        dispatch({ type: actions.setRepCount, payload: 1 });
+      }
     }
     //! Change back to 30 Seconds
-    if (Math.floor((Date.now() - state.startTime) / 1000) === 5) {
+    if (
+      Math.floor((Date.now() - state.startTime) / 1000) === state.armCurlTime
+    ) {
       console.log(state.repCount);
       dispatch({ type: actions.setCompleted, payload: true });
     }
@@ -35,7 +44,7 @@ const armCurl = (reducerPackage) => {
 
   useEffect(() => {
     if (state.elbowAngle > 10 && state.completed) {
-      fetch("http://localhost:3333/api/fitnesstest/armcurl", {
+      fetch("/api/fitnesstest/armcurl", {
         method: "POST",
         body: JSON.stringify({
           date: Date.now(),

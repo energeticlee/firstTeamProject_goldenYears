@@ -9,18 +9,27 @@ const chairStand = (reducerPackage) => {
   const { state, actions, dispatch } = reducerPackage;
 
   const squatCounter = () => {
+    if (state.repPhase === "up") {
+      dispatch({ type: actions.setEndTime, payload: Date.now() });
+    }
     if (state.kneeAngle < 120) {
       dispatch({ type: actions.setRepPhase, payload: "down" });
       if (state.repCount === 0)
         dispatch({ type: actions.setStartTime, payload: Date.now() });
+      else dispatch({ type: actions.setEndTime, payload: Date.now() });
     }
 
-    if (state.kneeAngle > 160 && state.repPhase === "down") {
-      dispatch({ type: actions.setRepPhase, payload: "up" });
-      dispatch({ type: actions.setRepCount, payload: 1 });
+    if (state.kneeAngle > 160) {
+      dispatch({ type: actions.setEndTime, payload: Date.now() });
+      if (state.repPhase === "down") {
+        dispatch({ type: actions.setRepPhase, payload: "up" });
+        dispatch({ type: actions.setRepCount, payload: 1 });
+      }
     }
     //! Change back to 30 Seconds
-    if (Math.floor((Date.now() - state.startTime) / 1000) === 5) {
+    if (
+      Math.floor((Date.now() - state.startTime) / 1000) === state.chairStandTime
+    ) {
       console.log(state.repCount);
       dispatch({ type: actions.setCompleted, payload: true });
     }
@@ -33,7 +42,7 @@ const chairStand = (reducerPackage) => {
 
   useEffect(() => {
     if (state.hipAngle > 10 && state.completed) {
-      fetch("http://localhost:3333/api/fitnesstest/chairstand", {
+      fetch("/api/fitnesstest/chairstand", {
         method: "POST",
         body: JSON.stringify({
           date: Date.now(),

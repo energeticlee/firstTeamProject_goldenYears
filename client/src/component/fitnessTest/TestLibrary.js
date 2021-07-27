@@ -18,6 +18,7 @@ const TestLibrary = () => {
     setRepCount: "setRepCount",
     setRepPhase: "setRepPhase",
     setStartTime: "setStartTime",
+    setEndTime: "setEndTime",
     setCompleted: "setCompleted",
     setReset: "setReset",
   };
@@ -41,6 +42,8 @@ const TestLibrary = () => {
         return { ...state, repPhase: action.payload };
       case actions.setStartTime:
         return { ...state, startTime: action.payload };
+      case actions.setEndTime:
+        return { ...state, endTime: action.payload };
       case actions.setCompleted:
         return { ...state, completed: action.payload };
       case actions.setReset:
@@ -49,6 +52,7 @@ const TestLibrary = () => {
           repCount: 0,
           repPhase: "",
           startTime: 0,
+          endTime: 0,
           completed: false,
         };
       default:
@@ -65,7 +69,11 @@ const TestLibrary = () => {
     repCount: 0,
     repPhase: "",
     startTime: 0,
+    endTime: 0,
     completed: false,
+    chairStandTime: 30,
+    armCurlTime: 30,
+    twoMinStepTime: 120,
   });
 
   const reducerPackage = { state, dispatch, actions };
@@ -75,35 +83,35 @@ const TestLibrary = () => {
       <h1>Testing Library</h1>
       <div>
         <div>
-          <Link to={`${path}/chairStand`}>
+          <Link to={`${path}/chairstand`}>
             <h2>30-Second Chair Stand</h2>
           </Link>
         </div>
         <div>
-          <Link to={`${path}/armCurl`}>
+          <Link to={`${path}/armcurl`}>
             <h2>Arm Curl</h2>
           </Link>
         </div>
         <div>
-          <Link to={`${path}/twoMinStepTest`}>
+          <Link to={`${path}/twominsteptest`}>
             <h2>2-Minute Step Test</h2>
           </Link>
         </div>
       </div>
       <main>
         <Switch>
-          <Route path={`${path}/chairStand`}>
+          <Route path={`${path}/chairstand`}>
             <PoseEstimation
               reducerPackage={reducerPackage}
               props={chairStand}
             />
           </Route>
 
-          <Route path={`${path}/armCurl`}>
+          <Route path={`${path}/armcurl`}>
             <PoseEstimation reducerPackage={reducerPackage} props={armCurl} />
           </Route>
 
-          <Route path={`${path}/twoMinStepTest`}>
+          <Route path={`${path}/twominsteptest`}>
             <PoseEstimation
               reducerPackage={reducerPackage}
               props={twoMinStepTest}
