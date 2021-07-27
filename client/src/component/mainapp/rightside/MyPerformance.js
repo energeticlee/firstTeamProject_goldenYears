@@ -4,6 +4,7 @@ import Graph2 from "./graphs/Graph2";
 import Graph3 from "./graphs/Graph3";
 import Graph4 from "./graphs/Graph4";
 import Graph5 from "./graphs/Graph5";
+import Graph6 from "./graphs/Graph6";
 
 const MyPerformance = () => {
   return (
@@ -13,6 +14,7 @@ const MyPerformance = () => {
       <Graph3 />
       <Graph4 />
       <Graph5 />
+      <Graph6 />
     </>
   );
 };

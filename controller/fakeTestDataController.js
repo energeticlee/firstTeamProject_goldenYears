@@ -10,7 +10,7 @@ const {faketestdata2} = require("../models/faketestdata2");
 const {faketestdata3} = require("../models/faketestdata3");
 
 //* When create route for actual data. Retreive uniqueId from params
-router.get("/test1", (req, res) => {
+router.get("/1", (req, res) => {
   TestOneChairStand.deleteMany({}, (err, data) => {
     if (err) res.status(400).json({ err: "Delete Fail" });
     else {
@@ -24,7 +24,7 @@ router.get("/test1", (req, res) => {
     }
   });
 });
-router.get("/test2", (req, res) => {
+router.get("/2", (req, res) => {
   TestTwoArmCurl.deleteMany({}, (err, data) => {
     if (err) res.status(400).json({ err: "Delete Fail" });
     else {
@@ -37,7 +37,7 @@ router.get("/test2", (req, res) => {
     }
   });
 });
-router.get("/test3", (req, res) => {
+router.get("/3", (req, res) => {
   TestThree2MinStep.deleteMany({}, (err, data) => {
     if (err) res.status(400).json({ err: "Delete Fail" });
     else {
