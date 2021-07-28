@@ -136,4 +136,32 @@ router.put("/acceptPatient/:userid", (req, res) => {
   });
 });
 
+router.put("/declinePatient/:userid", (req, res) => {
+  const userid = req.body.userId;
+  const doctorid = req.body.doctorId;
+  const updatedPatientArray = {
+    myPendingPatients: [],
+  };
+  doctorSchema.findById(doctorid, (err, foundDoctor) => {
+    for (let i = 0; i < foundDoctor.myPendingPatients.length; i++) {
+      if (foundDoctor.myPendingPatients[i].toString() !== userid) {
+        updatedPatientArray.myPendingPatients.push(
+          foundDoctor.myPendingPatients[i]
+        );
+      }
+    }
+    doctorSchema.findByIdAndUpdate(
+      doctorid,
+      updatedPatientArray,
+      (err, updatedDoctor) => {
+        if (err) {
+          res.status(400).json({ error: "error in updating doctor schema" });
+        } else {
+          res.status(200).json(updatedDoctor);
+        }
+      }
+    );
+  });
+});
+
 module.exports = router;

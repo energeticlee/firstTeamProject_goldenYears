@@ -6,9 +6,9 @@ import { dataContext } from "../../../App";
 const Notifications = () => {
   const data = useContext(dataContext);
   const doctorId = data.states.doctorId;
-  console.log(doctorId);
   const dispatch = data.dispatch;
   const [patientsarray, setPatientsArray] = useState([]);
+  const [status, setstatus] = useState("Pending review");
   const history = useHistory();
   useEffect(() => {
     if (Object.keys(data.states).length === 0) {
@@ -63,12 +63,31 @@ const Notifications = () => {
       });
       const data = await response.json();
       console.log(data);
+      setstatus("Accepted");
     };
     sendAccept();
   };
   const handleDecline = (id) => () => {
-    console.log("Decline", id);
+    const sendDecline = async () => {
+      const response = await fetch(`/api/doctor/declinePatient/${id}`, {
+        mode: "cors",
+        method: "PUT",
+        body: JSON.stringify({
+          userId: id,
+          doctorId: doctorId,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      });
+      const data = await response.json();
+      console.log(data);
+      setstatus("Decline");
+    };
+    sendDecline();
   };
+
   return (
     <div>
       <h1>This is the notifications page</h1>
@@ -80,6 +99,7 @@ const Notifications = () => {
                 <div>{patient.name}</div>
                 <button onClick={handleAccept(patient._id)}>Accept</button>
                 <button onClick={handleDecline(patient._id)}>Decline</button>
+                <div>{status}</div>
               </div>
             );
           })}
