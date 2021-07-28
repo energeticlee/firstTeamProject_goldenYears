@@ -32,7 +32,7 @@ const DocReg = () => {
 				mode: "cors",
 				body: JSON.stringify({
 					name: docName,
-					email: docEmail,
+					email: docEmail.toLowerCase(),
 					password: docPassword,
 				}),
 				headers: {

@@ -11,17 +11,21 @@ const ShowPatientProfile = () => {
   const [data, setUserData] = useState([]);
   useEffect(() => {
     const getData = async () => {
-      // Please change the localhose number according to your server port number
-      const response = await fetch("/api/user", {
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      });
-      console.log(response);
-      const data = await response.json();
-      setUserData(data);
+      try {
+        // Please change the localhose number according to your server port number
+        const response = await fetch("/api/user", {
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        });
+        console.log(response);
+        const data = await response.json();
+        setUserData(data);
+      } catch (err) {
+        throw Error(err);
+      }
     };
     getData();
   }, []);
