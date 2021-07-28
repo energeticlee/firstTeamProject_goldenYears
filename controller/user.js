@@ -11,8 +11,6 @@ router.get("/:id", (req, res) => {
     if (err) {
       res.status(400).json({ error: err.message });
     } else {
-      foundUser.populate({ path: "foundUser.myDoctor", model: "doctorSchema" });
-      console.log("foundUser populated", foundUser);
       res.status(200).json(foundUser);
     }
   });
@@ -38,8 +36,9 @@ router.post("/", (req, res) => {
   userSchema.create(req.body, (error, createdUser) => {
     if (error) {
       res.status(400).json({ error: error.message });
+    } else {
+      res.status(200).json(createdUser);
     }
-    res.status(200).json(createdUser);
   });
 });
 
