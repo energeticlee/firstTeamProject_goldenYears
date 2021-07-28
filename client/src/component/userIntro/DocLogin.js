@@ -7,12 +7,20 @@ const DocLogin = () => {
 	const data = useContext(dataContext);
 	const dispatch = data.dispatch;
 	const docHistory = useHistory();
-	const [errorMessage, setMessage] = useState();
+	const [errorMessage, setMessage] = useState("");
 
 	const handleDocLogin = (event) => {
 		event.preventDefault();
 		const docEmail = event.target.email.value;
 		const docPassword = event.target.password.value;
+
+		if (docEmail === "") {
+			alert("Please enter your email address in order to proceed.");
+		}
+
+		if (docPassword === "") {
+			alert("Please enter your password in order to proceed.");
+		}
 
 		const sendData = async () => {
 			// Please change the localhost number according to your server port number
@@ -41,35 +49,51 @@ const DocLogin = () => {
 		sendData();
 	};
 	return (
-		<div>
+		<>
 			<form onSubmit={handleDocLogin}>
-				<label>Email:</label>
+				<div className="field">
+					<label className="label is-size-4 has-text-centered">Email:</label>
+					<div className="control has-icons-left has-icons-right">
+						<input
+							className="input is-primary has-text-centered"
+							type="email"
+							name="email"
+							id="email"
+							placeholder="Email address"
+							required
+						/>
+						<span className="icon is-left">
+							<i className="fas fa-envelope"></i>
+						</span>
+						<span className="icon is-right">
+							<i className="fas fa-check"></i>
+						</span>
+					</div>
+				</div>
+
+				<div className="field">
+					<label className="label is-size-4 has-text-centered">Password:</label>
+					<div className="control has-icons-left has-icons-right">
+						<input
+							className="input is-primary has-text-centered"
+							type="password"
+							name="password"
+							id="password"
+							placeholder="Enter password"
+							required
+						/>
+					</div>
+				</div>
+
 				<br />
-				<input
-					type="email"
-					name="email"
-					id="email"
-					placeholder="Email address"
-					required
-				/>
-				<br />
-				<br />
-				<label>Password:</label>
-				<br />
-				<input
-					type="password"
-					name="password"
-					id="password"
-					placeholder="Enter password"
-					required
-				/>
-				<br />
-				<br />
-				<input type="submit" value="Enter" />
+				<div className="field container">
+					<div className="control">
+						<button className="button is-link">Enter</button>
+					</div>
+				</div>
+				<div className="error-message">{errorMessage}</div>
 			</form>
-			<br />
-			<div>{errorMessage}</div>
-		</div>
+		</>
 	);
 };
 
