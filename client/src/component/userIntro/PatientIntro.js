@@ -29,17 +29,24 @@ const PatientIntro = () => {
     };
     getData();
   }, []);
-
   return (
     <>
-      <h1>Patients</h1>
-      <span>
-        <Link to={`${url}/login`}>
-          <button>Login</button>
-        </Link>
-        <Link to={`${url}/register`}>
-          <button>Register</button>
-        </Link>
+      <h1 className="is-size-2 has-text-centered">Patients</h1>
+      <span className="columns is-centered">
+        <div className="column is-half">
+          <Link to={`${url}/login`}>
+            <button className="button is-primary" id="login-button">
+              Login
+            </button>
+          </Link>
+        </div>
+        <div className="column is-half">
+          <Link to={`${url}/register`}>
+            <button className="button is-primary" id="reg-button">
+              Register
+            </button>
+          </Link>
+        </div>
       </span>
       <br />
       <br />
