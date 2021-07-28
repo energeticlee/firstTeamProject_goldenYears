@@ -16,32 +16,6 @@ const Sidebar = () => {
 		});
 	};
 
-<<<<<<< HEAD
-  return (
-    <div>
-      <ul>
-        <li>
-          {" "}
-          <Link to={`${url}/myprofile`}> My Profile </Link>{" "}
-        </li>
-        <li>
-          <Link to={`${url}/mypatients`}>My Patients</Link>
-        </li>
-        <li>
-          <Link to={`${url}/overallperformance`}>Overall Performance</Link>
-        </li>
-        <li>
-          <Link to={`${url}/notifications`}>Notifications</Link>
-        </li>
-        <li>
-          <Link to={"/"} onClick={logout}>
-            Log out
-          </Link>
-        </li>
-      </ul>
-    </div>
-  );
-=======
 	return (
 		<>
 			<nav>
@@ -68,7 +42,6 @@ const Sidebar = () => {
 			</nav>
 		</>
 	);
->>>>>>> ashley
 };
 
 export default Sidebar;
