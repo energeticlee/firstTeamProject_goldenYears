@@ -13,12 +13,12 @@ body {
 
 .is-primary {
 	background-color: #fb8500 !important;
-	color: #ffffff !important;
+	/* color: #ffffff !important; */
 }
 
 .is-light {
 	background-color: #ffb703 !important;
-	color: #ffffff !important;
+	/* color: #ffffff !important; */
 }
 
 ul {
