@@ -20,7 +20,7 @@ const MyPatients = () => {
         </nav>
         <Switch>
         <Route path={`${path}/patientid`}>
-          < PatientPerformance/>
+          < PatientPerformance/>*//Graphs go here!
         </Route>
         </Switch>
     </div>
