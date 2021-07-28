@@ -84,8 +84,8 @@ router.put("/:id", (req, res) => {
     // Update the doctor's patient array as the user's id
     foundDoctor.myPendingPatients =
       foundDoctor.myPendingPatients === undefined
-        ? [foundDoctor._id]
-        : foundDoctor.myPendingPatients.concat([foundDoctor._id]);
+        ? [id]
+        : foundDoctor.myPendingPatients.concat([id]);
 
     // find and update with new doctor object
     doctorSchema.findByIdAndUpdate(

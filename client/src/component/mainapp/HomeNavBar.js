@@ -10,10 +10,14 @@ const HomeNavBar = () => {
 					<div className="navbar-item">
 						<div className="buttons">
 							<a className="button is-primary">
-								<Link to={`/patients`}>For Patients</Link>
+								<Link to={`/patients`} style={{ color: "white" }}>
+									For Patients
+								</Link>
 							</a>
 							<a className="button is-light">
-								<Link to={`/doctors`}>For Doctors</Link>
+								<Link to={`/doctors`} style={{ color: "white" }}>
+									For Doctors
+								</Link>
 							</a>
 						</div>
 					</div>
