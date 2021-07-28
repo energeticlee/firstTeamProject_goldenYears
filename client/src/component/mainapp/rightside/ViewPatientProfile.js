@@ -32,16 +32,16 @@ const ViewPatientProfile = (props) => {
       ) : (
         <div>
           <div key={userElement._id}>
-            <div>{userElement.name}</div>
-            <div>{userElement.email}</div>
-            <div>{userElement.password}</div>
-            <div>{userElement.photo}</div>
-            <div>{userElement.age}</div>
-            <div>{userElement.gender}</div>
-            <div>{userElement.height}</div>
-            <div>{userElement.weight}</div>
-            <div>{userElement.healthCondition}</div>
-            <div>{userElement.myDoctor}</div>
+            <div>Name: {userElement.name}</div>
+            <div>Email: {userElement.email}</div>
+            <div>Password: {userElement.password}</div>
+            <div>Photo: {userElement.photo}</div>
+            <div>Age: {userElement.age}</div>
+            <div>Gender: {userElement.gender}</div>
+            <div>Height: {userElement.height}</div>
+            <div>Weight: {userElement.weight}</div>
+            <div>Health Conditions: {userElement.healthCondition}</div>
+            <div>My Doctor: {userElement.myDoctor}</div>
             <br />
           </div>
           <Link to={`${url}/edit`}>Edit Profile</Link>

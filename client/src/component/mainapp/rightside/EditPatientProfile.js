@@ -156,8 +156,8 @@ const EditPatientProfile = (props) => {
             <br />
             <input
               type="text"
-              name="healthConditions"
-              id="healthConditions"
+              name="healthCondition"
+              id="healthCondition"
               placeholder={userElement.healthCondition}
               //   required
             />

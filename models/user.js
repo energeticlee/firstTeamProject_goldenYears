@@ -6,13 +6,17 @@ const userSchema = mongoose.Schema({
   name: { type: String },
   email: { type: String },
   password: { type: String },
-  photo: String,
-  age: Date,
-  gender: String,
-  height: Number,
-  weight: Number,
-  healthCondition: [String],
-  myDoctor: { type: mongoose.Schema.Types.ObjectId, ref: "doctor_Schema" },
+  photo: { type: String, default: undefined },
+  age: { type: Date, default: Date.now() },
+  gender: { type: String, default: undefined },
+  height: { type: Number, default: 0 },
+  weight: { type: Number, default: 0 },
+  healthCondition: { type: String, default: undefined },
+  myDoctor: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "doctor_Schema",
+    default: null,
+  },
 });
 
 module.exports = mongoose.model("userSchema", userSchema);

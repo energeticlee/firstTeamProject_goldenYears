@@ -45,18 +45,19 @@ router.post("/", (req, res) => {
 router.put("/:id", (req, res) => {
   const id = req.params.id;
   const updatedUser = {
-    name: req.body.name === undefined ? " " : req.body.name,
-    email: req.body.email === undefined ? " " : req.body.email,
-    password: req.body.password === undefined ? " " : req.body.password,
-    photo: req.body.photo === undefined ? " " : req.body.photo,
+    name: req.body.name === undefined ? undefined : req.body.name,
+    email: req.body.email === undefined ? undefined : req.body.email,
+    password: req.body.password === undefined ? undefined : req.body.password,
+    photo: req.body.photo === undefined ? undefined : req.body.photo,
     age: req.body.age === undefined ? 0 : req.body.age,
-    gender: req.body.gender === undefined ? " " : req.body.gender,
+    gender: req.body.gender === undefined ? undefined : req.body.gender,
     height: req.body.height === undefined ? 0 : req.body.height,
     weight: req.body.weight === undefined ? 0 : req.body.weight,
-    healthCondition: [
-      req.body.healthCondition === undefined ? " " : req.body.healthCondition,
-    ],
-    myDoctor: req.body.myDoctor === "" ? {} : req.body.myDoctor,
+    healthCondition:
+      req.body.healthCondition === undefined
+        ? undefined
+        : req.body.healthCondition,
+    myDoctor: req.body.myDoctor === null ? null : req.body.myDoctor,
   };
   console.log(updatedUser);
   userSchema.findByIdAndUpdate(
