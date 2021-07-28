@@ -44,6 +44,7 @@ export default function Graph3(props) {
     }
   }, [props.data]);
 
+  const sortedData = data.sort((a, b) => a.date - b.date)
 
   const CustomizedLabel = (props) => {
     const { x, y, stroke, value } = props;
@@ -82,13 +83,13 @@ export default function Graph3(props) {
 
   //   return null;
   // };
-    return data.length !== 0 ?
+    return sortedData.length !== 0 ?
       <ResponsiveContainer width="100%" height={300}>
         {/* <p>2-Minute Step Test</p> */}
         <AreaChart
           width={500}
           height={300}
-          data={data}
+          data={sortedData}
           margin={{
             top: 20,
             right: 30,
@@ -139,5 +140,5 @@ export default function Graph3(props) {
           </Area>
         </AreaChart>
       </ResponsiveContainer>
-    :<p>No data found! Please take your 2-Minute Step Test.</p>
+    :<p>No data found! Please take your 30-Second Chair Stand test.</p>
 }
