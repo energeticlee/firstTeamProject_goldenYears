@@ -2,6 +2,7 @@
 import React, { useCallback, useState, useContext, useEffect } from "react";
 import { PieChart, Pie, Sector, ResponsiveContainer } from "recharts";
 import { dataContext } from "../../../../App";
+import moment from "moment";
 
 export default function Graph4(props) {
   const [data1, setData1] = useState([]);
@@ -35,26 +36,54 @@ export default function Graph4(props) {
   }
   }, [props.data]);
 
-let result1 = 0
+  const unixdate = moment().subtract(props.time.number,props.time.mode).format("x")
+  // console.log(moment(date).format("MMM Do YY"))
+  console.log(unixdate)
+  const filtereddata1 = []
+  const filtereddata2 = []
+  const filtereddata3 = []
+  
   for (const items of data1){
+    if (items.date > unixdate){
+      filtereddata1.push(items)
+    } 
+  }
+  console.log("filtered1",filtereddata1)
+
+  for (const items of data2){
+    if (items.date > unixdate){
+      filtereddata2.push(items)
+    } 
+  }
+  console.log("filtered2",filtereddata2)
+
+  for (const items of data3){
+    if (items.date > unixdate){
+      filtereddata3.push(items)
+    } 
+  }
+  console.log("filtered3",filtereddata3)
+
+let result1 = 0
+  for (const items of filtereddata1){
 result1 += items.result
   }
   console.log(result1)
-  console.log(data1)
+  // console.log(data1)
 
   let result2 = 0
-  for (const items of data2){
+  for (const items of filtereddata2){
 result2 += items.result
   }
   console.log(result2)
-  console.log(data2)
+  // console.log(data2)
 
   let result3 = 0
-  for (const items of data3){
+  for (const items of filtereddata3){
 result3 += items.result
   }
   console.log(result3)
-  console.log(data3)
+  // console.log(data3)
 
   const data = [
     { name: "30-Second Chair Stand", value: result1 },
@@ -143,7 +172,7 @@ result3 += items.result
     [setActiveIndex]
   );
   return data1.length !== 0 && data2.length !== 0 && data3.length !== 0 ? 
-    <ResponsiveContainer width="100%" height={300}>
+    <ResponsiveContainer width="100%" height={400}>
     <PieChart>
       <Pie
         activeIndex={activeIndex}
@@ -160,5 +189,5 @@ result3 += items.result
     </PieChart>
     </ResponsiveContainer>
   
-  :null
+  :<p>Please complete all three tests!</p>
 }
