@@ -1,9 +1,6 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { dataContext } from "../../App";
-// import { Redirect } from "react-router";
-
-// import { useRef } from "react-router-dom";
 
 const PatientReg = () => {
 	const data = useContext(dataContext);
@@ -49,6 +46,7 @@ const PatientReg = () => {
 			} else if (response.status === 200) {
 				const data = await response.json();
 				dispatch({ type: "PUSHPATIENTID", payload: data._id });
+				alert("You have successfully registered!");
 				history.push("/home/tests");
 			}
 		};

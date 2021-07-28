@@ -46,6 +46,7 @@ const DocReg = () => {
 			} else if (response.status === 200) {
 				const data = await response.json();
 				dispatch({ type: "PUSHDOCTORID", payload: data._id });
+				alert("You have successfully registered!");
 				docHistory.push("/doctorHome");
 			}
 		};
