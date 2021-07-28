@@ -40,3 +40,32 @@ ul {
 	display: flex;
 	margin: 10px !important;
 }
+
+.sidebar-title {
+	font-family: "Monserrat" !important;
+	/* font-style: normal !important;
+	text-transform: capitalize !important;
+	font-size: 20px !important;
+	text-decoration: underline !important; */
+}
+
+.sidebar-items {
+	font-family: "Monserrat" !important;
+	font-style: normal !important;
+}
+
+.field {
+	font-family: "Monserrat" !important;
+	font-weight: 400 !important;
+}
+
+.button {
+	font-family: "Monserrat" !important;
+	font-weight: 550 !important;
+}
+
+.profile {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
