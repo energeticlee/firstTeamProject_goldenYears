@@ -44,4 +44,12 @@ router.post("/new", (req, res) => {
   });
 });
 
+router.get("/hello", (req, res) => {
+  console.log("in server");
+  res.status(200).clearCookie("connect.sid", {
+    path: "/",
+  });
+  req.session.destroy();
+});
+
 module.exports = router;
