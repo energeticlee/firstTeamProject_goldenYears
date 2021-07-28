@@ -1,11 +1,9 @@
 import React from "react";
 import { Link, Switch, Route, useRouteMatch } from "react-router-dom";
 import PatientPerformance from "./PatientPerformance";
-
 import { dataContext } from "../../../App";
 import { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-
 const MyPatients = () => {
   let { path, url } = useRouteMatch();
   const [patientsarray, setPatientsArray] = useState([]);
@@ -75,5 +73,4 @@ const MyPatients = () => {
     </div>
   );
 };
-
 export default MyPatients;
