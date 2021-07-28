@@ -44,4 +44,9 @@ router.post("/new", (req, res) => {
   });
 });
 
+router.delete("/", (req, res) => {
+  res.status(200);
+  req.session.destroy();
+});
+
 module.exports = router;

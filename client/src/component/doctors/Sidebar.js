@@ -5,10 +5,9 @@ const Sidebar = () => {
   let { url } = useRouteMatch();
 
   const logout = () => {
-    console.log("in react");
     // Please change the localhose number according to your server port number
-    fetch("/api/doctorSession/hello", {
-      // method: "DELETE",
+    fetch("/api/doctorSession", {
+      method: "DELETE",
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
@@ -31,7 +30,9 @@ const Sidebar = () => {
           <Link to={`${url}/overallperformance`}>Overall Performance</Link>
         </li>
         <li>
-          <Link onClick={logout}>Log out</Link>
+          <Link to={"/"} onClick={logout}>
+            Log out
+          </Link>
         </li>
       </ul>
     </div>

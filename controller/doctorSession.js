@@ -45,11 +45,8 @@ router.post("/new", (req, res) => {
   });
 });
 
-router.get("/hello", (req, res) => {
-  console.log("in server");
-  res.status(200).clearCookie("connect.sid", {
-    path: "/",
-  });
+router.delete("/", (req, res) => {
+  res.status(200);
   req.session.destroy();
 });
 

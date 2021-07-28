@@ -29,6 +29,7 @@ const PatientIntro = () => {
     };
     getData();
   }, []);
+
   return (
     <>
       <h1>Patients</h1>

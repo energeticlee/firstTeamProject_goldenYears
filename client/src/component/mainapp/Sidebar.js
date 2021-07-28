@@ -3,6 +3,19 @@ import { Link, useRouteMatch } from "react-router-dom";
 
 const Sidebar = () => {
   let { url } = useRouteMatch();
+
+  const logout = () => {
+    // Please change the localhose number according to your server port number
+    fetch("/api/session", {
+      method: "DELETE",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
+  };
+
   return (
     <div>
       <ul>
@@ -20,7 +33,9 @@ const Sidebar = () => {
           <Link to={`${url}/FAQs`}>FAQs</Link>
         </li>
         <li>
-          <Link to={`/`}>Log out</Link>
+          <Link to={`/`} onClick={logout}>
+            Log out
+          </Link>
         </li>
       </ul>
     </div>
