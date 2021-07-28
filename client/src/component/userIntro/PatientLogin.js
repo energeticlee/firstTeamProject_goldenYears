@@ -7,13 +7,22 @@ const PatientLogin = () => {
 	const data = useContext(dataContext);
 	const dispatch = data.dispatch;
 	const history = useHistory();
-	const [errorMessage, setMessage] = useState("Please enter your details");
+	const [errorMessage, setMessage] = useState("");
+
 	const handleUserLogin = (event) => {
 		event.preventDefault();
 		const userEmail = event.target.email.value;
 		const userPassword = event.target.password.value;
+
+		if (userEmail === "") {
+			alert("Please enter your email address in order to proceed.");
+		}
+
+		if (userPassword === "") {
+			alert("Please enter your password in order to proceed.");
+		}
+
 		const sendData = async () => {
-			// Please change the localhost number according to your server port number
 			const response = await fetch("/api/session/new", {
 				method: "POST",
 				mode: "cors",
