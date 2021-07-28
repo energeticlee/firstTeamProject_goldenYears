@@ -12,7 +12,7 @@ const app = express();
 const port = process.env.PORT || 3333;
 
 // Mongoose - Configurations
-const MONGO_URI = "mongodb://localhost:27017/products";
+const MONGO_URI = process.env.MONGO_URI
 mongoose.connect(MONGO_URI, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
