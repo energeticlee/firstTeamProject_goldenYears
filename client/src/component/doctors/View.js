@@ -1,8 +1,8 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import { useRouteMatch } from "react-router-dom";
-import MyProfile from "./rightside/Myprofile";
-import MyPatients from "./rightside/Mypatients";
+import MyProfile from "./rightside/MyProfile";
+import MyPatients from "./rightside/MyPatients";
 import OverallPerformance from "./rightside/OverallPerformance";
 
 const View = () => {
