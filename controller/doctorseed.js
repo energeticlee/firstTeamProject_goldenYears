@@ -1,31 +1,42 @@
 const express = require("express");
 const router = express.Router();
-const userSchema = require("../models/user");
+const doctorSchema = require("../models/doctor");
 
 const names = [
-  { name: "Kevin", email: "helloKevin@123.com", password: "123" },
-  { name: "bob", email: "helloBob@123.com", password: "1234" },
-  { name: "farhan", email: "helloFarhan@123.com", password: "12356" },
-  { name: "ashley", email: "helloAshley@123.com", password: "123455" },
-  { name: "justin", email: "helloJustin@123.com", password: "124443" },
+  {
+    name: "Simon",
+    email: "Simon@gmail.com",
+    password: "Simon",
+    age: 40,
+    gender: "M",
+  },
+  {
+    name: "Sam",
+    email: "Sam@gmail.com",
+    password: "Sam",
+    age: 27,
+    gender: "M",
+  },
+  {
+    name: "Jun Siang",
+    email: "JunSiang@gmail.com",
+    password: "JunSiang",
+    age: 26,
+    gender: "M",
+  },
 ];
 
 router.get("/", (req, res) => {
-  userSchema.deleteMany({}, (error, data) => {
-    if (error) res.status(400).json({ error: "deleteError" });
-  });
-  userSchema.create(names, (err, nameList) => {
+  //   doctorSchema.deleteMany({}, (error, data) => {
+  //     if (error) res.status(400).json({ error: "deleteError" });
+  //   });
+  doctorSchema.create(names, (err, nameList) => {
     if (err) {
       console.log(err);
     } else {
       console.log(nameList);
-      res.redirect("/api/user");
+      res.redirect("/");
     }
-  });
-});
-router.get("/deleteusers", (req, res) => {
-  userSchema.deleteMany(() => {
-    res.redirect("/api/user");
   });
 });
 

@@ -63,6 +63,7 @@ const fitnessTestController = require("./controller/fitnessTest");
 const seedtestdata = require("./controller/fakeTestDataController");
 const usertestdata = require("./controller/userTestData");
 const doctorController = require("./controller/doctor");
+const doctorSeedController = require("./controller/doctorseed");
 
 //Routes
 app.use("/api/session", sessionController);
@@ -73,6 +74,7 @@ app.use("/api/fitnesstest", fitnessTestController);
 app.use("/api/seedtestdata", seedtestdata);
 app.use("/api/usertestdata", usertestdata);
 app.use("/api/doctor", doctorController);
+app.use("/api/doctorseed", doctorSeedController);
 
 // Server Linked => Database
 mongoose.connection.once("open", () => {
