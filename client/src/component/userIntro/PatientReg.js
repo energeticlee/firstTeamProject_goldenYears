@@ -1,13 +1,11 @@
-import React from "react";
-
-// import { useRef } from "react-router-dom";
+import React, { useContext } from "react";
+import { useHistory } from "react-router-dom";
+import { dataContext } from "../../App";
 
 const PatientReg = () => {
-  // const [confirmEmail, setConfirmEmail] = useState();
-  // const [confirmPW, setConfirmPW] = useState();
-
-  // const [confirmEmailErr, setConfirmEmailErr] = useState("");
-  // const [confirmPWErr, setConfirmPWErr] = useState("");
+  const data = useContext(dataContext);
+  const history = useHistory();
+  const dispatch = data.dispatch;
 
   const handleSubmitPatientData = (event) => {
     event.preventDefault();
@@ -26,8 +24,6 @@ const PatientReg = () => {
       alert("Passwords don't match, please enter again.");
     }
 
-    // const isValid = inputValidation();
-
     const sendData = async () => {
       // Please change the localhost number according to your server port number
 
@@ -36,7 +32,7 @@ const PatientReg = () => {
         mode: "cors",
         body: JSON.stringify({
           name: patientName,
-          email: patientEmail,
+          email: patientEmail.toLowerCase(),
           password: patientPassword,
         }),
         headers: {
@@ -44,31 +40,18 @@ const PatientReg = () => {
           Accept: "application/json",
         },
       });
-      const data = await response.json();
-      console.log(data);
+      if (response.status === 400) {
+        const data = await response.json();
+        console.log("data", data.error);
+      } else if (response.status === 200) {
+        const data = await response.json();
+        dispatch({ type: "PUSHPATIENTID", payload: data._id });
+        alert("You have successfully registered!");
+        history.push("/home/tests");
+      }
     };
     sendData();
   };
-
-  // const inputValidation = () => {
-  // 	let confirmEmailErr;
-  // 	let confirmPWErr;
-  // 	let isValid = true;
-
-  // 	if (patientConfirmEmail != patientEmail) {
-  // 		confirmEmailErr = "The email addresses do not match, please enter again.";
-  // 		isValid = false;
-  // 	}
-
-  // 	if (patientConfirmPW != patientPassword) {
-  // 		confirmPWErr = "The passwords do not match, please enter again.";
-  // 		isValid = false;
-  // 	}
-
-  // 	setConfirmEmailErr(confirmEmailErr);
-  // 	setConfirmPWErr(confirmPWErr);
-  // 	return isValid;
-  // };
 
   return (
     <div>

@@ -23,7 +23,7 @@ const ViewPatientProfile = (props) => {
     };
     getData();
     return () => (mounted = false);
-  });
+  }, []);
 
   return (
     <>
@@ -41,7 +41,7 @@ const ViewPatientProfile = (props) => {
             <div>Height: {userElement.height}</div>
             <div>Weight: {userElement.weight}</div>
             <div>Health Conditions: {userElement.healthCondition}</div>
-            <div>My Doctor: {userElement.myDoctor}</div>
+            <div>My Doctor: {userElement.myDoctor.email}</div>
             <br />
           </div>
           <Link to={`${url}/edit`}>Edit Profile</Link>

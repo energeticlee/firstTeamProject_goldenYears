@@ -14,7 +14,7 @@ const userSchema = mongoose.Schema({
   healthCondition: { type: String, default: undefined },
   myDoctor: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "doctor_Schema",
+    ref: "doctorSchema",
     default: null,
   },
 });
