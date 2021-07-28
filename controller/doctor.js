@@ -4,7 +4,7 @@ const doctorSchema = require("../models/doctor");
 const bcrypt = require("bcrypt");
 
 // Get One user by Id
-router.get("/:id", (req, res) => {
+router.get("/pending/:id", (req, res) => {
   const id = req.params.id;
   doctorSchema
     .findById(id)
@@ -18,6 +18,34 @@ router.get("/:id", (req, res) => {
         res.status(200).json(foundUser);
       }
     });
+});
+
+router.get("/accepted/:id", (req, res) => {
+  const id = req.params.id;
+  doctorSchema
+    .findById(id)
+    .populate("myPatients")
+    .exec()
+    .then((foundUser) => {
+      if (!foundUser) {
+        res.status(404).json({ error: "not found" });
+      } else {
+        console.log(foundUser);
+        res.status(200).json(foundUser);
+      }
+    });
+});
+
+router.get("/:id", (req, res) => {
+  const id = req.params.id;
+  doctorSchema.findById(id).then((foundUser) => {
+    if (!foundUser) {
+      res.status(404).json({ error: "not found" });
+    } else {
+      console.log(foundUser);
+      res.status(200).json(foundUser);
+    }
+  });
 });
 
 // Get all users
@@ -63,4 +91,49 @@ router.put("/:id", (req, res) => {
     }
   });
 });
+
+router.put("/acceptPatient/:userid", (req, res) => {
+  const userid = req.body.userId;
+  const doctorid = req.body.doctorId;
+  const updatedPatientArray = {
+    myPatients: [],
+    myPendingPatients: [],
+  };
+  doctorSchema.findById(doctorid, (err, foundDoctor) => {
+    if (err) {
+      res
+        .status(400)
+        .json({ error: "error in finding doctor in doctor schema" });
+    } else {
+      updatedPatientArray.myPatients.push(userid);
+      console.log(foundDoctor);
+      for (let k = 0; k < foundDoctor.myPatients.length; k++) {
+        updatedPatientArray.myPatients.push(foundDoctor.myPatients[k]);
+      }
+
+      console.log(updatedPatientArray);
+      console.log(updatedPatientArray);
+      for (let i = 0; i < foundDoctor.myPendingPatients.length; i++) {
+        if (foundDoctor.myPendingPatients[i].toString() !== userid) {
+          updatedPatientArray.myPendingPatients.push(
+            foundDoctor.myPendingPatients[i]
+          );
+        }
+      }
+
+      doctorSchema.findByIdAndUpdate(
+        doctorid,
+        updatedPatientArray,
+        (err, updatedDoctor) => {
+          if (err) {
+            res.status(400).json({ error: "error in updating doctor schema" });
+          } else {
+            res.status(200).json(updatedDoctor);
+          }
+        }
+      );
+    }
+  });
+});
+
 module.exports = router;

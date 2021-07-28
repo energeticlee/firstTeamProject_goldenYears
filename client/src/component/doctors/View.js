@@ -4,6 +4,7 @@ import { useRouteMatch } from "react-router-dom";
 import MyProfile from "./rightside/MyProfile";
 import MyPatients from "./rightside/MyPatients";
 import OverallPerformance from "./rightside/OverallPerformance";
+import Notifications from "./rightside/Notifications";
 
 const View = () => {
   let { path } = useRouteMatch();
@@ -21,6 +22,10 @@ const View = () => {
 
         <Route path={`${path}/overallperformance`}>
           <OverallPerformance />
+        </Route>
+
+        <Route path={`${path}/notifications`}>
+          <Notifications />
         </Route>
       </Switch>
     </div>

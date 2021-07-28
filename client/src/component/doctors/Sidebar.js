@@ -30,6 +30,9 @@ const Sidebar = () => {
           <Link to={`${url}/overallperformance`}>Overall Performance</Link>
         </li>
         <li>
+          <Link to={`${url}/notifications`}>Notifications</Link>
+        </li>
+        <li>
           <Link to={"/"} onClick={logout}>
             Log out
           </Link>

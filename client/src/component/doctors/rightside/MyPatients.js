@@ -38,7 +38,7 @@ const MyPatients = () => {
   useEffect(() => {
     const getData = async () => {
       // Please change the localhose number according to your server port number
-      const response = await fetch(`/api/doctor/${doctorId}`, {
+      const response = await fetch(`/api/doctor/accepted/${doctorId}`, {
         mode: "cors",
         headers: {
           "Content-Type": "application/json",
@@ -47,7 +47,7 @@ const MyPatients = () => {
       });
       const data = await response.json();
       console.log(data);
-      setPatientsArray(data.myPendingPatients);
+      setPatientsArray(data.myPatients);
     };
     getData();
   }, []);
