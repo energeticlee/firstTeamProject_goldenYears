@@ -1,11 +1,31 @@
 import React from "react";
-import faqsData from "../../../faqsData";
-import { useEffect, useContext, useState } from "react";
+// import faqsData from "../../../faqsData";
+import { useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { dataContext } from "../../../App";
 
+function Accordion(question, answser) {
+	const handleClick = (e) => {
+		const panel = e.target.nextElementSibling;
+		panel.style.display === "none"
+			? (panel.style.display = "block")
+			: (panel.style.display = "none");
+	};
+
+	return (
+		<div>
+			<button className="accordion" onClick={handleClick}>
+				{question}
+			</button>
+			<div id="panel" className="panel" style={{ display: "none" }}>
+				<p>{answser}</p>
+			</div>
+		</div>
+	);
+}
+
 const FAQs = () => {
-	const [isActive, setIsActive] = useState(false);
+	// const [isActive, setIsActive] = useState(false);
 
 	const data = useContext(dataContext);
 	const dispatch = data.dispatch;
@@ -15,7 +35,7 @@ const FAQs = () => {
 		if (Object.keys(data.states).length === 0) {
 			console.log(Object.keys(data.states).length === 0);
 			const getData = async () => {
-				// Please change the localhose number according to your server port number
+				// Please change the localhost number according to your server port number
 				const response = await fetch("/api/session", {
 					mode: "cors",
 					headers: {
@@ -34,33 +54,7 @@ const FAQs = () => {
 		}
 	}, []);
 
-	return (
-		<>
-			<h1>Frequently Asked Questions</h1>
-			<div>
-				{faqsData.map((data) => {
-					return (
-						<div key={data.id}>
-							<div className="accordion">
-								<div className="accordion-item">
-									<div
-										className="accordion-title"
-										onClick={() => setIsActive(!isActive)}
-									>
-										<div>{data.question}</div>
-										<div>{isActive ? "-" : "+"}</div>
-									</div>
-									{isActive && (
-										<div className="accordion-content">{data.answer}</div>
-									)}
-								</div>
-							</div>
-						</div>
-					);
-				})}
-			</div>
-		</>
-	);
+	return <>{Accordion("123", "567")}</>;
 };
 
 export default FAQs;
