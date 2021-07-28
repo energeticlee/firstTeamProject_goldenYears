@@ -11,12 +11,12 @@ body {
 	background-color: #ffe8d6 !important;
 }
 
-.is-primary {
+#patients {
 	background-color: #fb8500 !important;
 	/* color: #ffffff !important; */
 }
 
-.is-light {
+#doctors {
 	background-color: #ffb703 !important;
 	/* color: #ffffff !important; */
 }
