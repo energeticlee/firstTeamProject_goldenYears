@@ -4,26 +4,6 @@ import { useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { dataContext } from "../../../App";
 
-function Accordion(question, answser) {
-	const handleClick = (e) => {
-		const panel = e.target.nextElementSibling;
-		panel.style.display === "none"
-			? (panel.style.display = "block")
-			: (panel.style.display = "none");
-	};
-
-	return (
-		<div>
-			<button className="accordion" onClick={handleClick}>
-				{question}
-			</button>
-			<div id="panel" className="panel" style={{ display: "none" }}>
-				<p>{answser}</p>
-			</div>
-		</div>
-	);
-}
-
 const FAQs = () => {
 	// const [isActive, setIsActive] = useState(false);
 
@@ -53,6 +33,26 @@ const FAQs = () => {
 			getData();
 		}
 	}, []);
+
+	const Accordion = (question, answer) => {
+		const handleClick = (e) => {
+			const panel = e.target.nextElementSibling;
+			panel.style.display === "none"
+				? (panel.style.display = "block")
+				: (panel.style.display = "none");
+		};
+
+		return (
+			<div>
+				<button className="accordion" onClick={handleClick}>
+					{question}
+				</button>
+				<div id="panel" className="panel" style={{ display: "none" }}>
+					<p>{answer}</p>
+				</div>
+			</div>
+		);
+	};
 
 	return <>{Accordion("123", "567")}</>;
 };
