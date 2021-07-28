@@ -11,12 +11,12 @@ body {
 	background-color: #ffe8d6 !important;
 }
 
-.is-primary {
+#patients {
 	background-color: #fb8500 !important;
 	/* color: #ffffff !important; */
 }
 
-.is-light {
+#doctors {
 	background-color: #ffb703 !important;
 	/* color: #ffffff !important; */
 }
@@ -25,6 +25,18 @@ ul {
 	list-style: none;
 }
 
-.has-text-primary {
+#title {
 	color: #fb8500 !important;
+}
+
+.container {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.login-button,
+.reg-button {
+	display: flex;
+	margin: 10px !important;
 }

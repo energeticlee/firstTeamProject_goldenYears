@@ -8,15 +8,19 @@ const DocIntro = () => {
 
 	return (
 		<>
-			<h1>Doctors</h1>
-			<span>
+			<h1 className="is-size-2 has-text-centered">Doctors</h1>
+			<div className="container">
 				<Link to={`${url}/login`}>
-					<button>Login</button>
+					<button className="button is-primary" id="login-button">
+						Login
+					</button>
 				</Link>
 				<Link to={`${url}/register`}>
-					<button>Register</button>
+					<button className="button is-primary is-light" id="reg-button">
+						Register
+					</button>
 				</Link>
-			</span>
+			</div>
 			<br />
 			<br />
 			<Switch>

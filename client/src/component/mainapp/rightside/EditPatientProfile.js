@@ -169,7 +169,9 @@ const EditPatientProfile = (props) => {
               type="text"
               name="myDoctor"
               id="myDoctor"
-              placeholder={userElement.myDoctor.email}
+              placeholder={
+                userElement.myDoctor === null ? "" : userElement.myDoctor.email
+              }
               //   required
             />
             <br />
