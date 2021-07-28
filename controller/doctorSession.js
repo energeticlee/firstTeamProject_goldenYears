@@ -5,18 +5,19 @@ const doctorSchema = require("../models/doctor");
 
 // Check Session
 router.get("/", (req, res) => {
-  const isAuthenticated = req.session.currentUser;
+  const isAuthenticated = req.session.currentDoctor;
   console.log(isAuthenticated);
   if (!isAuthenticated) {
     res.status(400).json({ error: "Not Authenticated" });
   } else {
-    res.status(200).json(req.session.currentUser);
+    res.status(200).json(req.session.currentDoctor);
   }
 });
 
 // on sessions form submit (log in)
 router.post("/new", (req, res) => {
   doctorSchema.find({ email: req.body.email }, (err, foundUserList) => {
+    console.log(req.body);
     // Database error
     if (err) {
       console.log(err);
@@ -33,7 +34,7 @@ router.post("/new", (req, res) => {
       for (let i = 0; i < foundUserList.length; i++) {
         if (bcrypt.compareSync(req.body.password, foundUserList[i].password)) {
           // add the user to our session
-          req.session.currentUser = foundUserList[i];
+          req.session.currentDoctor = foundUserList[i];
           // redirect back to our home page
           res.status(200).json(foundUserList[i]);
           break;

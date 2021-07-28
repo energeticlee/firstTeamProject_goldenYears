@@ -26,6 +26,7 @@ const PatientLogin = () => {
           Accept: "application/json",
         },
       });
+      console.log("logging in");
       if (response.status === 400) {
         const data = await response.json();
         console.log("data", data.error);
