@@ -8,6 +8,7 @@ import { useRouteMatch } from "react-router";
 import { useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { dataContext } from "../../App";
+import style from "./TestLibrary.module.css";
 //* Add score to useReducer, and render overall result here then Post result to DB.
 
 const TestLibrary = () => {
@@ -106,24 +107,18 @@ const TestLibrary = () => {
   const reducerPackage = { state, dispatch, actions };
 
   return (
-    <div>
-      <h1>Testing Library</h1>
-      <div>
-        <div>
-          <Link to={`${path}/chairstand`}>
-            <h2>30-Second Chair Stand</h2>
-          </Link>
-        </div>
-        <div>
-          <Link to={`${path}/armcurl`}>
-            <h2>Arm Curl</h2>
-          </Link>
-        </div>
-        <div>
-          <Link to={`${path}/twominsteptest`}>
-            <h2>2-Minute Step Test</h2>
-          </Link>
-        </div>
+    <div className={style.mainContainer}>
+      <h1 className={style.title}>Testing Library</h1>
+      <div className={style.testContainer}>
+        <Link to={`${path}/chairstand`} className={style.test}>
+          <h2>30-Second Chair Stand</h2>
+        </Link>
+        <Link to={`${path}/armcurl`} className={style.test}>
+          <h2>Arm Curl</h2>
+        </Link>
+        <Link to={`${path}/twominsteptest`} className={style.test}>
+          <h2>2-Minute Step Test</h2>
+        </Link>
       </div>
       <main>
         <Switch>

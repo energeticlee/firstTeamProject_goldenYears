@@ -24,7 +24,7 @@ const PatientIntro = () => {
       });
       const message = await response.json();
       if (message.error !== "Not Authenticated") {
-        history.push("/home");
+        history.push("/home/myperformance");
       }
     };
     getData();

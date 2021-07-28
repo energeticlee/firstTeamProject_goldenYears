@@ -139,5 +139,5 @@ export default function Graph1(props) {
           </Area>
         </AreaChart>
       </ResponsiveContainer>
-    :null
+    :<p>No data found! Please take your 30-Second Chair Stand test.</p>
 }
