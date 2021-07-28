@@ -1,5 +1,5 @@
 import React from "react";
-// import faqsData from "../../../faqsData";
+import faqsData from "../../../faqsData";
 import { useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { dataContext } from "../../../App";
@@ -54,7 +54,13 @@ const FAQs = () => {
 		);
 	};
 
-	return <>{Accordion("123", "567")}</>;
+	return (
+		<>
+			{faqsData.map((data) => {
+				return Accordion(data.question, data.answer);
+			})}
+		</>
+	);
 };
 
 export default FAQs;
