@@ -1,3 +1,30 @@
+html {
+	background-color: #fae1dd;
+	font-family: "Monserrat" !important;
+}
+
+body {
+	font-family: "Monserrat" !important;
+}
+
+.navbar-menu {
+	background-color: #ffe8d6 !important;
+}
+
+.is-primary {
+	background-color: #fb8500 !important;
+	color: #ffffff !important;
+}
+
+.is-light {
+	background-color: #ffb703 !important;
+	color: #ffffff !important;
+}
+
 ul {
 	list-style: none;
+}
+
+.has-text-primary {
+	color: #fb8500 !important;
 }
