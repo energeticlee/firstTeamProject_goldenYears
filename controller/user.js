@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const userSchema = require("../models/user");
+const doctorSchema = require("../models/doctor");
 const bcrypt = require("bcrypt");
 
 // Get One user by Id
@@ -35,8 +36,9 @@ router.post("/", (req, res) => {
   userSchema.create(req.body, (error, createdUser) => {
     if (error) {
       res.status(400).json({ error: error.message });
+    } else {
+      res.status(200).json(createdUser);
     }
-    res.status(200).json(createdUser);
   });
 });
 
@@ -44,6 +46,7 @@ router.post("/", (req, res) => {
 
 router.put("/:id", (req, res) => {
   const id = req.params.id;
+  // Set up a updted User Object
   const updatedUser = {
     name: req.body.name === undefined ? undefined : req.body.name,
     email: req.body.email === undefined ? undefined : req.body.email,
@@ -59,18 +62,52 @@ router.put("/:id", (req, res) => {
         : req.body.healthCondition,
     myDoctor: req.body.myDoctor === null ? null : req.body.myDoctor,
   };
-  console.log(updatedUser);
-  userSchema.findByIdAndUpdate(
-    id,
-    updatedUser,
-    { new: true },
-    (err, updatedHoliday) => {
-      if (err) {
-        res.status(400).json({ error: err.message });
-      }
-      res.status(200).json(updatedHoliday);
+  console.log("user data received from client", updatedUser);
+  // Because the client will send a doctor email instead of an Id, we need to check if the email exists as a valid doctor
+  doctorSchema.find({ email: updatedUser.myDoctor }, (err, foundDoctor) => {
+    // if no doctor is found, err thrown
+    foundDoctor = foundDoctor[0];
+    console.log("Is a doctor found?", foundDoctor);
+    console.log("Is a doctor email found?", foundDoctor.email);
+    console.log("founddoctor userID", foundDoctor.id);
+    console.log("founddoctor _userID", foundDoctor._id);
+    if (err) {
+      res.status(400).json({ error: "No such doctor exists" });
     }
-  );
+    // if doctor is found, email in updated User will be replaced by the id of the doctor
+    updatedUser.myDoctor = foundDoctor.id;
+    updatedUser.myDoctor = foundDoctor._id;
+
+    // Update the doctor's patient array as the user's id
+    foundDoctor.myPendingPatients =
+      foundDoctor.myPendingPatients === undefined
+        ? [foundDoctor._id]
+        : foundDoctor.myPendingPatients.concat([foundDoctor._id]);
+    console.log("foundDoctor modified", foundDoctor);
+    // find and update with new doctor object
+    doctorSchema.findByIdAndUpdate(
+      foundDoctor._id,
+      foundDoctor,
+      (err, updatedDoctor) => {
+        if (err) {
+          res.status(400).json({ error: "error in updating doctor schema" });
+        }
+      }
+    );
+    console.log("user data modified", updatedUser);
+    // find and update the User's schema with new information using the updated user object
+    userSchema.findByIdAndUpdate(
+      id,
+      updatedUser,
+      { new: true },
+      (err, updatedHoliday) => {
+        if (err) {
+          res.status(400).json({ error: "error in updating user's profile" });
+        }
+        res.status(200).json(updatedHoliday);
+      }
+    );
+  });
 });
 
 module.exports = router;
