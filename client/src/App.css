@@ -38,5 +38,5 @@ ul {
 .login-button,
 .reg-button {
 	display: flex;
-	margin: 10px;
+	margin: 10px !important;
 }
