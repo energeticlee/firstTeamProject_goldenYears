@@ -2,14 +2,40 @@ import React from "react";
 import Sidebar from "./Sidebar";
 import View from "./View";
 import { dataContext } from "../../App";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 const DoctorHome = () => {
   const data = useContext(dataContext);
-  const userId = data.states.userId;
+  const doctorId = data.states.doctorId;
+  const dispatch = data.dispatch;
+  const history = useHistory();
+  useEffect(() => {
+    if (Object.keys(data.states).length === 0) {
+      console.log(Object.keys(data.states).length === 0);
+      const getData = async () => {
+        // Please change the localhose number according to your server port number
+        const response = await fetch("/api/doctorsession", {
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        });
+        const message = await response.json();
+        if (message.error !== "Not Authenticated") {
+          dispatch({ type: "PUSHDOCTORID", payload: message._id });
+        } else {
+          history.push("/");
+        }
+      };
+      getData();
+    }
+  }, []);
+
   return (
     <div>
-      <h1>Welcome {userId}</h1>
+      <h1>Welcome {doctorId}</h1>
       <br />
       <Sidebar />
       <View />
