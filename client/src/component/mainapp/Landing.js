@@ -5,7 +5,7 @@ const Landing = () => {
 	return (
 		<div>
 			<HomeNavBar />
-			<h1 className="is-size-1 has-text-centered has-text-primary">
+			<h1 className="is-size-1 has-text-centered has-text-primary" id="title">
 				GoldenYears
 			</h1>
 			<p className="content is-medium has-text-centered">
