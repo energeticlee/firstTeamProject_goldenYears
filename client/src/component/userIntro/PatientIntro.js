@@ -32,22 +32,18 @@ const PatientIntro = () => {
 	return (
 		<>
 			<h1 className="is-size-2 has-text-centered">Patients</h1>
-			<span className="columns is-centered">
-				<div className="column is-half">
-					<Link to={`${url}/login`}>
-						<button className="button is-primary" id="login-button">
-							Login
-						</button>
-					</Link>
-				</div>
-				<div className="column is-half">
-					<Link to={`${url}/register`}>
-						<button className="button is-primary" id="reg-button">
-							Register
-						</button>
-					</Link>
-				</div>
-			</span>
+			<div className="container">
+				<Link to={`${url}/login`}>
+					<button className="button is-primary" id="login-button">
+						Login
+					</button>
+				</Link>
+				<Link to={`${url}/register`}>
+					<button className="button is-primary is-light" id="reg-button">
+						Register
+					</button>
+				</Link>
+			</div>
 			<br />
 			<br />
 			<Switch>
