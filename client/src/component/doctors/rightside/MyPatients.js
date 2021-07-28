@@ -1,11 +1,9 @@
 import React from "react";
 import { Link, Switch, Route, useRouteMatch } from "react-router-dom";
 import PatientPerformance from "./PatientPerformance";
-
 import { dataContext } from "../../../App";
 import { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-
 const MyPatients = () => {
   let { path, url } = useRouteMatch();
   const [patientsarray, setPatientsArray] = useState([]);
@@ -38,7 +36,7 @@ const MyPatients = () => {
   useEffect(() => {
     const getData = async () => {
       // Please change the localhose number according to your server port number
-      const response = await fetch(`/api/doctor/${doctorId}`, {
+      const response = await fetch(`/api/doctor/accepted/${doctorId}`, {
         mode: "cors",
         headers: {
           "Content-Type": "application/json",
@@ -47,7 +45,7 @@ const MyPatients = () => {
       });
       const data = await response.json();
       console.log(data);
-      setPatientsArray(data.myPendingPatients);
+      setPatientsArray(data.myPatients);
     };
     getData();
   }, []);
@@ -75,5 +73,4 @@ const MyPatients = () => {
     </div>
   );
 };
-
 export default MyPatients;

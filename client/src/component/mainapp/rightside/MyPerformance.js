@@ -17,7 +17,7 @@ const MyPerformance = () => {
   const [display3, setDisplay3] = useState("All-time");
   const [time4, setTime4] = useState({ number: 10, mode: "year" });
   const [display4, setDisplay4] = useState("All-time");
-  // console.log("state", time);
+ 
   const data = useContext(dataContext);
   const dispatch = data.dispatch;
   const history = useHistory();
@@ -190,7 +190,7 @@ const MyPerformance = () => {
       <button onClick={oneyear4}>Past 1 year</button>
       <button onClick={alltime4}>All-time</button>
       <br></br>
-      <Graph4 data={data.states.userId} time={time4} />
+      <Graph4 data={data.states.userId} time={time4}/>
     </>
   );
 };
