@@ -7,13 +7,18 @@ const bcrypt = require("bcrypt");
 // Get One user by Id
 router.get("/:id", (req, res) => {
   const id = req.params.id;
-  userSchema.findById(id, (err, foundUser) => {
-    if (err) {
-      res.status(400).json({ error: err.message });
-    } else {
-      res.status(200).json(foundUser);
-    }
-  });
+  userSchema
+    .findById(id)
+    .populate("myDoctor", "email")
+    .exec()
+    .then((foundUser) => {
+      if (!foundUser) {
+        res.status(404).json({ error: "not found" });
+      } else {
+        console.log(foundUser);
+        res.status(200).json(foundUser);
+      }
+    });
 });
 
 // Get all users
