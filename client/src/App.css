@@ -105,27 +105,27 @@ ul {
 }
 
 .accordion {
-	display: flex;
+	/* display: flex; */
 	width: 400%;
 	height: 400%;
 	border: #fec5bb;
-	background-color: #d8e2dc;
+	/* background-color: #d8e2dc; */
 	margin: 10px;
 	padding: 10px;
 	font-family: "Monserrat";
 	font-size: 16px;
-	text-align: center;
+	/* text-align: center; */
 	cursor: pointer;
 	/* align-self: center; */
 }
 
-.panel {
+/* .panel {
 	display: flex;
 	width: 400%;
 	height: 400%;
 	text-align: center;
-	/* align-self: center; */
-}
+	align-self: center;
+} */
 
 .notifications-container {
 	display: flex;
