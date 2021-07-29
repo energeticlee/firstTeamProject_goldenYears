@@ -43,7 +43,7 @@ const FAQs = () => {
 		};
 
 		return (
-			<div>
+			<div className="faqs-container">
 				<button className="accordion" onClick={handleClick}>
 					{question}
 				</button>
