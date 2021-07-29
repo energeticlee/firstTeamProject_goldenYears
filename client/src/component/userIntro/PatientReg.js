@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { dataContext } from "../../App";
+import style from "./patientLogin.module.css";
 
 const PatientReg = () => {
   const data = useContext(dataContext);
@@ -75,80 +76,84 @@ const PatientReg = () => {
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmitPatientData}>
-        <div className="field">
-          <label className="label is-size-4 has-text-centered">Name:</label>
-          <input
-            className="input is-primary has-text-centered"
-            type="text"
-            name="name"
-            id="name"
-            placeholder="John Smith"
-            required
-          />
-        </div>
-
-        <div className="field">
-          <label className="label is-size-4 has-text-centered">Email:</label>
-          <input
-            className="input is-primary has-text-centered"
-            type="email"
-            name="email"
-            id="email"
-            placeholder="johnsmith@gmail.com"
-            required
-          />
-        </div>
-
-        <div className="field">
-          <label className="label is-size-4 has-text-centered">
-            Confirm email:
-          </label>
-          <input
-            className="input is-primary has-text-centered"
-            type="email"
-            name="confirm_email"
-            id="confirm_email"
-            placeholder="johnsmith@gmail.com"
-            required
-          />
-        </div>
-
-        <div className="field">
-          <label className="label is-size-4 has-text-centered">Password:</label>
-          <input
-            className="input is-primary has-text-centered"
-            type="password"
-            name="password"
-            id="password"
-            placeholder="************"
-            required
-          />
-        </div>
-
-        <div className="field">
-          <label className="label is-size-4 has-text-centered">
-            Confirm password:
-          </label>
-          <input
-            className="input is-primary has-text-centered"
-            type="password"
-            name="confirm_password"
-            id="confirm_password"
-            placeholder="************"
-            required
-          />
-        </div>
-
-        <br />
-        <div className="field container">
-          <div className="control">
-            <button className="button is-link">Create Account</button>
+    <div className={style.mainContainer}>
+      <div className={style.loginContainer}>
+        <form onSubmit={handleSubmitPatientData}>
+          <div className="field">
+            <label className="label is-size-4 has-text-centered">Name:</label>
+            <input
+              className="input is-primary has-text-centered"
+              type="text"
+              name="name"
+              id="name"
+              placeholder="John Smith"
+              required
+            />
           </div>
-        </div>
-      </form>
-    </>
+
+          <div className="field">
+            <label className="label is-size-4 has-text-centered">Email:</label>
+            <input
+              className="input is-primary has-text-centered"
+              type="email"
+              name="email"
+              id="email"
+              placeholder="johnsmith@gmail.com"
+              required
+            />
+          </div>
+
+          <div className="field">
+            <label className="label is-size-4 has-text-centered">
+              Confirm email:
+            </label>
+            <input
+              className="input is-primary has-text-centered"
+              type="email"
+              name="confirm_email"
+              id="confirm_email"
+              placeholder="johnsmith@gmail.com"
+              required
+            />
+          </div>
+
+          <div className="field">
+            <label className="label is-size-4 has-text-centered">
+              Password:
+            </label>
+            <input
+              className="input is-primary has-text-centered"
+              type="password"
+              name="password"
+              id="password"
+              placeholder="************"
+              required
+            />
+          </div>
+
+          <div className="field">
+            <label className="label is-size-4 has-text-centered">
+              Confirm password:
+            </label>
+            <input
+              className="input is-primary has-text-centered"
+              type="password"
+              name="confirm_password"
+              id="confirm_password"
+              placeholder="************"
+              required
+            />
+          </div>
+
+          <br />
+          <div className="field container">
+            <div className="control">
+              <button className="button is-link">Create Account</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 };
 
