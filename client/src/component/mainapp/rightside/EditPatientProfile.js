@@ -55,11 +55,17 @@ const EditPatientProfile = () => {
     const eventKeys = Object.keys(event.target);
     for (let i = 0; i < eventKeys.length - 3; i++) {
       const oldValue = userElement[`${event.target[`${i}`].id}`];
+
       const newValue = event.target[`${i}`].value;
       if (newValue === "" && oldValue === undefined) {
+        c;
         updatedUser[`${event.target[`${i}`].id}`] = undefined;
       } else if (newValue === "") {
-        updatedUser[`${event.target[`${i}`].id}`] = oldValue;
+        if (i === 9) {
+          updatedUser[`${event.target[`${i}`].id}`] = oldValue.email;
+        } else {
+          updatedUser[`${event.target[`${i}`].id}`] = oldValue;
+        }
       } else {
         updatedUser[`${event.target[`${i}`].id}`] = event.target[`${i}`].value;
       }

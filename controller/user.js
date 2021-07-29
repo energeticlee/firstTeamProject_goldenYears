@@ -68,7 +68,7 @@ router.put("/:id", (req, res) => {
         ? undefined
         : req.body.healthCondition,
     myDoctor:
-      req.body.myDoctor === null ? null : req.body.myDoctor.email.toLowerCase(),
+      req.body.myDoctor === null ? null : req.body.myDoctor.toLowerCase(),
   };
 
   // Because the client will send a doctor email instead of an Id, we need to check if the email exists as a valid doctor
