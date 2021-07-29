@@ -172,7 +172,7 @@ result3 += items.result
     [setActiveIndex]
   );
   return data1.length !== 0 && data2.length !== 0 && data3.length !== 0 ? 
-    <ResponsiveContainer width="100%" height={400}>
+    <ResponsiveContainer width="100%" height={300}>
     <PieChart>
       <Pie
         activeIndex={activeIndex}
