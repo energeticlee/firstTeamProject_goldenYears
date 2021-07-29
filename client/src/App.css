@@ -1,86 +1,119 @@
 html {
-  background-color: #fae1dd;
-  font-family: "Monserrat" !important;
+	background-color: #fae1dd;
+	font-family: "Monserrat" !important;
 }
 
 body {
-  font-family: "Monserrat" !important;
+	font-family: "Monserrat" !important;
 }
 
 .navbar-menu {
-  background-color: #ffe8d6 !important;
+	background-color: #ffe8d6 !important;
 }
 
 #patients {
-  background-color: #fb8500 !important;
-  /* color: #ffffff !important; */
+	background-color: #fb8500 !important;
+	/* color: #ffffff !important; */
 }
 
 #doctors {
-  background-color: #ffb703 !important;
-  /* color: #ffffff !important; */
+	background-color: #ffb703 !important;
+	/* color: #ffffff !important; */
 }
 
 ul {
-  list-style: none;
+	list-style: none;
 }
 
 #title {
-  color: #fb8500 !important;
+	color: #fb8500 !important;
 }
 
 .container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
 }
 
 .login-button,
 .reg-button {
-  display: flex;
-  margin: 10px !important;
+	display: flex;
+	margin: 10px !important;
 }
 
 .sidebar-title {
-  font-family: "Monserrat" !important;
-  /* font-style: normal !important;
+	font-family: "Monserrat" !important;
+	/* font-style: normal !important;
 	text-transform: capitalize !important;
 	font-size: 20px !important;
 	text-decoration: underline !important; */
 }
 
 .sidebar-items {
-  font-family: "Monserrat" !important;
-  font-style: normal !important;
+	font-family: "Monserrat" !important;
+	font-style: normal !important;
 }
 
 .field {
-  font-family: "Monserrat" !important;
-  font-weight: 400 !important;
+	font-family: "Monserrat" !important;
+	font-weight: 400 !important;
 }
 
 .button {
-  font-family: "Monserrat" !important;
-  font-weight: 550 !important;
+	font-family: "Monserrat" !important;
+	font-weight: 550 !important;
 }
 
 .profile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .dashboard-container {
-  display: flex !important;
-  flex-direction: row !important;
+	display: flex !important;
+	flex-direction: row !important;
 }
 
 .sidebar,
 .rightside {
-  display: flex !important;
-  padding: 20px !important;
+	display: flex !important;
+	padding: 20px !important;
 }
 
 .sidebar {
-  margin: 0 30px 0 0;
+	margin: 0 30px 0 0;
+}
+
+.rightside {
+	align-self: center;
+}
+
+.faqs-container {
+	display: flex;
+	flex-direction: column;
+	/* align-items: center; */
+}
+
+.accordion {
+	display: flex;
+	width: 400%;
+	height: 400%;
+	border: #fec5bb;
+	background-color: #d8e2dc;
+	margin: 10px;
+	padding: 10px;
+	font-family: "Monserrat";
+	font-size: 16px;
+	text-align: center;
+	cursor: pointer;
+	/* align-self: center; */
+}
+
+.panel {
+	display: flex;
+	width: 400%;
+	height: 400%;
+	text-align: center;
+	/* align-self: center; */
 }
