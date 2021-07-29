@@ -81,6 +81,7 @@ const EditPatientProfile = () => {
     };
     updateData();
   };
+
   return (
     <>
       {Object.keys(userElement).length === 0 ? (
@@ -139,7 +140,7 @@ const EditPatientProfile = () => {
               type="number"
               name="age"
               id="age"
-              placeholder={userElement.age}
+              placeholder={userElement.age ? userElement.age : "DD/MM/YYYY"}
               //   required
             />
             <br />
