@@ -2,7 +2,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Link, useRouteMatch, useHistory } from "react-router-dom";
 import { dataContext } from "../../../App";
-import moment from "moment"
+import moment from "moment";
 
 const ViewPatientProfile = () => {
 	const [userElement, setUserElement] = useState({});
@@ -52,6 +52,7 @@ const ViewPatientProfile = () => {
 	}, [userId]);
 	console.log(userElement);
 
+<<<<<<< HEAD
   return (
     <>
       {Object.keys(userElement).length === 0 ? (
@@ -86,6 +87,44 @@ const ViewPatientProfile = () => {
       )}
     </>
   );
+=======
+	return (
+		<>
+			{Object.keys(userElement).length === 0 ? (
+				" "
+			) : (
+				<div>
+					<div key={userElement._id}>
+						<div>Name: {userElement.name}</div>
+						<div>Email: {userElement.email}</div>
+						<div>Password: *******</div>
+						<div>Photo: {userElement.photo}</div>
+						<div>
+							Date of Birth:{" "}
+							{userElement.age
+								? moment(userElement.age).format("Do MMM YYYY")
+								: null}
+						</div>
+						<div>Gender: {userElement.gender}</div>
+						<div>
+							Height: {userElement.height ? `${userElement.height} cm` : null}
+						</div>
+						<div>
+							Weight: {userElement.weight ? `${userElement.weight} kg` : null}
+						</div>
+						<div>Health Conditions: {userElement.healthCondition}</div>
+						<div>
+							My Doctor:{" "}
+							{userElement.myDoctor === null ? " " : userElement.myDoctor.email}
+						</div>
+						<br />
+					</div>
+					<Link to={`${url}/edit`}>Edit Profile</Link>
+				</div>
+			)}
+		</>
+	);
+>>>>>>> b1766071697b1354708059ab2d1d8f313189b64f
 };
 
 export default ViewPatientProfile;
