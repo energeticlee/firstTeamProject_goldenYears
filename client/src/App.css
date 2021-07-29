@@ -1,16 +1,17 @@
-html,
-body {
+html body {
 	background-color: #fae1dd !important;
 	font-family: "Monserrat" !important;
 	height: 100%;
 	font-size: 1rem;
 }
 
-/* landing page  */
+/* home navbar */
 
 .navbar-menu {
 	background-color: #ffe8d6 !important;
 }
+
+/* landing page  */
 
 #home-title {
 	margin-top: 30px;
@@ -20,6 +21,36 @@ body {
 #home-content {
 	margin: 20px 30px 20px 30px;
 }
+
+.carousel .carousel-inner .carousel-item .carousel-indicators {
+	object-fit: cover;
+	object-position: center;
+	height: 30vh;
+	width: 30vw;
+	overflow: hidden;
+}
+
+/* #carouselExampleCaptions .carousel-item:before {
+	content: "";
+	background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.5));
+	display: block;
+	position: absolute;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+} */
+
+/* .carousel-indicators {
+	position: absolute;
+} */
+
+/* .carousel-inner {
+	width: 1200px;
+	height: 800px;
+	position: relative;
+	background-position: center;
+	background-size: cover;
+} */
 
 #patients {
 	background-color: #fb8500 !important;
