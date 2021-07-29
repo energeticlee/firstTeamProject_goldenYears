@@ -50,6 +50,13 @@ const ViewPatientProfile = () => {
     getData();
   }, [userId]);
   console.log(userElement);
+
+  const getAge = (DoB) => {
+    // react-datePicker uses moment.js
+    // currentAge = Date.Now() - selected date
+    // return currentAge
+  };
+
   return (
     <>
       {Object.keys(userElement).length === 0 ? (
@@ -61,7 +68,10 @@ const ViewPatientProfile = () => {
             <div>Email: {userElement.email}</div>
             <div>Password: {userElement.password}</div>
             <div>Photo: {userElement.photo}</div>
-            <div>Date of Birth: {userElement.age}</div>
+            <div>
+              Date of Birth:{" "}
+              {userElement.age ? `${getAge(userElement.age)}` : null}
+            </div>
             <div>Gender: {userElement.gender}</div>
             <div>
               Height: {userElement.height ? `${userElement.height} cm` : null}
