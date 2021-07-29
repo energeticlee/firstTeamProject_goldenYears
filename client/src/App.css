@@ -1,14 +1,24 @@
-html {
-	background-color: #fae1dd;
+html,
+body {
+	background-color: #fae1dd !important;
 	font-family: "Monserrat" !important;
+	height: 100%;
+	font-size: 1rem;
 }
 
-body {
-	font-family: "Monserrat" !important;
-}
+/* landing page  */
 
 .navbar-menu {
 	background-color: #ffe8d6 !important;
+}
+
+#home-title {
+	margin-top: 30px;
+	color: #fb8500 !important;
+}
+
+#home-content {
+	margin: 20px 30px 20px 30px;
 }
 
 #patients {
@@ -23,10 +33,6 @@ body {
 
 ul {
 	list-style: none;
-}
-
-#title {
-	color: #fb8500 !important;
 }
 
 .container {
