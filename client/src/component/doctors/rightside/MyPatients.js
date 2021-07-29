@@ -52,19 +52,34 @@ const MyPatients = () => {
   console.log(patientsarray);
   return (
     <div>
-      <h1>Your Patients</h1>
-      <nav>
-        Nav bar of patients&apos; names here
-        {patientsarray.length === 0
-          ? " "
-          : patientsarray.map((patient, index) => {
-              return (
-                <Link to={`${url}/${patient._id}`} key={index}>
-                  <button>{patient.name}</button>
-                </Link>
-              );
-            })}
-      </nav>
+      <div className="dropdown is-hoverable">
+        <div className="dropdown-trigger">
+          <button
+            className="button"
+            aria-haspopup="true"
+            aria-controls="dropdown-menu"
+          >
+            <span>See Patients</span>
+            <span className="icon">
+              <i className="fas fa-angle-down" aria-hidden="true"></i>
+            </span>
+          </button>
+        </div>
+        <div className="dropdown-menu" id="dropdown-menu" role="menu">
+          <div className="dropdown-content">
+            {patientsarray.length === 0
+              ? " "
+              : patientsarray.map((patient, index) => {
+                  return (
+                    <Link to={`${url}/${patient._id}`} key={index}>
+                      <div>{patient.name}</div>
+                    </Link>
+                  );
+                })}
+          </div>
+        </div>
+      </div>
+
       <Switch>
         <Route path={`${path}/:id`}>
           <PatientPerformance />
@@ -74,3 +89,21 @@ const MyPatients = () => {
   );
 };
 export default MyPatients;
+{
+  /* <a href="#" class="dropdown-item">
+        Dropdown item
+      </a>
+      <a class="dropdown-item">
+        Other dropdown item
+      </a>
+      <a href="#" class="dropdown-item is-active">
+        Active dropdown item
+      </a>
+      <a href="#" class="dropdown-item">
+        Other dropdown item
+      </a>
+      <hr class="dropdown-divider">
+      <a href="#" class="dropdown-item">
+        With a divider
+      </a> */
+}

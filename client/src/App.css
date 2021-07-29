@@ -123,3 +123,24 @@ ul {
 	text-align: center;
 	/* align-self: center; */
 }
+
+.notifications-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  margin: 10px;
+  width: 300px;
+}
+
+.myperformance-graphs-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.myperformance-graphs {
+  margin: 10px;
+  text-align: center;
+}
