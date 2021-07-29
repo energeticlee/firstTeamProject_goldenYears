@@ -4,6 +4,21 @@ const userSchema = require("../models/user");
 const doctorSchema = require("../models/doctor");
 const bcrypt = require("bcrypt");
 
+router.get("/validation/:email", (req, res) => {
+  userSchema.find({ email: req.params.email }, (error, foundUser) => {
+    if (error) {
+      res.status(400).json({ error: error.message });
+      console.log("inside 400", foundUser);
+    } else if (foundUser.length !== 0) {
+      console.log("inside 404", foundUser);
+      res.status(404).json({ error: "email taken" });
+    } else if (foundUser === undefined) {
+      console.log("email is available");
+      res.status(200).send("ok");
+    }
+  });
+});
+
 // Get One user by Id
 router.get("/:id", (req, res) => {
   const id = req.params.id;
