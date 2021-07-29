@@ -155,3 +155,7 @@ ul {
 .intro-header {
 	margin-bottom: 10px;
 }
+
+.columns{
+	width: 100%
+}
