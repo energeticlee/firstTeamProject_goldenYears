@@ -162,7 +162,7 @@ const EditPatientProfile = () => {
             <br />
             <label>Date of Birth:</label>
             <br />
-            <input id="dob" type="date" />
+            <input name = "age" id="age" type="date" />
             {/* <input
               type="number"
               name="age"

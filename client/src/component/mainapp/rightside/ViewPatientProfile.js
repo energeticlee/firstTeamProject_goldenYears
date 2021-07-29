@@ -65,7 +65,7 @@ const ViewPatientProfile = () => {
             <div>Photo: {userElement.photo}</div>
             <div>
               Date of Birth:{" "}
-              {userElement.dob ? moment(userElement.dob).format("DD MMM YYYY") : null}
+              {userElement.age ? moment(userElement.age).format("Do MMM YYYY") : null}
             </div>
             <div>Gender: {userElement.gender}</div>
             <div>
