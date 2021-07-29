@@ -12,7 +12,11 @@
 		"session": "^0.1.0"
 	},
 	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
 		"start": "node server.js",
+		"install-client": "cd client && npm install",
+		"build": "cd client && npm run build",
+		"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run install-client && npm run build",
 		"dev": "nodemon server.js"
 	},
 	"name": "golden-years",

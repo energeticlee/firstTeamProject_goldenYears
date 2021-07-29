@@ -50,6 +50,7 @@ const MyProfile = () => {
   }, []);
   return (
     <>
+      {/* <h1 className="is-size-2 has-text-centered">My Profile</h1> */}
       <div>
         {data.map((userElement) => {
           return (
