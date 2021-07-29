@@ -1,82 +1,82 @@
 html,
 body {
-	background-color: #fae1dd !important;
-	font-family: "Monserrat" !important;
-	height: 100% !important;
-	font-size: 1rem;
+  background-color: #fae1dd !important;
+  font-family: "Monserrat" !important;
+  height: 100% !important;
+  font-size: 1rem;
 }
 
 /* home navbar */
 
 .navbar-menu {
-	background-color: #ffe8d6 !important;
+  background-color: #ffe8d6 !important;
 }
 
 /* landing page  */
 
 #home-title {
-	margin-top: 25px;
-	color: #fb8500 !important;
+  margin-top: 25px;
+  color: #fb8500 !important;
 }
 
 #home-content {
-	margin: 10px 30px 20px 30px;
+  margin: 10px 30px 20px 30px;
 }
 
 .carousel .carousel-inner {
-	object-fit: cover;
-	object-position: center;
-	height: 75vh;
-	/* overflow: hidden; */
+  object-fit: cover;
+  object-position: center;
+  height: 75vh;
+  /* overflow: hidden; */
 }
 
 #patients {
-	background-color: #fb8500 !important;
+  background-color: #fb8500 !important;
 }
 
 #doctors {
-	background-color: #ffb703 !important;
+  background-color: #ffb703 !important;
 }
 
 ul {
-	list-style: none;
+  list-style: none;
 }
 
 .container {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .login-button,
 .reg-button {
-	display: flex;
-	margin: 10px !important;
+  display: flex;
+  margin: 10px !important;
 }
 
 .sidebar-title {
-	font-family: "Monserrat" !important;
+  font-family: "Monserrat" !important;
 }
 
 .sidebar-items {
-	font-family: "Monserrat" !important;
-	font-style: normal !important;
+  font-family: "Monserrat" !important;
+  font-style: normal !important;
 }
 
 .field {
-	font-family: "Monserrat" !important;
-	font-weight: 400 !important;
+  font-family: "Monserrat" !important;
+  font-weight: 400 !important;
 }
 
 .button {
-	font-family: "Monserrat" !important;
-	font-weight: 550 !important;
+  font-family: "Monserrat" !important;
+  font-weight: 550 !important;
 }
 
 .profile {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .profile-title {
@@ -84,43 +84,44 @@ ul {
 }
 
 .dashboard-container {
-	display: flex !important;
-	flex-direction: row !important;
+  display: flex !important;
+  flex-direction: row !important;
 }
 
 .sidebar,
 .rightside {
-	display: flex !important;
-	padding: 20px !important;
+  display: flex !important;
+  padding: 20px !important;
 }
 
 .sidebar {
-	margin: 0 30px 0 0;
+  margin: 0 30px 0 0;
 }
 
 .rightside {
-	align-self: center;
+  align-self: center;
+  width: 100%;
 }
 
 .faqs-container {
-	display: flex;
-	flex-direction: column;
-	/* align-items: center; */
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
 }
 
 .accordion {
-	/* display: flex; */
-	width: 400%;
-	height: 400%;
-	border: #fec5bb;
-	/* background-color: #d8e2dc; */
-	margin: 10px;
-	padding: 10px;
-	font-family: "Monserrat";
-	font-size: 16px;
-	/* text-align: center; */
-	cursor: pointer;
-	/* align-self: center; */
+  /* display: flex; */
+  width: 400%;
+  height: 400%;
+  border: #fec5bb;
+  /* background-color: #d8e2dc; */
+  margin: 10px;
+  padding: 10px;
+  font-family: "Monserrat";
+  font-size: 16px;
+  /* text-align: center; */
+  cursor: pointer;
+  /* align-self: center; */
 }
 
 /* .panel {
@@ -132,28 +133,40 @@ ul {
 } */
 
 .notifications-container {
-	display: flex;
-	flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .card {
-	margin: 10px;
-	width: 300px;
+  margin: 10px;
+  width: 300px;
 }
 
 .myperformance-graphs-container {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .myperformance-graphs {
-	margin: 10px;
-	text-align: center;
+  margin: 10px;
+  text-align: center;
 }
 
 .intro-header {
-	margin-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.columns {
+  width: 100%;
+}
+
+.see-patients-dropdown {
+  text-align: center;
+}
+
+#see-patient-id {
+  justify-content: center;
 }
 
 .columns{
