@@ -1,4 +1,5 @@
-html body {
+html,
+body {
 	background-color: #fae1dd !important;
 	font-family: "Monserrat" !important;
 	height: 100%;
@@ -156,22 +157,26 @@ ul {
 }
 
 .notifications-container {
-  display: flex;
-  flex-wrap: wrap;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 .card {
-  margin: 10px;
-  width: 300px;
+	margin: 10px;
+	width: 300px;
 }
 
 .myperformance-graphs-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 }
 
 .myperformance-graphs {
-  margin: 10px;
-  text-align: center;
+	margin: 10px;
+	text-align: center;
+}
+
+.intro-header {
+	margin-bottom: 10px;
 }

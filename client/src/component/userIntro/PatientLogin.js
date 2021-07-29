@@ -64,12 +64,12 @@ const PatientLogin = () => {
                 placeholder="Email address"
                 required
               />
-              <span className="icon is-left">
+              {/* <span className="icon is-left">
                 <i className="fas fa-envelope"></i>
               </span>
               <span className="icon is-right">
                 <i className="fas fa-check"></i>
-              </span>
+              </span> */}
             </div>
           </div>
 
