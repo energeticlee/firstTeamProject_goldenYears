@@ -35,7 +35,9 @@ const MyProfile = () => {
 	return (
 		<>
 			<div className="is-size-5 profile">
-				<h1 className="is-size-3 has-text-centered">My Profile</h1>
+				<h1 className="is-size-3 has-text-centered profile-title">
+					My Profile
+				</h1>
 				<Switch>
 					<Route path={`${path}/edit`}>
 						<EditDoctorProfile />
