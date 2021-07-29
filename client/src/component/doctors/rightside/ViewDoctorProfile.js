@@ -1,13 +1,40 @@
 /* eslint-disable */
-import React, { useEffect, useState } from "react";
-import { Link, useRouteMatch } from "react-router-dom";
+import React, { useEffect, useState, useContext } from "react";
+import { Link, useRouteMatch, useHistory } from "react-router-dom";
+import { dataContext } from "../../../App";
 
-const ViewDoctorProfile = (props) => {
+const ViewDoctorProfile = () => {
   const [userElement, setUserElement] = useState({});
-  const doctorId = props.currentUser;
+  const data = useContext(dataContext);
+  const doctorId = data.states.doctorId;
   const { url } = useRouteMatch();
+  const dispatch = data.dispatch;
+  const history = useHistory();
+
   useEffect(() => {
-    let mounted = true;
+    if (Object.keys(data.states).length === 0) {
+      console.log(Object.keys(data.states).length === 0);
+      const getData = async () => {
+        // Please change the localhose number according to your server port number
+        const response = await fetch("/api/doctorsession", {
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        });
+        const message = await response.json();
+        if (message.error !== "Not Authenticated") {
+          dispatch({ type: "PUSHDOCTORID", payload: message._id });
+        } else {
+          history.push("/");
+        }
+      };
+      getData();
+    }
+  }, []);
+
+  useEffect(() => {
     const getData = async () => {
       const response = await fetch(`/api/doctor/${doctorId}`, {
         mode: "cors",
@@ -17,13 +44,11 @@ const ViewDoctorProfile = (props) => {
         },
       });
       const data = await response.json();
-      if (mounted) {
-        setUserElement(data);
-      }
+
+      setUserElement(data);
     };
     getData();
-    return () => (mounted = false);
-  }, []);
+  }, [doctorId]);
 
   return (
     <>
