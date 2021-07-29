@@ -1,13 +1,40 @@
 /* eslint-disable */
-import React, { useEffect, useState } from "react";
-import { Link, useRouteMatch } from "react-router-dom";
+import React, { useEffect, useState, useContext } from "react";
+import { Link, useRouteMatch, useHistory } from "react-router-dom";
+import { dataContext } from "../../../App";
 
-const ViewPatientProfile = (props) => {
+const ViewPatientProfile = () => {
   const [userElement, setUserElement] = useState({});
-  const userId = props.currentUser;
   const { url } = useRouteMatch();
+  const data = useContext(dataContext);
+  const dispatch = data.dispatch;
+  const history = useHistory();
+  const userId = data.states.userId;
+  console.log(userId);
   useEffect(() => {
-    let mounted = true;
+    if (Object.keys(data.states).length === 0) {
+      console.log(Object.keys(data.states).length === 0);
+      const getData = async () => {
+        // Please change the localhose number according to your server port number
+        const response = await fetch("/api/session", {
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        });
+        const message = await response.json();
+        if (message.error !== "Not Authenticated") {
+          dispatch({ type: "PUSHPATIENTID", payload: message });
+        } else {
+          history.push("/");
+        }
+      };
+      getData();
+    }
+  }, []);
+
+  useEffect(() => {
     const getData = async () => {
       const response = await fetch(`/api/user/${userId}`, {
         mode: "cors",
@@ -17,14 +44,12 @@ const ViewPatientProfile = (props) => {
         },
       });
       const data = await response.json();
-      if (mounted) {
-        setUserElement(data);
-      }
+      console.log(data);
+      setUserElement(data);
     };
     getData();
-    return () => (mounted = false);
-  }, []);
-
+  }, [userId]);
+  console.log(userElement);
   return (
     <>
       {Object.keys(userElement).length === 0 ? (

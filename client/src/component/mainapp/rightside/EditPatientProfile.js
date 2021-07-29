@@ -1,13 +1,40 @@
 /* eslint-disable */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { dataContext } from "../../../App";
 
-const EditPatientProfile = (props) => {
-  const userId = props.currentUser;
+const EditPatientProfile = () => {
+  const data = useContext(dataContext);
+  const userId = data.states.userId;
   const [userElement, setUserElement] = useState({});
+
+  const dispatch = data.dispatch;
   const history = useHistory();
+
   useEffect(() => {
-    let mounted = true;
+    if (Object.keys(data.states).length === 0) {
+      console.log(Object.keys(data.states).length === 0);
+      const getData = async () => {
+        // Please change the localhose number according to your server port number
+        const response = await fetch("/api/session", {
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        });
+        const message = await response.json();
+        if (message.error !== "Not Authenticated") {
+          dispatch({ type: "PUSHPATIENTID", payload: message });
+        } else {
+          history.push("/");
+        }
+      };
+      getData();
+    }
+  }, []);
+
+  useEffect(() => {
     const getData = async () => {
       const response = await fetch(`/api/user/${userId}`, {
         mode: "cors",
@@ -17,13 +44,11 @@ const EditPatientProfile = (props) => {
         },
       });
       const data = await response.json();
-      if (mounted) {
-        setUserElement(data);
-      }
+
+      setUserElement(data);
     };
     getData();
-    return () => (mounted = false);
-  });
+  }, [userId]);
   const handleSubmit = (event) => {
     event.preventDefault();
     const updatedUser = {};
