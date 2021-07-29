@@ -2,7 +2,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Link, useRouteMatch, useHistory } from "react-router-dom";
 import { dataContext } from "../../../App";
-import moment from "moment"
+import moment from "moment";
 
 const ViewPatientProfile = () => {
 	const [userElement, setUserElement] = useState({});
@@ -52,48 +52,6 @@ const ViewPatientProfile = () => {
 	}, [userId]);
 	console.log(userElement);
 
-<<<<<<< HEAD
-  return (
-    <>
-      {Object.keys(userElement).length === 0 ? (
-        " "
-      ) : (
-        <div>
-          <div key={userElement._id}>
-            <div>Name: {userElement.name}</div>
-            <div>Email: {userElement.email}</div>
-            <div>Password: *******</div>
-            <div>Photo: {userElement.photo}</div>
-            <div>
-              Date of Birth:{" "}
-              {userElement.age ? moment(userElement.age).format("Do MMM YYYY") : null}
-            </div>
-            <div>Gender: {userElement.gender}</div>
-            <div>
-              Height: {userElement.height ? `${userElement.height} cm` : null}
-            </div>
-            <div>
-              Weight: {userElement.weight ? `${userElement.weight} kg` : null}
-            </div>
-            <div>Health Conditions: {userElement.healthCondition}</div>
-            <div>
-              My Doctor:{" "}
-              {userElement.myDoctor === null ? " " : userElement.myDoctor.email}
-            </div>
-            <br />
-          </div>
-          <Link to={`${url}/edit`}>Edit Profile</Link>
-        </div>
-      )}
-    </>
-  );
-=======
-	const getAge = (DoB) => {
-		// react-datePicker uses moment.js
-		// currentAge = Date.Now() - selected date
-		// return currentAge
-	};
-
 	return (
 		<>
 			{Object.keys(userElement).length === 0 ? (
@@ -107,7 +65,9 @@ const ViewPatientProfile = () => {
 						<div>Photo: {userElement.photo}</div>
 						<div>
 							Date of Birth:{" "}
-							{userElement.age ? `${getAge(userElement.age)}` : null}
+							{userElement.age
+								? moment(userElement.age).format("Do MMM YYYY")
+								: null}
 						</div>
 						<div>Gender: {userElement.gender}</div>
 						<div>
@@ -123,14 +83,11 @@ const ViewPatientProfile = () => {
 						</div>
 						<br />
 					</div>
-					<Link to={`${url}/edit`} className="button">
-						Edit Profile
-					</Link>
+					<Link to={`${url}/edit`}>Edit Profile</Link>
 				</div>
 			)}
 		</>
 	);
->>>>>>> d3c9ae9993e156d446f502a08e4788f13c33a9e8
 };
 
 export default ViewPatientProfile;
