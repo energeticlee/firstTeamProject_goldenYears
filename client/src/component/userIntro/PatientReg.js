@@ -24,7 +24,38 @@ const PatientReg = () => {
 			alert("Passwords don't match, please enter again.");
 		}
 
-		const sendData = async () => {
+	// 	const sendData = async () => {
+	// 		// Please change the localhost number according to your server port number
+
+	// 		const response = await fetch("/api/user", {
+	// 			method: "POST",
+	// 			mode: "cors",
+	// 			body: JSON.stringify({
+	// 				name: patientName,
+	// 				email: patientEmail.toLowerCase(),
+	// 				password: patientPassword,
+	// 			}),
+	// 			headers: {
+	// 				"Content-Type": "application/json",
+	// 				Accept: "application/json",
+	// 			},
+	// 		});
+	// 		if (response.status === 400) {
+	// 			const data = await response.json();
+	// 			console.log("data", data.error);
+	// 		} else if (response.status === 200) {
+	// 			const data = await response.json();
+	// 			dispatch({ type: "PUSHPATIENTID", payload: data._id });
+	// 			alert("You have successfully registered!");
+	// 			history.push("/home/tests");
+	// 		}
+	// 	};
+	// 	sendData();
+	// };
+
+//add in user registration
+
+		const checkemail = async () => {
 			// Please change the localhost number according to your server port number
 
 			const response = await fetch("/api/user", {
@@ -50,7 +81,7 @@ const PatientReg = () => {
 				history.push("/home/tests");
 			}
 		};
-		sendData();
+		checkemail();
 	};
 
 	return (

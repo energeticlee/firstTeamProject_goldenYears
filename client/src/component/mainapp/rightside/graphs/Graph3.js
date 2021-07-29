@@ -153,5 +153,5 @@ export default function Graph3(props) {
           </Area>
         </AreaChart>
       </ResponsiveContainer>
-    :<p>No data found! Please take your 2-Minute Step Test.</p>
+    :<p>No data found!</p>
 }
