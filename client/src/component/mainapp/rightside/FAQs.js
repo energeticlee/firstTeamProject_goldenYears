@@ -75,7 +75,7 @@ const FAQs = () => {
 							aria-expanded="true"
 							aria-controls="collapseOne"
 						>
-							Accordion Item #1
+							This is a question?
 						</button>
 					</h2>
 					<div
@@ -84,7 +84,9 @@ const FAQs = () => {
 						aria-labelledby="headingOne"
 						data-bs-parent="#accordionExample"
 					>
-						<div className="accordion-body">Hello</div>
+						<div className="accordion-body">
+							This is the answer to the question.
+						</div>
 					</div>
 				</div>
 				<div className="accordion-item">
@@ -97,7 +99,7 @@ const FAQs = () => {
 							aria-expanded="false"
 							aria-controls="collapseTwo"
 						>
-							Accordion Item #2
+							This is a question?
 						</button>
 					</h2>
 					<div
@@ -106,7 +108,9 @@ const FAQs = () => {
 						aria-labelledby="headingTwo"
 						data-bs-parent="#accordionExample"
 					>
-						<div className="accordion-body">Hello</div>
+						<div className="accordion-body">
+							This is the answer to the question.
+						</div>
 					</div>
 				</div>
 				<div className="accordion-item">
@@ -119,7 +123,7 @@ const FAQs = () => {
 							aria-expanded="false"
 							aria-controls="collapseThree"
 						>
-							Accordion Item #3
+							This is a question?
 						</button>
 					</h2>
 					<div
@@ -128,7 +132,9 @@ const FAQs = () => {
 						aria-labelledby="headingThree"
 						data-bs-parent="#accordionExample"
 					>
-						<div className="accordion-body">Hello</div>
+						<div className="accordion-body">
+							This is the answer to the question.
+						</div>
 					</div>
 				</div>
 			</div>
