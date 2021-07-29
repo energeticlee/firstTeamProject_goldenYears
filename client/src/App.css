@@ -14,52 +14,27 @@ html body {
 /* landing page  */
 
 #home-title {
-	margin-top: 30px;
+	margin-top: 25px;
 	color: #fb8500 !important;
 }
 
 #home-content {
-	margin: 20px 30px 20px 30px;
+	margin: 10px 30px 20px 30px;
 }
 
-.carousel .carousel-inner .carousel-item .carousel-indicators {
+.carousel .carousel-inner {
 	object-fit: cover;
 	object-position: center;
-	height: 30vh;
-	width: 30vw;
-	overflow: hidden;
+	height: 75vh;
+	/* overflow: hidden; */
 }
-
-/* #carouselExampleCaptions .carousel-item:before {
-	content: "";
-	background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.5));
-	display: block;
-	position: absolute;
-	top: 0;
-	width: 100vw;
-	height: 100vh;
-} */
-
-/* .carousel-indicators {
-	position: absolute;
-} */
-
-/* .carousel-inner {
-	width: 1200px;
-	height: 800px;
-	position: relative;
-	background-position: center;
-	background-size: cover;
-} */
 
 #patients {
 	background-color: #fb8500 !important;
-	/* color: #ffffff !important; */
 }
 
 #doctors {
 	background-color: #ffb703 !important;
-	/* color: #ffffff !important; */
 }
 
 ul {
@@ -80,10 +55,6 @@ ul {
 
 .sidebar-title {
 	font-family: "Monserrat" !important;
-	/* font-style: normal !important;
-	text-transform: capitalize !important;
-	font-size: 20px !important;
-	text-decoration: underline !important; */
 }
 
 .sidebar-items {
@@ -156,22 +127,22 @@ ul {
 }
 
 .notifications-container {
-  display: flex;
-  flex-wrap: wrap;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 .card {
-  margin: 10px;
-  width: 300px;
+	margin: 10px;
+	width: 300px;
 }
 
 .myperformance-graphs-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 }
 
 .myperformance-graphs {
-  margin: 10px;
-  text-align: center;
+	margin: 10px;
+	text-align: center;
 }
