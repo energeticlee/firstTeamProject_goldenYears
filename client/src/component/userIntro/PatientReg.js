@@ -26,27 +26,49 @@ const PatientReg = () => {
 
     const sendData = async () => {
       // Please change the localhost number according to your server port number
-      const response = await fetch("/api/user", {
-        method: "POST",
-        mode: "cors",
-        body: JSON.stringify({
-          name: patientName,
-          email: patientEmail.toLowerCase(),
-          password: patientPassword,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      });
-      if (response.status === 400) {
-        const data = await response.json();
-        console.log("data", data.error);
-      } else if (response.status === 200) {
-        const data = await response.json();
-        dispatch({ type: "PUSHPATIENTID", payload: data._id });
-        alert("You have successfully registered!");
-        history.push("/home/tests");
+      //* send get request to find if email has been taken
+      const res = await fetch(
+        `/api/user/validation/${patientEmail.toLowerCase()}`,
+        {
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        }
+      );
+      console.log("line 41", res.status);
+      if (res.status === 400) {
+        const data = await res.json();
+        console.log("data 400", data.error);
+      }
+      if (res.status === 404) {
+        const data = await res.json();
+        console.log("Email Taken", data.error);
+      } else if (res.status === 200) {
+        console.log("it's inside!!!!");
+        const response = await fetch("/api/user", {
+          method: "POST",
+          mode: "cors",
+          body: JSON.stringify({
+            name: patientName,
+            email: patientEmail.toLowerCase(),
+            password: patientPassword,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        });
+        if (response.status === 400) {
+          const data = await response.json();
+          console.log("data", data.error);
+        } else if (response.status === 200) {
+          const data = await response.json();
+          dispatch({ type: "PUSHPATIENTID", payload: data._id });
+          alert("You have successfully registered!");
+          history.push("/home/tests");
+        }
       }
     };
     sendData();

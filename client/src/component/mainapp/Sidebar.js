@@ -19,8 +19,8 @@ const Sidebar = () => {
 	return (
 		<>
 			<aside className="menu">
-				<p className="is-size-3 sidebar-title">GoldenYears</p>
-				<ul className="menu-list is-size-5 sidebar-items">
+				<p className="is-size-2 sidebar-title">GoldenYears</p>
+				<ul className="menu-list is-size-4 sidebar-items">
 					<li>
 						{" "}
 						<Link to={`${url}/myprofile`}> My Profile </Link>{" "}
