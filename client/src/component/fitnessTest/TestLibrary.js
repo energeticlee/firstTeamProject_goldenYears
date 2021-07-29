@@ -99,9 +99,9 @@ const TestLibrary = () => {
     startTime: 0,
     endTime: 0,
     completed: false,
-    chairStandTime: 30,
-    armCurlTime: 30,
-    twoMinStepTime: 120,
+    chairStandTime: 10,
+    armCurlTime: 10,
+    twoMinStepTime: 10,
   });
 
   const reducerPackage = { state, dispatch, actions };
@@ -111,13 +111,13 @@ const TestLibrary = () => {
       <h1 className={style.title}>Testing Library</h1>
       <div className={style.testContainer}>
         <Link to={`${path}/chairstand`} className={style.test}>
-          <h2>30-Second Chair Stand</h2>
+          <h2 className={style.testText}>30-Second Chair Stand</h2>
         </Link>
         <Link to={`${path}/armcurl`} className={style.test}>
-          <h2>Arm Curl</h2>
+          <h2 className={style.testText}>Arm Curl</h2>
         </Link>
         <Link to={`${path}/twominsteptest`} className={style.test}>
-          <h2>2-Minute Step Test</h2>
+          <h2 className={style.testText}>2-Minute Step Test</h2>
         </Link>
       </div>
       <main>

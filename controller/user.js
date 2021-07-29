@@ -52,6 +52,8 @@ router.post("/", (req, res) => {
 router.put("/:id", (req, res) => {
   const id = req.params.id;
   // Set up a updted User Object
+  console.log(req.body.myDoctor);
+  console.log(req.body);
   const updatedUser = {
     name: req.body.name === undefined ? undefined : req.body.name,
     email: req.body.email === undefined ? undefined : req.body.email,

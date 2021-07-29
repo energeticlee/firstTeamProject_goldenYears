@@ -162,7 +162,7 @@ const PoseEstimation = ({ reducerPackage, props, name }) => {
   return (
     <div className={style.pageContainer}>
       <div className={style.topContainer}>
-        <button>Instruction</button>
+        <button>Instruction Test</button>
         <h2>{reducerPackage.state.repCount}</h2>
         <Timer reducerPackage={reducerPackage} name={name} />
         <h2>{name}</h2>

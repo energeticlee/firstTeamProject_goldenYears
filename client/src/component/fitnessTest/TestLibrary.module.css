@@ -1,20 +1,21 @@
 .mainContainer {
   display: flex;
   flex-direction: column;
-  background-color: green;
+  background-color: #d8e2dc;
   text-align: center;
+  align-items: space-evenly;
 }
 
 .title {
-  font-size: 2.4rem;
+  font-size: 36px;
   color: black;
-  font-weight: 600;
 }
 
 .testContainer {
   display: flex;
   justify-content: space-evenly;
-  background-color: violet;
+  background-color: #e8e8e4;
+  border: 1px solid #ece4db;
 }
 
 .test {
@@ -23,5 +24,14 @@
   width: 200px;
   justify-content: center;
   align-items: center;
-  background-color: red;
+}
+
+.testText {
+  font-size: 18px;
+  color: black;
+  transition: 0.3s;
+}
+
+.testText:hover {
+  transform: scale(1.15);
 }
