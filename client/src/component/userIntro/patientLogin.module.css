@@ -15,12 +15,7 @@
   background-color: #d8e2dc;
 }
 
-.leftContainer {
-  width: 100%;
-  max-width: 50%;
-  padding: 30px;
-}
-
-.form {
-  max-width: 50%;
+form {
+  min-width: 60%;
+  max-width: 80%;
 }
