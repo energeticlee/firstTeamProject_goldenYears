@@ -40,7 +40,7 @@ const corsOptionsDelegate = function (req, callback) {
 // Middlerware Linked => Express
 app.use(
   session({
-    secret: "golden-years", //some random string
+    secret: process.env.SECRET, //some random string
     resave: false,
     saveUninitialized: false,
     cookie: {
