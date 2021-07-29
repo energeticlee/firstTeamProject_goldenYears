@@ -101,7 +101,7 @@ const PatientLogin = () => {
             <div className="error-message">{errorMessage}</div>
           </form>
         </div>
-        <div className={style.rightContainer}>Slider</div>
+        {/* <div className={style.rightContainer}>Slider</div> */}
       </div>
     </div>
   );

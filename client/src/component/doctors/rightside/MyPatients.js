@@ -48,7 +48,7 @@ const MyPatients = () => {
       setPatientsArray(data.myPatients);
     };
     getData();
-  }, []);
+  }, [doctorId]);
   console.log(patientsarray);
   return (
     <div>
