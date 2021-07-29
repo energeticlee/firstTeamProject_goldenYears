@@ -193,7 +193,6 @@ const MyPerformance = () => {
             </div>
           </div>
         </div>
-
         <div className="myperformance-graphs column">
           <h2 className="title is-2">Arm Curl Test Graph</h2>
           <p>{display2}</p>
@@ -209,26 +208,28 @@ const MyPerformance = () => {
                 <span>Time Range</span>
               </button>
             </div>
-            <div className="dropdown-content">
-              <div className="buttons">
-                <a className="dropdown-item" onClick={sevendays2}>
-                  Past 7 days
-                </a>
-                <a className="dropdown-item" onClick={onemonth2}>
-                  Past 1 month
-                </a>
-                <a className="dropdown-item" onClick={threemonth2}>
-                  Past 3 months
-                </a>
-                <a className="dropdown-item" onClick={sixmonth2}>
-                  Past 6 months
-                </a>
-                <a className="dropdown-item" onClick={oneyear2}>
-                  Past 1 year
-                </a>
-                <a className="dropdown-item" onClick={alltime2}>
-                  All-time
-                </a>
+            <div className="dropdown-menu" id="dropdown-menu" role="menu">
+              <div className="dropdown-content">
+                <div className="buttons">
+                  <a className="dropdown-item" onClick={sevendays2}>
+                    Past 7 days
+                  </a>
+                  <a className="dropdown-item" onClick={onemonth2}>
+                    Past 1 month
+                  </a>
+                  <a className="dropdown-item" onClick={threemonth2}>
+                    Past 3 months
+                  </a>
+                  <a className="dropdown-item" onClick={sixmonth2}>
+                    Past 6 months
+                  </a>
+                  <a className="dropdown-item" onClick={oneyear2}>
+                    Past 1 year
+                  </a>
+                  <a className="dropdown-item" onClick={alltime2}>
+                    All-time
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -240,51 +241,82 @@ const MyPerformance = () => {
           <p>{display3}</p>
           <br></br>
           <Graph3 data={data.states.userId} time={time3} />
-          <div className="buttons">
-            <button className="button" onClick={sevendays3}>
-              Past 7 days
-            </button>
-            <button className="button" onClick={onemonth3}>
-              Past 1 month
-            </button>
-            <button className="button" onClick={threemonth3}>
-              Past 3 months
-            </button>
-            <button className="button" onClick={sixmonth3}>
-              Past 6 months
-            </button>
-            <button className="button" onClick={oneyear3}>
-              Past 1 year
-            </button>
-            <button className="button" onClick={alltime3}>
-              All-time
-            </button>
+          <div className="dropdown is-hoverable">
+            <div className="dropdown-trigger">
+              <button
+                className="button"
+                aria-haspopup="true"
+                aria-controls="dropdown-menu"
+              >
+                <span>Time Range</span>
+              </button>
+            </div>
+            <div className="dropdown-menu" id="dropdown-menu" role="menu">
+              <div className="dropdown-content">
+                <div className="buttons">
+                  <a className="dropdown-item" onClick={sevendays3}>
+                    Past 7 days
+                  </a>
+                  <a className="dropdown-item" onClick={onemonth3}>
+                    Past 1 month
+                  </a>
+                  <a className="dropdown-item" onClick={threemonth3}>
+                    Past 3 months
+                  </a>
+                  <a className="dropdown-item" onClick={sixmonth3}>
+                    Past 6 months
+                  </a>
+                  <a className="dropdown-item" onClick={oneyear3}>
+                    Past 1 year
+                  </a>
+                  <a className="dropdown-item" onClick={alltime3}>
+                    All-time
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+
         <div className="myperformance-graphs column">
           <h2 className="title is-2">Overall Performance Graph</h2>
           <p>{display4}</p>
           <br></br>
           <Graph4 data={data.states.userId} time={time4} />
-          <div className="buttons">
-            <button className="button" onClick={sevendays4}>
-              Past 7 days
-            </button>
-            <button className="button" onClick={onemonth4}>
-              Past 1 month
-            </button>
-            <button className="button" onClick={threemonth4}>
-              Past 3 months
-            </button>
-            <button className="button" onClick={sixmonth4}>
-              Past 6 months
-            </button>
-            <button className="button" onClick={oneyear4}>
-              Past 1 year
-            </button>
-            <button className="button" onClick={alltime4}>
-              All-time
-            </button>
+          <div className="dropdown is-hoverable">
+            <div className="dropdown-trigger">
+              <button
+                className="button"
+                aria-haspopup="true"
+                aria-controls="dropdown-menu"
+              >
+                <span>Time Range</span>
+              </button>
+            </div>
+            <div className="dropdown-menu" id="dropdown-menu" role="menu">
+              <div className="dropdown-content">
+                <div className="buttons">
+                  <a className="dropdown-item" onClick={sevendays4}>
+                    Past 7 days
+                  </a>
+                  <a className="dropdown-item" onClick={onemonth4}>
+                    Past 1 month
+                  </a>
+                  <a className="dropdown-item" onClick={threemonth4}>
+                    Past 3 months
+                  </a>
+                  <a className="dropdown-item" onClick={sixmonth4}>
+                    Past 6 months
+                  </a>
+                  <a className="dropdown-item" onClick={oneyear4}>
+                    Past 1 year
+                  </a>
+                  <a className="dropdown-item" onClick={alltime4}>
+                    All-time
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
