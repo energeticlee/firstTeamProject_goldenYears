@@ -52,56 +52,51 @@ const PatientLogin = () => {
   return (
     <div className={style.mainContainer}>
       <div className={style.loginContainer}>
-        <div className={style.leftContainer}>
-          <form onSubmit={handleUserLogin}>
-            <div className="field">
-              <label className="label is-size-4 has-text-centered">
-                Email:
-              </label>
-              <div className="control has-icons-left has-icons-right">
-                <input
-                  className="input is-primary has-text-centered"
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder="Email address"
-                  required
-                />
-                <span className="icon is-left">
-                  <i className="fas fa-envelope"></i>
-                </span>
-                <span className="icon is-right">
-                  <i className="fas fa-check"></i>
-                </span>
-              </div>
+        <form onSubmit={handleUserLogin}>
+          <div className="field">
+            <label className="label is-size-4 has-text-centered">Email:</label>
+            <div className="control has-icons-left has-icons-right">
+              <input
+                className="input is-primary has-text-centered"
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Email address"
+                required
+              />
+              <span className="icon is-left">
+                <i className="fas fa-envelope"></i>
+              </span>
+              <span className="icon is-right">
+                <i className="fas fa-check"></i>
+              </span>
             </div>
+          </div>
 
-            <div className="field">
-              <label className="label is-size-4 has-text-centered">
-                Password:
-              </label>
-              <div className="control has-icons-left has-icons-right">
-                <input
-                  className="input is-primary has-text-centered"
-                  type="password"
-                  name="password"
-                  id="password"
-                  placeholder="Enter password"
-                  required
-                />
-              </div>
+          <div className="field">
+            <label className="label is-size-4 has-text-centered">
+              Password:
+            </label>
+            <div className="control has-icons-left has-icons-right">
+              <input
+                className="input is-primary has-text-centered"
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Enter password"
+                required
+              />
             </div>
+          </div>
 
-            <br />
-            <div className="field container">
-              <div className="control">
-                <button className="button is-link">Enter</button>
-              </div>
+          <br />
+          <div className="field container">
+            <div className="control">
+              <button className="button is-link">Enter</button>
             </div>
-            <div className="error-message">{errorMessage}</div>
-          </form>
-        </div>
-        <div className={style.rightContainer}>Slider</div>
+          </div>
+          <div className="error-message">{errorMessage}</div>
+        </form>
       </div>
     </div>
   );

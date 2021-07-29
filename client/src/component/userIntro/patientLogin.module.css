@@ -7,10 +7,11 @@
 
 .loginContainer {
   display: flex;
+  justify-content: center;
   width: 100%;
   min-width: 500px;
   max-width: 80%;
-  padding: 10px;
+  padding: 30px;
   background-color: #d8e2dc;
 }
 
@@ -18,15 +19,6 @@
   width: 100%;
   max-width: 50%;
   padding: 30px;
-}
-
-.rightContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: white;
-  width: 100%;
-  max-width: 50%;
 }
 
 .form {
