@@ -2,6 +2,7 @@
 const express = require("express");
 const session = require("express-session");
 const cors = require("cors");
+const path = require("path");
 require("dotenv").config();
 
 // Mongoose - Dependencies
@@ -52,7 +53,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
-app.use(express.static("./client/src"));
+app.use(express.static(path.join(__dirname, "./client/build")));
 
 //Import/Require Controllers for express routing
 const sessionController = require("./controller/sessions");
@@ -64,6 +65,7 @@ const seedtestdata = require("./controller/fakeTestDataController");
 const usertestdata = require("./controller/userTestData");
 const doctorController = require("./controller/doctor");
 const doctorSeedController = require("./controller/doctorseed");
+// const matchController = require("./controller/matchController");
 
 //Routes
 app.use("/api/session", sessionController);
@@ -75,10 +77,15 @@ app.use("/api/seedtestdata", seedtestdata);
 app.use("/api/usertestdata", usertestdata);
 app.use("/api/doctor", doctorController);
 app.use("/api/doctorseed", doctorSeedController);
+// app.use("/api/matchController", matchController);
 
 // Server Linked => Database
 mongoose.connection.once("open", () => {
   console.log("Connected to mongo");
+});
+
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./client/build", "index.html"));
 });
 
 //Server Listening

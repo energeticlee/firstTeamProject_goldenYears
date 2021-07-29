@@ -2,13 +2,14 @@ import React from "react";
 import { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { dataContext } from "../../../App";
+import NotificationsCard from "./NotificationsCard";
 
 const Notifications = () => {
   const data = useContext(dataContext);
   const doctorId = data.states.doctorId;
   const dispatch = data.dispatch;
   const [patientsarray, setPatientsArray] = useState([]);
-  const [status, setstatus] = useState("Pending review");
+  const [status, setStatus] = useState("idle");
   const history = useHistory();
   useEffect(() => {
     if (Object.keys(data.states).length === 0) {
@@ -45,7 +46,7 @@ const Notifications = () => {
       setPatientsArray(data.myPendingPatients);
     };
     getData();
-  }, []);
+  }, [status]);
 
   const handleAccept = (id) => () => {
     const sendAccept = async () => {
@@ -63,7 +64,7 @@ const Notifications = () => {
       });
       const data = await response.json();
       console.log(data);
-      setstatus("Accepted");
+      setStatus("Accepted");
     };
     sendAccept();
   };
@@ -83,7 +84,7 @@ const Notifications = () => {
       });
       const data = await response.json();
       console.log(data);
-      setstatus("Decline");
+      setStatus("Declined");
     };
     sendDecline();
   };
@@ -95,12 +96,12 @@ const Notifications = () => {
         ? ""
         : patientsarray.map((patient) => {
             return (
-              <div key={patient._id}>
-                <div>{patient.name}</div>
-                <button onClick={handleAccept(patient._id)}>Accept</button>
-                <button onClick={handleDecline(patient._id)}>Decline</button>
-                <div>{status}</div>
-              </div>
+              <NotificationsCard
+                key={patient._id}
+                patient={patient}
+                handleAccept={handleAccept}
+                handleDecline={handleDecline}
+              />
             );
           })}
     </div>

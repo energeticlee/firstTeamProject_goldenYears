@@ -36,10 +36,14 @@ const ViewPatientProfile = (props) => {
             <div>Email: {userElement.email}</div>
             <div>Password: {userElement.password}</div>
             <div>Photo: {userElement.photo}</div>
-            <div>Age: {userElement.age}</div>
+            <div>Date of Birth: {userElement.age}</div>
             <div>Gender: {userElement.gender}</div>
-            <div>Height: {userElement.height}</div>
-            <div>Weight: {userElement.weight}</div>
+            <div>
+              Height: {userElement.height ? `${userElement.height} cm` : null}
+            </div>
+            <div>
+              Weight: {userElement.weight ? `${userElement.weight} cm` : null}
+            </div>
             <div>Health Conditions: {userElement.healthCondition}</div>
             <div>
               My Doctor:{" "}
