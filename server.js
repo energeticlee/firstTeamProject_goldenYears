@@ -2,6 +2,7 @@
 const express = require("express");
 const session = require("express-session");
 const cors = require("cors");
+const path = require("path");
 require("dotenv").config();
 
 // Mongoose - Dependencies
@@ -40,7 +41,7 @@ const corsOptionsDelegate = function (req, callback) {
 // Middlerware Linked => Express
 app.use(
   session({
-    secret: process.env.SECRET, //some random string
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {
@@ -52,7 +53,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
-app.use(express.static("./client/src"));
+app.use(express.static(path.join(__dirname, "./client/build")));
 
 //Import/Require Controllers for express routing
 const sessionController = require("./controller/sessions");
@@ -81,6 +82,10 @@ app.use("/api/doctorseed", doctorSeedController);
 // Server Linked => Database
 mongoose.connection.once("open", () => {
   console.log("Connected to mongo");
+});
+
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./client/build", "index.html"));
 });
 
 //Server Listening
