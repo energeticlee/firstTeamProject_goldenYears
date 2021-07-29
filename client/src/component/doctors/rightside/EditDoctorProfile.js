@@ -92,7 +92,7 @@ const EditDoctorProfile = () => {
               name="name"
               id="name"
               placeholder={userElement.name}
-              required
+              // required
             />
             <br />
             <br />
@@ -103,7 +103,7 @@ const EditDoctorProfile = () => {
               name="email"
               id="email"
               placeholder={userElement.email}
-              required
+              // required
             />
             <br />
             <br />
@@ -113,7 +113,7 @@ const EditDoctorProfile = () => {
               type="password"
               name="password"
               id="password"
-              placeholder={userElement.password}
+              placeholder="********"
               //   required
             />
             <br />

@@ -67,6 +67,8 @@ router.post("/", (req, res) => {
 router.put("/:id", (req, res) => {
   const id = req.params.id;
   // Set up a updted User Object
+  console.log(req.body.myDoctor);
+  console.log(req.body);
   const updatedUser = {
     name: req.body.name === undefined ? undefined : req.body.name,
     email: req.body.email === undefined ? undefined : req.body.email,
@@ -81,7 +83,7 @@ router.put("/:id", (req, res) => {
         ? undefined
         : req.body.healthCondition,
     myDoctor:
-      req.body.myDoctor === null ? null : req.body.myDoctor.toLowerCase(),
+      req.body.myDoctor === null ? null : req.body.myDoctor.email.toLowerCase(),
   };
 
   // Because the client will send a doctor email instead of an Id, we need to check if the email exists as a valid doctor

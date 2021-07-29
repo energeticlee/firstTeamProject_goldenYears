@@ -59,7 +59,7 @@ const ViewDoctorProfile = () => {
           <div key={userElement._id}>
             <div>Name: {userElement.name}</div>
             <div>Email: {userElement.email}</div>
-            <div>Password: {userElement.password}</div>
+            <div>Password: ******* </div>
             <div>Photo: {userElement.photo}</div>
             <div>Age: {userElement.age}</div>
             <br />

@@ -96,7 +96,7 @@ const EditPatientProfile = () => {
               name="name"
               id="name"
               placeholder={userElement.name}
-              required
+              // required
             />
             <br />
             <br />
@@ -107,7 +107,7 @@ const EditPatientProfile = () => {
               name="email"
               id="email"
               placeholder={userElement.email}
-              required
+              // required
             />
             <br />
             <br />
@@ -117,7 +117,7 @@ const EditPatientProfile = () => {
               type="password"
               name="password"
               id="password"
-              placeholder={userElement.password}
+              placeholder="********"
               //   required
             />
             <br />
