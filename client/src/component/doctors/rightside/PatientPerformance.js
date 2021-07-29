@@ -17,7 +17,7 @@ const PatientPerformance = () => {
   const [display3, setDisplay3] = useState("All-time");
   const [time4, setTime4] = useState({ number: 10, mode: "year" });
   const [display4, setDisplay4] = useState("All-time");
- 
+
   const { id } = useParams();
   const data = useContext(dataContext);
   const dispatch = data.dispatch;
@@ -44,7 +44,6 @@ const PatientPerformance = () => {
       getData();
     }
   }, []);
-
 
   const sevendays1 = () => {
     setTime1({ number: 7, mode: "days" });
@@ -153,7 +152,178 @@ const PatientPerformance = () => {
   };
   return (
     <>
-      <b>30-Second Chair Stand Graph</b>
+      <div className="myperformance-graphs-container">
+        <div className="columns">
+          <div className="myperformance-graphs column">
+            <h2 className="is-size-4">30-Second Chair Stand Graph</h2>
+            <p>{display1}</p>
+            <br></br>
+            <Graph1 data={id} time={time1} />
+            <div className="dropdown is-hoverable">
+              <div className="dropdown-trigger">
+                <button
+                  className="button"
+                  aria-haspopup="true"
+                  aria-controls="dropdown-menu"
+                >
+                  <span>Time Range</span>
+                </button>
+              </div>
+              <div className="dropdown-menu" id="dropdown-menu" role="menu">
+                <div className="dropdown-content">
+                  <div className="buttons">
+                    <a className="dropdown-item" onClick={sevendays1}>
+                      Past 7 days
+                    </a>
+                    <a className="dropdown-item" onClick={onemonth1}>
+                      Past 1 month
+                    </a>
+                    <a className="dropdown-item" onClick={threemonth1}>
+                      Past 3 months
+                    </a>
+                    <a className="dropdown-item" onClick={sixmonth1}>
+                      Past 6 months
+                    </a>
+                    <a className="dropdown-item" onClick={oneyear1}>
+                      Past 1 year
+                    </a>
+                    <a className="dropdown-item" onClick={alltime1}>
+                      All-time
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="myperformance-graphs column">
+            <h2 className="is-size-4">Arm Curl Test Graph</h2>
+            <p>{display2}</p>
+            <br></br>
+            <Graph2 data={id} time={time2} />
+            <div className="dropdown is-hoverable">
+              <div className="dropdown-trigger">
+                <button
+                  className="button"
+                  aria-haspopup="true"
+                  aria-controls="dropdown-menu"
+                >
+                  <span>Time Range</span>
+                </button>
+              </div>
+              <div className="dropdown-menu" id="dropdown-menu" role="menu">
+                <div className="dropdown-content">
+                  <div className="buttons">
+                    <a className="dropdown-item" onClick={sevendays2}>
+                      Past 7 days
+                    </a>
+                    <a className="dropdown-item" onClick={onemonth2}>
+                      Past 1 month
+                    </a>
+                    <a className="dropdown-item" onClick={threemonth2}>
+                      Past 3 months
+                    </a>
+                    <a className="dropdown-item" onClick={sixmonth2}>
+                      Past 6 months
+                    </a>
+                    <a className="dropdown-item" onClick={oneyear2}>
+                      Past 1 year
+                    </a>
+                    <a className="dropdown-item" onClick={alltime2}>
+                      All-time
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="columns">
+          <div className="myperformance-graphs column">
+            <h2 className="is-size-4">2-Minute Step Graph</h2>
+            <p>{display3}</p>
+            <br></br>
+            <Graph3 data={id} time={time3} />
+            <div className="dropdown is-hoverable">
+              <div className="dropdown-trigger">
+                <button
+                  className="button"
+                  aria-haspopup="true"
+                  aria-controls="dropdown-menu"
+                >
+                  <span>Time Range</span>
+                </button>
+              </div>
+              <div className="dropdown-menu" id="dropdown-menu" role="menu">
+                <div className="dropdown-content">
+                  <div className="buttons">
+                    <a className="dropdown-item" onClick={sevendays3}>
+                      Past 7 days
+                    </a>
+                    <a className="dropdown-item" onClick={onemonth3}>
+                      Past 1 month
+                    </a>
+                    <a className="dropdown-item" onClick={threemonth3}>
+                      Past 3 months
+                    </a>
+                    <a className="dropdown-item" onClick={sixmonth3}>
+                      Past 6 months
+                    </a>
+                    <a className="dropdown-item" onClick={oneyear3}>
+                      Past 1 year
+                    </a>
+                    <a className="dropdown-item" onClick={alltime3}>
+                      All-time
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="myperformance-graphs column">
+            <h2 className="is-size-4">Overall Performance Graph</h2>
+            <p>{display4}</p>
+            <br></br>
+            <Graph4 data={id} time={time4} />
+            <div className="dropdown is-hoverable">
+              <div className="dropdown-trigger">
+                <button
+                  className="button"
+                  aria-haspopup="true"
+                  aria-controls="dropdown-menu"
+                >
+                  <span>Time Range</span>
+                </button>
+              </div>
+              <div className="dropdown-menu" id="dropdown-menu" role="menu">
+                <div className="dropdown-content">
+                  <div className="buttons">
+                    <a className="dropdown-item" onClick={sevendays4}>
+                      Past 7 days
+                    </a>
+                    <a className="dropdown-item" onClick={onemonth4}>
+                      Past 1 month
+                    </a>
+                    <a className="dropdown-item" onClick={threemonth4}>
+                      Past 3 months
+                    </a>
+                    <a className="dropdown-item" onClick={sixmonth4}>
+                      Past 6 months
+                    </a>
+                    <a className="dropdown-item" onClick={oneyear4}>
+                      Past 1 year
+                    </a>
+                    <a className="dropdown-item" onClick={alltime4}>
+                      All-time
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* <b>30-Second Chair Stand Graph</b>
       <p>{display1}</p>
       <button onClick={sevendays1}>Past 7 days</button>
       <button onClick={onemonth1}>Past 1 month</button>
@@ -192,7 +362,7 @@ const PatientPerformance = () => {
       <button onClick={oneyear4}>Past 1 year</button>
       <button onClick={alltime4}>All-time</button>
       <br></br>
-      <Graph4 data={id} time={time4}/>
+      <Graph4 data={id} time={time4}/> */}
     </>
   );
 };

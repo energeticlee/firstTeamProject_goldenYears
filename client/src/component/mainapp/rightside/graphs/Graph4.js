@@ -18,77 +18,79 @@ export default function Graph4(props) {
     `/api/usertestdata/3/${props.data}`,
   ];
   useEffect(() => {
-    if (props.data!==undefined){
-    Promise.all(
-      urls.map((url) =>
-        fetch(url)
-          // .then(checkStatus)  // check the response of our APIs
-          .then((response) => {
-            return response.json();
-          }) // parse it to Json
-          .catch((error) => console.log("There was a problem!", error))
-      )
-    ).then((data) => {
-      setData1(data[0]);
-      setData2(data[1]);
-      setData3(data[2]);
-    });
-  }
+    if (props.data !== undefined) {
+      Promise.all(
+        urls.map((url) =>
+          fetch(url)
+            // .then(checkStatus)  // check the response of our APIs
+            .then((response) => {
+              return response.json();
+            }) // parse it to Json
+            .catch((error) => console.log("There was a problem!", error))
+        )
+      ).then((data) => {
+        setData1(data[0]);
+        setData2(data[1]);
+        setData3(data[2]);
+      });
+    }
   }, [props.data]);
 
-  const unixdate = moment().subtract(props.time.number,props.time.mode).format("x")
+  const unixdate = moment()
+    .subtract(props.time.number, props.time.mode)
+    .format("x");
   // console.log(moment(date).format("MMM Do YY"))
-  console.log(unixdate)
-  const filtereddata1 = []
-  const filtereddata2 = []
-  const filtereddata3 = []
-  
-  for (const items of data1){
-    if (items.date > unixdate){
-      filtereddata1.push(items)
-    } 
-  }
-  console.log("filtered1",filtereddata1)
+  console.log(unixdate);
+  const filtereddata1 = [];
+  const filtereddata2 = [];
+  const filtereddata3 = [];
 
-  for (const items of data2){
-    if (items.date > unixdate){
-      filtereddata2.push(items)
-    } 
+  for (const items of data1) {
+    if (items.date > unixdate) {
+      filtereddata1.push(items);
+    }
   }
-  console.log("filtered2",filtereddata2)
+  console.log("filtered1", filtereddata1);
 
-  for (const items of data3){
-    if (items.date > unixdate){
-      filtereddata3.push(items)
-    } 
+  for (const items of data2) {
+    if (items.date > unixdate) {
+      filtereddata2.push(items);
+    }
   }
-  console.log("filtered3",filtereddata3)
+  console.log("filtered2", filtereddata2);
 
-let result1 = 0
-  for (const items of filtereddata1){
-result1 += items.result
+  for (const items of data3) {
+    if (items.date > unixdate) {
+      filtereddata3.push(items);
+    }
   }
-  console.log(result1)
+  console.log("filtered3", filtereddata3);
+
+  let result1 = 0;
+  for (const items of filtereddata1) {
+    result1 += items.result;
+  }
+  console.log(result1);
   // console.log(data1)
 
-  let result2 = 0
-  for (const items of filtereddata2){
-result2 += items.result
+  let result2 = 0;
+  for (const items of filtereddata2) {
+    result2 += items.result;
   }
-  console.log(result2)
+  console.log(result2);
   // console.log(data2)
 
-  let result3 = 0
-  for (const items of filtereddata3){
-result3 += items.result
+  let result3 = 0;
+  for (const items of filtereddata3) {
+    result3 += items.result;
   }
-  console.log(result3)
+  console.log(result3);
   // console.log(data3)
 
   const data = [
     { name: "30-Second Chair Stand", value: result1 },
-    { name: "Arm Curls", value: result2},
-    { name: "2-Minute Step Test", value: result3},
+    { name: "Arm Curls", value: result2 },
+    { name: "2-Minute Step Test", value: result3 },
   ];
 
   const renderActiveShape = (props) => {
@@ -171,23 +173,24 @@ result3 += items.result
     },
     [setActiveIndex]
   );
-  return data1.length !== 0 && data2.length !== 0 && data3.length !== 0 ? 
-    <ResponsiveContainer width="100%" height={400}>
-    <PieChart>
-      <Pie
-        activeIndex={activeIndex}
-        activeShape={renderActiveShape}
-        data={data}
-        // cx={200}
-        // cy={200}
-        innerRadius={90}
-        outerRadius={120}
-        fill="#8884d8"
-        dataKey="value"
-        onMouseEnter={onPieEnter}
-      />
-    </PieChart>
+  return data1.length !== 0 && data2.length !== 0 && data3.length !== 0 ? (
+    <ResponsiveContainer width="100%" height={300}>
+      <PieChart>
+        <Pie
+          activeIndex={activeIndex}
+          activeShape={renderActiveShape}
+          data={data}
+          // cx={200}
+          // cy={200}
+          innerRadius={90}
+          outerRadius={120}
+          fill="#8884d8"
+          dataKey="value"
+          onMouseEnter={onPieEnter}
+        />
+      </PieChart>
     </ResponsiveContainer>
-  
-  :<p>Please complete all three tests!</p>
+  ) : (
+    <p>Please complete all three tests!</p>
+  );
 }
