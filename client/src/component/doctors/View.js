@@ -21,7 +21,9 @@ const View = () => {
         </Route>
 
         <Route path={`${path}/overallperformance`}>
+          <div>
           <OverallPerformance />
+          </div>
         </Route>
 
         <Route path={`${path}/notifications`}>
