@@ -79,6 +79,10 @@ ul {
   align-items: center;
 }
 
+.profile-title {
+	margin-bottom: 20px;
+}
+
 .dashboard-container {
   display: flex !important;
   flex-direction: row !important;
