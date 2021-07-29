@@ -81,11 +81,16 @@ const EditPatientProfile = () => {
     const eventKeys = Object.keys(event.target);
     for (let i = 0; i < eventKeys.length - 3; i++) {
       const oldValue = userElement[`${event.target[`${i}`].id}`];
+
       const newValue = event.target[`${i}`].value;
       if (newValue === "" && oldValue === undefined) {
         updatedUser[`${event.target[`${i}`].id}`] = undefined;
       } else if (newValue === "") {
-        updatedUser[`${event.target[`${i}`].id}`] = oldValue;
+        if (i === 9) {
+          updatedUser[`${event.target[`${i}`].id}`] = oldValue.email;
+        } else {
+          updatedUser[`${event.target[`${i}`].id}`] = oldValue;
+        }
       } else {
         updatedUser[`${event.target[`${i}`].id}`] = event.target[`${i}`].value;
       }
@@ -122,7 +127,7 @@ const EditPatientProfile = () => {
               name="name"
               id="name"
               placeholder={userElement.name}
-              required
+              // required
             />
             <br />
             <br />
@@ -133,7 +138,7 @@ const EditPatientProfile = () => {
               name="email"
               id="email"
               placeholder={userElement.email}
-              required
+              // required
             />
             <br />
             <br />
@@ -143,7 +148,7 @@ const EditPatientProfile = () => {
               type="password"
               name="password"
               id="password"
-              placeholder={userElement.password}
+              placeholder="********"
               //   required
             />
             <br />

@@ -61,7 +61,7 @@ const ViewPatientProfile = () => {
           <div key={userElement._id}>
             <div>Name: {userElement.name}</div>
             <div>Email: {userElement.email}</div>
-            <div>Password: {userElement.password}</div>
+            <div>Password: *******</div>
             <div>Photo: {userElement.photo}</div>
             <div>
               Date of Birth:{" "}
@@ -72,7 +72,7 @@ const ViewPatientProfile = () => {
               Height: {userElement.height ? `${userElement.height} cm` : null}
             </div>
             <div>
-              Weight: {userElement.weight ? `${userElement.weight} cm` : null}
+              Weight: {userElement.weight ? `${userElement.weight} kg` : null}
             </div>
             <div>Health Conditions: {userElement.healthCondition}</div>
             <div>
