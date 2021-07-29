@@ -51,7 +51,7 @@ const MyPatients = () => {
   }, [doctorId]);
   console.log(patientsarray);
   return (
-    <div>
+    <div className="see-patients-dropdown" id="see-patient-id">
       <div className="dropdown is-hoverable">
         <div className="dropdown-trigger">
           <button
