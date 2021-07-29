@@ -91,7 +91,6 @@ const Notifications = () => {
 
   return (
     <div>
-      <h1>This is the notifications page</h1>
       {patientsarray.length === 0
         ? ""
         : patientsarray.map((patient) => {

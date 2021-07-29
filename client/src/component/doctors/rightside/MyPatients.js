@@ -52,15 +52,13 @@ const MyPatients = () => {
   console.log(patientsarray);
   return (
     <div>
-      <h1>Your Patients</h1>
       <nav>
-        Nav bar of patients&apos; names here
         {patientsarray.length === 0
           ? " "
           : patientsarray.map((patient, index) => {
               return (
                 <Link to={`${url}/${patient._id}`} key={index}>
-                  <button>{patient.name}</button>
+                  <div>{patient.name}</div>
                 </Link>
               );
             })}
