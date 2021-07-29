@@ -1,13 +1,37 @@
 /* eslint-disable */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { dataContext } from "../../../App";
 
-const EditDoctorProfile = (props) => {
-  const doctorId = props.currentUser;
+const EditDoctorProfile = () => {
   const [userElement, setUserElement] = useState({});
+  const data = useContext(dataContext);
+  const doctorId = data.states.doctorId;
+  const dispatch = data.dispatch;
   const history = useHistory();
   useEffect(() => {
-    let mounted = true;
+    if (Object.keys(data.states).length === 0) {
+      console.log(Object.keys(data.states).length === 0);
+      const getData = async () => {
+        // Please change the localhose number according to your server port number
+        const response = await fetch("/api/doctorsession", {
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        });
+        const message = await response.json();
+        if (message.error !== "Not Authenticated") {
+          dispatch({ type: "PUSHDOCTORID", payload: message._id });
+        } else {
+          history.push("/");
+        }
+      };
+      getData();
+    }
+  }, []);
+  useEffect(() => {
     const getData = async () => {
       const response = await fetch(`/api/doctor/${doctorId}`, {
         mode: "cors",
@@ -17,13 +41,11 @@ const EditDoctorProfile = (props) => {
         },
       });
       const data = await response.json();
-      if (mounted) {
-        setUserElement(data);
-      }
+
+      setUserElement(data);
     };
     getData();
-    return () => (mounted = false);
-  });
+  }, [doctorId]);
   const handleSubmit = (event) => {
     event.preventDefault();
     const updatedUser = {};
@@ -70,7 +92,7 @@ const EditDoctorProfile = (props) => {
               name="name"
               id="name"
               placeholder={userElement.name}
-              required
+              // required
             />
             <br />
             <br />
@@ -81,7 +103,7 @@ const EditDoctorProfile = (props) => {
               name="email"
               id="email"
               placeholder={userElement.email}
-              required
+              // required
             />
             <br />
             <br />
@@ -91,7 +113,7 @@ const EditDoctorProfile = (props) => {
               type="password"
               name="password"
               id="password"
-              placeholder={userElement.password}
+              placeholder="********"
               //   required
             />
             <br />

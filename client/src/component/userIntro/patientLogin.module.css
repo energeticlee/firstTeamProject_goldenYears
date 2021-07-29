@@ -1,0 +1,21 @@
+.mainContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 0 15%;
+}
+
+.loginContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-width: 500px;
+  max-width: 80%;
+  padding: 30px;
+  background-color: #d8e2dc;
+}
+
+form {
+  min-width: 60%;
+  max-width: 80%;
+}

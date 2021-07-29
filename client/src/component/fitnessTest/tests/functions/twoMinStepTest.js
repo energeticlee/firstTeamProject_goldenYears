@@ -64,6 +64,9 @@ const twoMinStepTest = (reducerPackage) => {
           console.log(resJson);
           dispatch({ type: actions.setReset });
           history.push("/home/tests");
+          //* This method takes an optional parameter which by default is false.
+          //* If set to true, the browser will do a complete page refresh from the server and not from the cached version of the page.
+          window.location.reload(false);
         });
     }
   }, [state.completed]);

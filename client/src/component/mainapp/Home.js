@@ -32,10 +32,16 @@ const Home = () => {
     }
   }, []);
   return (
-    <div>
-      <Sidebar />
-      <View />
-    </div>
+    <>
+      <div className="dashboard-container">
+        <div className="sidebar">
+          <Sidebar />
+        </div>
+        <div className="rightside">
+          <View />
+        </div>
+      </div>
+    </>
   );
 };
 

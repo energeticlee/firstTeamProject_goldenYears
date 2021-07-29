@@ -4,6 +4,21 @@ const userSchema = require("../models/user");
 const doctorSchema = require("../models/doctor");
 const bcrypt = require("bcrypt");
 
+router.get("/validation/:email", (req, res) => {
+  userSchema.find({ email: req.params.email }, (error, foundUser) => {
+    if (error) {
+      res.status(400).json({ error: error.message });
+      console.log("inside 400", foundUser);
+    } else if (foundUser.length !== 0) {
+      console.log("inside 404", foundUser);
+      res.status(404).json({ error: "email taken" });
+    } else {
+      console.log("email is available");
+      res.status(200).send("ok");
+    }
+  });
+});
+
 // Get One user by Id
 router.get("/:id", (req, res) => {
   const id = req.params.id;
@@ -52,6 +67,8 @@ router.post("/", (req, res) => {
 router.put("/:id", (req, res) => {
   const id = req.params.id;
   // Set up a updted User Object
+  console.log(req.body.myDoctor);
+  console.log(req.body);
   const updatedUser = {
     name: req.body.name === undefined ? undefined : req.body.name,
     email: req.body.email === undefined ? undefined : req.body.email,

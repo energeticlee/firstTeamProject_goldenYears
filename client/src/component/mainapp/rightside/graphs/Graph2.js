@@ -153,5 +153,5 @@ export default function Graph2(props) {
           </Area>
         </AreaChart>
       </ResponsiveContainer>
-    :<p>No data found! Arm Curl test.</p>
+    :<p>No data found!</p>
 }

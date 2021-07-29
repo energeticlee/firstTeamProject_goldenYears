@@ -1,13 +1,42 @@
-/* eslint-disable */
-import React, { useEffect, useState } from "react";
+// /* eslint-disable */
+import React, { useEffect, useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { dataContext } from "../../../App";
+import bulmaCalendar from 'bulma-calendar/dist/js/bulma-calendar.min';
+// import "~bulma-calendar/dist/css/bulma-calendar.min.css"
 
-const EditPatientProfile = (props) => {
-  const userId = props.currentUser;
+const EditPatientProfile = () => {
+  const data = useContext(dataContext);
+  const userId = data.states.userId;
   const [userElement, setUserElement] = useState({});
+
+  const dispatch = data.dispatch;
   const history = useHistory();
+
   useEffect(() => {
-    let mounted = true;
+    if (Object.keys(data.states).length === 0) {
+      console.log(Object.keys(data.states).length === 0);
+      const getData = async () => {
+        // Please change the localhose number according to your server port number
+        const response = await fetch("/api/session", {
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        });
+        const message = await response.json();
+        if (message.error !== "Not Authenticated") {
+          dispatch({ type: "PUSHPATIENTID", payload: message });
+        } else {
+          history.push("/");
+        }
+      };
+      getData();
+    }
+  }, []);
+
+  useEffect(() => {
     const getData = async () => {
       const response = await fetch(`/api/user/${userId}`, {
         mode: "cors",
@@ -17,24 +46,51 @@ const EditPatientProfile = (props) => {
         },
       });
       const data = await response.json();
-      if (mounted) {
-        setUserElement(data);
-      }
+
+      setUserElement(data);
     };
     getData();
-    return () => (mounted = false);
-  });
+  }, [userId]);
+
+  useEffect(() => {
+    // Initialize all input of date type.
+    const calendars = bulmaCalendar.attach('[type="date"]', {});
+
+    // Loop on each calendar initialized
+    calendars.forEach((calendar) => {
+      // Add listener to date:selected event
+      calendar.on('date:selected', (date) => {
+        console.log(date);
+      });
+    });
+
+    // To access to bulmaCalendar instance of an element
+    // eslint-disable-next-line no-undef
+    const element = document.querySelector('#dob');
+    if (element) {
+      // bulmaCalendar instance is available as element.bulmaCalendar
+      element.bulmaCalendar.on('select', (datepicker) => {
+        console.log(datepicker.data.value());
+      });
+    }
+  }, []);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const updatedUser = {};
     const eventKeys = Object.keys(event.target);
     for (let i = 0; i < eventKeys.length - 3; i++) {
       const oldValue = userElement[`${event.target[`${i}`].id}`];
+
       const newValue = event.target[`${i}`].value;
       if (newValue === "" && oldValue === undefined) {
         updatedUser[`${event.target[`${i}`].id}`] = undefined;
       } else if (newValue === "") {
-        updatedUser[`${event.target[`${i}`].id}`] = oldValue;
+        if (i === 9) {
+          updatedUser[`${event.target[`${i}`].id}`] = oldValue.email;
+        } else {
+          updatedUser[`${event.target[`${i}`].id}`] = oldValue;
+        }
       } else {
         updatedUser[`${event.target[`${i}`].id}`] = event.target[`${i}`].value;
       }
@@ -56,6 +112,7 @@ const EditPatientProfile = (props) => {
     };
     updateData();
   };
+
   return (
     <>
       {Object.keys(userElement).length === 0 ? (
@@ -70,7 +127,7 @@ const EditPatientProfile = (props) => {
               name="name"
               id="name"
               placeholder={userElement.name}
-              required
+              // required
             />
             <br />
             <br />
@@ -81,7 +138,7 @@ const EditPatientProfile = (props) => {
               name="email"
               id="email"
               placeholder={userElement.email}
-              required
+              // required
             />
             <br />
             <br />
@@ -91,7 +148,7 @@ const EditPatientProfile = (props) => {
               type="password"
               name="password"
               id="password"
-              placeholder={userElement.password}
+              placeholder="********"
               //   required
             />
             <br />
@@ -108,15 +165,16 @@ const EditPatientProfile = (props) => {
             />
             <br />
             <br />
-            <label>Age:</label>
+            <label>Date of Birth:</label>
             <br />
-            <input
+            <input name = "age" id="age" type="date" />
+            {/* <input
               type="number"
               name="age"
               id="age"
-              placeholder={userElement.age}
+              placeholder={userElement.age ? userElement.age : "DD/MM/YYYY"}
               //   required
-            />
+            /> */}
             <br />
             <br />
             <label>Gender:</label>

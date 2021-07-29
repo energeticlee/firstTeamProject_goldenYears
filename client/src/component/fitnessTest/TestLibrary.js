@@ -1,5 +1,5 @@
 import React, { useReducer } from "react";
-import { Link, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import PoseEstimation from "./tests/PoseEstimation";
 import chairStand from "./tests/functions/chairStand";
 import armCurl from "./tests/functions/armCurl";
@@ -9,6 +9,7 @@ import { useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { dataContext } from "../../App";
 import style from "./TestLibrary.module.css";
+import TestSelection from "./testSelection";
 //* Add score to useReducer, and render overall result here then Post result to DB.
 
 const TestLibrary = () => {
@@ -99,29 +100,20 @@ const TestLibrary = () => {
     startTime: 0,
     endTime: 0,
     completed: false,
-    chairStandTime: 30,
-    armCurlTime: 30,
-    twoMinStepTime: 120,
+    chairStandTime: 10,
+    armCurlTime: 10,
+    twoMinStepTime: 10,
   });
 
   const reducerPackage = { state, dispatch, actions };
 
   return (
     <div className={style.mainContainer}>
-      <h1 className={style.title}>Testing Library</h1>
-      <div className={style.testContainer}>
-        <Link to={`${path}/chairstand`} className={style.test}>
-          <h2>30-Second Chair Stand</h2>
-        </Link>
-        <Link to={`${path}/armcurl`} className={style.test}>
-          <h2>Arm Curl</h2>
-        </Link>
-        <Link to={`${path}/twominsteptest`} className={style.test}>
-          <h2>2-Minute Step Test</h2>
-        </Link>
-      </div>
       <main>
         <Switch>
+          <Route exact path={path}>
+            <TestSelection />
+          </Route>
           <Route path={`${path}/chairstand`}>
             <PoseEstimation
               reducerPackage={reducerPackage}

@@ -9,7 +9,7 @@ const Notifications = () => {
   const doctorId = data.states.doctorId;
   const dispatch = data.dispatch;
   const [patientsarray, setPatientsArray] = useState([]);
-  const [status, setStatus] = useState("idle");
+  const [status, setStatus] = useState(0);
   const history = useHistory();
   useEffect(() => {
     if (Object.keys(data.states).length === 0) {
@@ -64,7 +64,7 @@ const Notifications = () => {
       });
       const data = await response.json();
       console.log(data);
-      setStatus("Accepted");
+      setStatus((status) => status + 1);
     };
     sendAccept();
   };
@@ -84,14 +84,13 @@ const Notifications = () => {
       });
       const data = await response.json();
       console.log(data);
-      setStatus("Declined");
+      setStatus((status) => status + 1);
     };
     sendDecline();
   };
 
   return (
-    <div>
-      <h1>This is the notifications page</h1>
+    <div className="notifications-container">
       {patientsarray.length === 0
         ? ""
         : patientsarray.map((patient) => {

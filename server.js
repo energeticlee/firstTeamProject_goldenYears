@@ -15,39 +15,39 @@ const port = process.env.PORT || 3333;
 // Mongoose - Configurations
 const MONGO_URI = process.env.MONGO_URI;
 mongoose.connect(MONGO_URI, {
-	useNewUrlParser: true,
-	useUnifiedTopology: true,
-	useFindAndModify: false,
-	useCreateIndex: true,
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+  useCreateIndex: true,
 });
 
 // Middleware configurations
 
 const whitelist = [
-	"http://localhost:3000",
-	"http://localhost:3003",
-	"https://fathomless-sierra-68956.herokuapp.com",
+  "http://localhost:3000",
+  "http://localhost:3003",
+  "https://fathomless-sierra-68956.herokuapp.com",
 ];
 const corsOptionsDelegate = function (req, callback) {
-	let corsOptions;
-	if (whitelist.indexOf(req.header("Origin")) !== -1) {
-		corsOptions = { origin: true };
-	} else {
-		corsOptions = { origin: false };
-	}
-	callback(null, corsOptions);
+  let corsOptions;
+  if (whitelist.indexOf(req.header("Origin")) !== -1) {
+    corsOptions = { origin: true };
+  } else {
+    corsOptions = { origin: false };
+  }
+  callback(null, corsOptions);
 };
 
 // Middlerware Linked => Express
 app.use(
-	session({
-		secret: process.env.SECRET,
-		resave: false,
-		saveUninitialized: false,
-		cookie: {
-			maxAge: 3600000,
-		},
-	})
+  session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 3600000,
+    },
+  })
 );
 app.use(cors());
 app.use(express.json());
@@ -81,14 +81,14 @@ app.use("/api/doctorseed", doctorSeedController);
 
 // Server Linked => Database
 mongoose.connection.once("open", () => {
-	console.log("Connected to mongo");
+  console.log("Connected to mongo");
 });
 
 app.get("/*", (req, res) => {
-	res.sendFile(path.join(__dirname, "./client/build", "index.html"));
+  res.sendFile(path.join(__dirname, "./client/build", "index.html"));
 });
 
 //Server Listening
 app.listen(port, () => {
-	console.log("Listening on PORT:", port);
+  console.log("Listening on PORT:", port);
 });
