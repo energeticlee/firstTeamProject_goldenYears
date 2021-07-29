@@ -1,6 +1,6 @@
 import React from "react";
 
-function Accordion(question, answser) {
+function Accordion() {
 	const handleClick = () => {
 		const panel = document.getElementsById("panel");
 		console.log(panel);

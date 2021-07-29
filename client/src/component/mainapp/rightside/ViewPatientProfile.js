@@ -2,6 +2,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Link, useRouteMatch, useHistory } from "react-router-dom";
 import { dataContext } from "../../../App";
+import moment from "moment"
 
 const ViewPatientProfile = () => {
   const [userElement, setUserElement] = useState({});
@@ -51,12 +52,6 @@ const ViewPatientProfile = () => {
   }, [userId]);
   console.log(userElement);
 
-  const getAge = (DoB) => {
-    // react-datePicker uses moment.js
-    // currentAge = Date.Now() - selected date
-    // return currentAge
-  };
-
   return (
     <>
       {Object.keys(userElement).length === 0 ? (
@@ -70,7 +65,7 @@ const ViewPatientProfile = () => {
             <div>Photo: {userElement.photo}</div>
             <div>
               Date of Birth:{" "}
-              {userElement.age ? `${getAge(userElement.age)}` : null}
+              {userElement.dob ? moment(userElement.dob).format("DD MMM YYYY") : null}
             </div>
             <div>Gender: {userElement.gender}</div>
             <div>

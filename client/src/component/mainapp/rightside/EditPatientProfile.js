@@ -1,7 +1,9 @@
-/* eslint-disable */
+// /* eslint-disable */
 import React, { useEffect, useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { dataContext } from "../../../App";
+import bulmaCalendar from 'bulma-calendar/dist/js/bulma-calendar.min';
+// import "~bulma-calendar/dist/css/bulma-calendar.min.css"
 
 const EditPatientProfile = () => {
   const data = useContext(dataContext);
@@ -49,6 +51,30 @@ const EditPatientProfile = () => {
     };
     getData();
   }, [userId]);
+
+  useEffect(() => {
+    // Initialize all input of date type.
+    const calendars = bulmaCalendar.attach('[type="date"]', {});
+
+    // Loop on each calendar initialized
+    calendars.forEach((calendar) => {
+      // Add listener to date:selected event
+      calendar.on('date:selected', (date) => {
+        console.log(date);
+      });
+    });
+
+    // To access to bulmaCalendar instance of an element
+    // eslint-disable-next-line no-undef
+    const element = document.querySelector('#dob');
+    if (element) {
+      // bulmaCalendar instance is available as element.bulmaCalendar
+      element.bulmaCalendar.on('select', (datepicker) => {
+        console.log(datepicker.data.value());
+      });
+    }
+  }, []);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const updatedUser = {};
@@ -134,15 +160,16 @@ const EditPatientProfile = () => {
             />
             <br />
             <br />
-            <label>Age:</label>
+            <label>Date of Birth:</label>
             <br />
-            <input
+            <input id="dob" type="date" />
+            {/* <input
               type="number"
               name="age"
               id="age"
               placeholder={userElement.age ? userElement.age : "DD/MM/YYYY"}
               //   required
-            />
+            /> */}
             <br />
             <br />
             <label>Gender:</label>

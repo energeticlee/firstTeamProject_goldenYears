@@ -57,7 +57,7 @@ router.put("/:id", (req, res) => {
     email: req.body.email === undefined ? undefined : req.body.email,
     password: req.body.password === undefined ? undefined : req.body.password,
     photo: req.body.photo === undefined ? undefined : req.body.photo,
-    age: req.body.age === undefined ? 0 : req.body.age,
+    dob: req.body.dob === undefined ? 0 : req.body.dob,
     gender: req.body.gender === undefined ? undefined : req.body.gender,
     height: req.body.height === undefined ? 0 : req.body.height,
     weight: req.body.weight === undefined ? 0 : req.body.weight,
