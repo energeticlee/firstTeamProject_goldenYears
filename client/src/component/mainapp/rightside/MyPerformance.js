@@ -17,7 +17,7 @@ const MyPerformance = () => {
   const [display3, setDisplay3] = useState("All-time");
   const [time4, setTime4] = useState({ number: 10, mode: "year" });
   const [display4, setDisplay4] = useState("All-time");
- 
+
   const data = useContext(dataContext);
   const dispatch = data.dispatch;
   const history = useHistory();
@@ -150,48 +150,116 @@ const MyPerformance = () => {
     setDisplay4("All-time");
   };
   return (
-    <>
-      <b>30-Second Chair Stand Graph</b>
-      <p>{display1}</p>
-      <button onClick={sevendays1}>Past 7 days</button>
-      <button onClick={onemonth1}>Past 1 month</button>
-      <button onClick={threemonth1}>Past 3 months</button>
-      <button onClick={sixmonth1}>Past 6 months</button>
-      <button onClick={oneyear1}>Past 1 year</button>
-      <button onClick={alltime1}>All-time</button>
-      <br></br>
-      <Graph1 data={data.states.userId} time={time1} />
-      <b>Arm Curl Test Graph</b>
-      <p>{display2}</p>
-      <button onClick={sevendays2}>Past 7 days</button>
-      <button onClick={onemonth2}>Past 1 month</button>
-      <button onClick={threemonth2}>Past 3 months</button>
-      <button onClick={sixmonth2}>Past 6 months</button>
-      <button onClick={oneyear2}>Past 1 year</button>
-      <button onClick={alltime2}>All-time</button>
-      <br></br>
-      <Graph2 data={data.states.userId} time={time2} />
-      <b>2-Minute Step Graph</b>
-      <p>{display3}</p>
-      <button onClick={sevendays3}>Past 7 days</button>
-      <button onClick={onemonth3}>Past 1 month</button>
-      <button onClick={threemonth3}>Past 3 months</button>
-      <button onClick={sixmonth3}>Past 6 months</button>
-      <button onClick={oneyear3}>Past 1 year</button>
-      <button onClick={alltime3}>All-time</button>
-      <br></br>
-      <Graph3 data={data.states.userId} time={time3} />
-      <b>Overall Performance Graph</b>
-      <p>{display4}</p>
-      <button onClick={sevendays4}>Past 7 days</button>
-      <button onClick={onemonth4}>Past 1 month</button>
-      <button onClick={threemonth4}>Past 3 months</button>
-      <button onClick={sixmonth4}>Past 6 months</button>
-      <button onClick={oneyear4}>Past 1 year</button>
-      <button onClick={alltime4}>All-time</button>
-      <br></br>
-      <Graph4 data={data.states.userId} time={time4}/>
-    </>
+    <div className="myperformance-graphs-container">
+      <div className="columns">
+        <div className="myperformance-graphs column">
+          <h2 className="title is-2">30-Second Chair Stand Graph</h2>
+          <p>{display1}</p>
+          <br></br>
+          <Graph1 data={data.states.userId} time={time1} />
+          <div className="buttons">
+            <button className="button" onClick={sevendays1}>
+              Past 7 days
+            </button>
+            <button className="button" onClick={onemonth1}>
+              Past 1 month
+            </button>
+            <button className="button" onClick={threemonth1}>
+              Past 3 months
+            </button>
+            <button className="button" onClick={sixmonth1}>
+              Past 6 months
+            </button>
+            <button className="button" onClick={oneyear1}>
+              Past 1 year
+            </button>
+            <button className="button" onClick={alltime1}>
+              All-time
+            </button>
+          </div>
+        </div>
+        <div className="myperformance-graphs column">
+          <h2 className="title is-2">Arm Curl Test Graph</h2>
+          <p>{display2}</p>
+          <br></br>
+          <Graph2 data={data.states.userId} time={time2} />
+          <div className="buttons">
+            <button className="button" onClick={sevendays2}>
+              Past 7 days
+            </button>
+            <button className="button" onClick={onemonth2}>
+              Past 1 month
+            </button>
+            <button className="button" onClick={threemonth2}>
+              Past 3 months
+            </button>
+            <button className="button" onClick={sixmonth2}>
+              Past 6 months
+            </button>
+            <button className="button" onClick={oneyear2}>
+              Past 1 year
+            </button>
+            <button className="button" onClick={alltime2}>
+              All-time
+            </button>
+          </div>
+        </div>
+      </div>
+      <div className="columns">
+        <div className="myperformance-graphs column">
+          <h2 className="title is-2">2-Minute Step Graph</h2>
+          <p>{display3}</p>
+          <br></br>
+          <Graph3 data={data.states.userId} time={time3} />
+          <div className="buttons">
+            <button className="button" onClick={sevendays3}>
+              Past 7 days
+            </button>
+            <button className="button" onClick={onemonth3}>
+              Past 1 month
+            </button>
+            <button className="button" onClick={threemonth3}>
+              Past 3 months
+            </button>
+            <button className="button" onClick={sixmonth3}>
+              Past 6 months
+            </button>
+            <button className="button" onClick={oneyear3}>
+              Past 1 year
+            </button>
+            <button className="button" onClick={alltime3}>
+              All-time
+            </button>
+          </div>
+        </div>
+        <div className="myperformance-graphs column">
+          <h2 className="title is-2">Overall Performance Graph</h2>
+          <p>{display4}</p>
+          <br></br>
+          <Graph4 data={data.states.userId} time={time4} />
+          <div className="buttons">
+            <button className="button" onClick={sevendays4}>
+              Past 7 days
+            </button>
+            <button className="button" onClick={onemonth4}>
+              Past 1 month
+            </button>
+            <button className="button" onClick={threemonth4}>
+              Past 3 months
+            </button>
+            <button className="button" onClick={sixmonth4}>
+              Past 6 months
+            </button>
+            <button className="button" onClick={oneyear4}>
+              Past 1 year
+            </button>
+            <button className="button" onClick={alltime4}>
+              All-time
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
