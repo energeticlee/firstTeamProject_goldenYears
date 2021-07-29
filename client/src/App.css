@@ -1,4 +1,5 @@
-html body {
+html,
+body {
 	background-color: #fae1dd !important;
 	font-family: "Monserrat" !important;
 	height: 100% !important;
@@ -145,4 +146,11 @@ ul {
 .myperformance-graphs {
 	margin: 10px;
 	text-align: center;
+<<<<<<< HEAD
+=======
+}
+
+.intro-header {
+	margin-bottom: 10px;
+>>>>>>> main
 }
