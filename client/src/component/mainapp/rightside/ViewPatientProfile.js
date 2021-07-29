@@ -3,6 +3,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { Link, useRouteMatch, useHistory } from "react-router-dom";
 import { dataContext } from "../../../App";
 import moment from "moment";
+
 const ViewPatientProfile = () => {
   const [userElement, setUserElement] = useState({});
   const { url } = useRouteMatch();
@@ -33,6 +34,7 @@ const ViewPatientProfile = () => {
       getData();
     }
   }, []);
+
   useEffect(() => {
     const getData = async () => {
       const response = await fetch(`/api/user/${userId}`, {
@@ -49,6 +51,7 @@ const ViewPatientProfile = () => {
     getData();
   }, [userId]);
   console.log(userElement);
+
   return (
     <>
       {Object.keys(userElement).length === 0 ? (
