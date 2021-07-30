@@ -95,7 +95,9 @@ const PatientLogin = () => {
               <button className="button is-link">Enter</button>
             </div>
           </div>
-          <div className="error-message">{errorMessage}</div>
+          <div className={style.errorMessage}>
+            <div className="error-message">{errorMessage}</div>
+          </div>
         </form>
       </div>
     </div>

@@ -41,6 +41,7 @@ const TestLibrary = () => {
   }, []);
   const actions = {
     setElbowAngle: "setElbowAngle",
+    setShoulderAngle: "setShoulderAngle",
     setKneeAngle: "setKneeAngle",
     setRightHipAngle: "setRightHipAngle",
     setLeftHipAngle: "setLeftHipAngle",
@@ -56,6 +57,8 @@ const TestLibrary = () => {
     switch (action.type) {
       case actions.setElbowAngle:
         return { ...state, elbowAngle: action.payload };
+      case actions.setShoulderAngle:
+        return { ...state, shoulderAngle: action.payload };
       case actions.setKneeAngle:
         return { ...state, kneeAngle: action.payload };
       case actions.setRightHipAngle:
@@ -92,6 +95,7 @@ const TestLibrary = () => {
   const [state, dispatch] = useReducer(renderjointAngle, {
     //! onClick - Reset Score && set completed to false
     elbowAngle: 0,
+    shoulderAngle: 0,
     kneeAngle: 0,
     rightHipAngle: 0,
     leftHipAngle: 0,

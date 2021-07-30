@@ -37,7 +37,7 @@ router.post("/new", (req, res) => {
           // redirect back to our home page
           res.status(200).json(foundUserList[i]);
           break;
-        }
+        } else res.status(400).json({ error: "Password does not match" });
       }
       // now let's check if passwords match
     }
