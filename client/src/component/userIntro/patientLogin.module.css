@@ -19,3 +19,9 @@ form {
   min-width: 60%;
   max-width: 80%;
 }
+
+.errorMessage {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
