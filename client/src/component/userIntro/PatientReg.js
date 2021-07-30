@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { dataContext } from "../../App";
 import style from "./patientLogin.module.css";
@@ -7,6 +7,7 @@ const PatientReg = () => {
   const data = useContext(dataContext);
   const history = useHistory();
   const dispatch = data.dispatch;
+  const [errMessage, setErrMessage] = useState();
 
   const handleSubmitPatientData = (event) => {
     event.preventDefault();
@@ -45,7 +46,7 @@ const PatientReg = () => {
       }
       if (res.status === 404) {
         const data = await res.json();
-        console.log("Email Taken", data.error);
+        setErrMessage(data.error);
       } else if (res.status === 200) {
         console.log("it's inside!!!!");
         const response = await fetch("/api/user", {
@@ -79,6 +80,7 @@ const PatientReg = () => {
     <div className={style.mainContainer}>
       <div className={style.loginContainer}>
         <form onSubmit={handleSubmitPatientData}>
+          <div className={style.errorMessage}>{errMessage}</div>
           <div className="field">
             <label className="label is-size-4 has-text-centered">Name:</label>
             <input
