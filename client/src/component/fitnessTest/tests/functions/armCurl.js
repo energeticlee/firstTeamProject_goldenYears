@@ -13,7 +13,7 @@ const armCurl = (reducerPackage) => {
     if (state.repPhase === "up") {
       dispatch({ type: actions.setEndTime, payload: Date.now() });
     }
-    if (state.elbowAngle > 150) {
+    if (state.elbowAngle > 150 && state.shoulderAngle < 20) {
       dispatch({ type: actions.setRepPhase, payload: "down" });
       if (state.repCount === 0)
         dispatch({ type: actions.setStartTime, payload: Date.now() });
@@ -22,7 +22,7 @@ const armCurl = (reducerPackage) => {
 
     if (state.elbowAngle < 40) {
       dispatch({ type: actions.setEndTime, payload: Date.now() });
-      if (state.repPhase === "down") {
+      if (state.repPhase === "down" && state.shoulderAngle < 20) {
         dispatch({ type: actions.setRepPhase, payload: "up" });
         dispatch({ type: actions.setRepCount, payload: 1 });
       }
