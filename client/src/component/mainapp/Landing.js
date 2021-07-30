@@ -14,12 +14,7 @@ const Landing = () => {
 			</h1>
 
 			<p className="content is-medium has-text-centered" id="home-content">
-				Make the sunset years of your life the best years of your life. Let us
-				help you get into better shape so you can continue to enjoy all that
-				live has to offer. Age is just a number - do not let it stop you from
-				doing all the things you want to do - scuba diving, bungee jumping,
-				cliff diving, mountain biking... All these activities are within your
-				grasp as long as you partake in our fitness tests regularly!
+				Age with dignity and grace.
 			</p>
 
 			<div
